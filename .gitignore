@@ -1,0 +1,8 @@
+.tmp/
+coverage/
+dist/
+node_modules/
+bower_components/
+conf/
+gulp_tasks/
+
