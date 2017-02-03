@@ -14,7 +14,7 @@
       "namespace": "fountain-angular1",
       "modules": "inject",
       "resolved": "C:\\Users\\Simon James Sankar\\AppData\\Roaming\\npm\\node_modules\\generator-fountain-webapp\\node_modules\\generator-fountain-angular1\\generators\\app\\index.js",
-      "sample": "todoMVC",
+      "sample": "hello",
       "router": "uirouter"
     }
   }

@@ -11,9 +11,5 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('app', {
       url: '/',
       component: 'app'
-    })
-    .state('home', {
-      url: '/home',
-      template:'<h1>home</h1>'
-    })
+    });
 }
