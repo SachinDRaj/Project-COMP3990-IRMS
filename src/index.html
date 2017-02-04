@@ -7,7 +7,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="icon" type="image/png" href="http://fountainjs.io/assets/imgs/fountain.png" />
-  
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+
     <!-- build:css({.tmp,src}) styles/vendor.css -->
     <!-- bower:css -->
     <!-- run `gulp inject` to automatically populate bower styles dependencies -->
@@ -23,7 +24,25 @@
 
 
   <body ng-app="app">
-    <ui-view></ui-view>
+    <nav class="navbar navbar-inverse fixed-top bg-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="home">IRMS</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a ui-sref="home">Home</a></li>
+        <li><a href="report">Report</a></li>
+        <li><a href="forum">Forum</a></li>
+        <li><a ui-sref="graph">Graphs</a></li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </nav>
+  <ui-view></ui-view>
   </body>
 
   <!-- build:js({.tmp,src}) scripts/vendor.js -->
@@ -41,4 +60,3 @@
   <!-- endinject -->
   <!-- endbuild -->
 </html>
-
