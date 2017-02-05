@@ -20,9 +20,9 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/forum',
       templateUrl:'app/templates/forum.html'
     })
-    .state('graph', {
-      url: '/graph',
-      templateUrl:'app/templates/graph.html'
+    .state('graphs', {
+      url: '/graphs',
+      templateUrl:'app/templates/graphs.html'
     })
     .state('login', {
       url: '/login',
