@@ -1,17 +1,28 @@
-/*#c1{
-  border-style: solid;
-  border-color: red;
-  border-width: 2px;
-  height: 100px;
-}
-#c2{
-  border-style: solid;
-  border-color: blue;
-  border-width: 2px;
-  height: 100px;
-}*/
+
 .scrollable-menu {
     height: auto;
     max-height: 200px;
     overflow-x: hidden;
+}
+#map {
+  height: 500px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 30px 5px #888888;
+
+}
+
+#d1{
+  padding-top: 1%;
+}
+
+#d2{
+  padding-top: 1%;
+}
+#d3{
+  border-style: solid;
+  border-color: #E0F8F7;
+  border-radius: 2px;
+  height: 500px;
+  box-shadow: 5px 5px 30px 5px #888888;
+  background-color: #E0F8F7;
 }
