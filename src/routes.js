@@ -10,7 +10,7 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('home', {
       url: '/home',
-      template:'<h1>Home Page.</h1>'
+      templateUrl:'app/templates/home.html'
     })
     .state('report', {
       url: '/report',
