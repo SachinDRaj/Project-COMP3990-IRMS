@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width">
     <link rel="icon" type="image/png" href="http://fountainjs.io/assets/imgs/fountain.png" />
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="app/css/reports.css">
 
     <!-- build:css({.tmp,src}) styles/vendor.css -->
     <!-- bower:css -->
@@ -27,16 +28,15 @@
     <nav class="navbar navbar-inverse fixed-top bg-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" ui-sref="home">IRMS</a>
+        <a class="navbar-brand" ui-sref="/">IRMS</a>
       </div>
       <ul class="nav navbar-nav">
-        <li><a ui-sref="home">Home</a></li>
-        <li><a ui-sref="report">Report</a></li>
+        <li><a ui-sref="/">Home</a></li>
+        <li><a ui-sref="reports">Reports</a></li>
         <li><a ui-sref="forum">Forum</a></li>
         <li><a ui-sref="graph">Graphs</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>
@@ -44,10 +44,11 @@
 
   <ui-view></ui-view>
 
-
   <footer class="footer">
         <div class="container">
-          <p class="text-muted">Place sticky footer content here.</p>
+          <div class="col-md-10 col-md-offset-1">
+            <p class="text-muted">Contact</p>
+          </div>
         </div>
   </footer>
 

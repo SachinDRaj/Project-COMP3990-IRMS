@@ -8,21 +8,21 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
-    .state('home', {
-      url: '/home',
+    .state('/', {
+      url: '/',
       templateUrl:'app/templates/home.html'
     })
-    .state('report', {
-      url: '/report',
-      template:'<h1>This is the report area.</h1>'
+    .state('reports', {
+      url: '/reports',
+      templateUrl:'app/templates/reports.html'
     })
     .state('forum', {
       url: '/forum',
-      template:'<h1>This is the forum.</h1>'
+      templateUrl:'app/templates/forum.html'
     })
     .state('graph', {
       url: '/graph',
-      template:'<h1>This is Graphs.</h1>'
+      templateUrl:'app/templates/graph.html'
     })
     .state('login', {
       url: '/login',
