@@ -8,8 +8,6 @@
     <meta name="viewport" content="width=device-width">
     <link rel="icon" type="image/png" href="http://fountainjs.io/assets/imgs/fountain.png" />
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- build:css({.tmp,src}) styles/vendor.css -->
     <!-- bower:css -->
@@ -26,34 +24,26 @@
 
 
   <body ng-app="app">
-    <nav class="navbar navbar-inverse fixed-top bg-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" ui-sref="/">IRMS</a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li><a ui-sref="/">Home</a></li>
-        <li><a ui-sref="reports">Reports</a></li>
-        <li><a ui-sref="forum">Forum</a></li>
-        <li><a ui-sref="graphs">Graphs</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </nav>
-
-
-  <ui-view></ui-view>
-
-  <footer class="footer">
-        <div class="container">
-          <div class="col-md-10 col-md-offset-1">
-            <p class="text-muted">Contact</p>
-          </div>
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" ui-sref="/">IRMS</a>
         </div>
-  </footer>
+        <ul class="nav navbar-nav">
+          <li><a ui-sref="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+          <li><a ui-sref="reports"><span class="glyphicon glyphicon-comment"></span> Reports</a></li>
+          <li><a ui-sref="forum"><span class="glyphicon glyphicon-th-list"></span> Forum</a></li>
+          <li><a ui-sref="graphs"><span class="glyphicon glyphicon-stats"></span> Graphs</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+      </div>
+    </nav>
 
+    <div class="container-fluid">
+      <ui-view></ui-view>
+    </div>
   </body>
 
   <!-- build:js({.tmp,src}) scripts/vendor.js -->
@@ -81,4 +71,7 @@
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvZKb80TdlprwDF1Bn-yjHDIofwIhlR1U&callback=initMap"
   async defer></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="bower_components\bootstrap\dist\js\bootstrap.js"></script>
+
 </html>

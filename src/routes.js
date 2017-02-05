@@ -15,6 +15,7 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('reports', {
       url: '/reports',
       templateUrl:'app/templates/reports.html'
+
     })
     .state('forum', {
       url: '/forum',

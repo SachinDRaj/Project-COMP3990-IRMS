@@ -6,8 +6,8 @@
 }
 #map {
   height: 500px;
-  border-radius: 10px;
-  box-shadow: 5px 5px 30px 5px #888888;
+  border-radius: 5px;
+  box-shadow: 10px 10px 30px #888888;
 
 }
 
@@ -21,7 +21,7 @@
 #d3{
   border-style: solid;
   border-color: #E0F8F7;
-  border-radius: 2px;
+  border-radius: 0px;
   height: 500px;
   box-shadow: 5px 5px 30px 5px #888888;
   background-color: #E0F8F7;
