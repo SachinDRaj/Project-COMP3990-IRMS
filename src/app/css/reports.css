@@ -10,3 +10,7 @@
 .angular-google-map-container  {
   height: 450px;
 }
+
+.dropdown-menu{
+  width: 100%;
+}
