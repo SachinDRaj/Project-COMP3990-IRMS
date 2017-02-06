@@ -8,9 +8,10 @@ angular
     console.log('Report ctrl');
     $scope.map = {
       center: {
-        latitude: 10.651522, longitude: -61.398245
+        latitude: 10.450429,
+        longitude: -61.314820
       },
-      zoom: 15
+      zoom: 9
     }
   });
 
