@@ -1,34 +1,55 @@
-
 <div class="row">
-  <div class="col-lg-10 col-lg-offset-1">
+  <div class="col-lg-10 col-lg-offset-1 text-center">
     <!-- Make a Report -->
     <div class="col-lg-8">
-      <button class="btn btn-danger"type="button" name="button"><b>Make a Report</b> <span class="glyphicon glyphicon-pencil"></span></button>
+      <button class="btn btn-block btn btn-danger"type="button" name="button"><b>Make a Report</b> <span class="glyphicon glyphicon-pencil"></span> </button>
     </div>
     <!-- Select Category -->
     <div class="col-lg-4">
       <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Category<span class="caret"></span></button>
+        <button class="btn btn-block btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Category <span class="caret"></span></button>
         <ul class="dropdown-menu">
-          <li><a href="#">HTML</a></li>
-          <li><a href="#">CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
+          <li><a href="#">Option 1</a></li>
+          <li><a href="#">Option 2</a></li>
+          <li><a href="#">Option 3</a></li>
         </ul>
       </div>
     </div>
   </div>
 </div>
 
-<div class="row">
-  <!-- Map -->
-  <div id="bg1" class="col-md-10 col-md-offset-1">
-    <div id="d1" class="col-md-8">
-      <div id="map"></div>
+<div id="a1" class="row">
+  <div class="col-lg-10 col-lg-offset-1">
+      <!-- Map -->
+    <div class="col-lg-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Map</h3>
+        </div>
+        <div class="panel-body">
+          <div id="r1">
+            <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Reports -->
-    <div id="d2" class="col-md-4">
-      <div id="d3">
-        <h2>Forum Area</h2>
+    <div class="col-lg-4">
+      <div id="r1" class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Reports</h3>
+        </div>
+        <table class="table table-striped table-condensed">
+          <tr>
+            <td>asdasd</td>
+          </tr>
+          <tr>
+            <td>asdasd</td>
+          </tr>
+          <tr>
+            <td>asdasd</td>
+          </tr>
+        </table>
       </div>
     </div>
 

@@ -3,7 +3,7 @@
   <head>
     <base href="/">
     <meta charset="utf-8">
-    <title>FountainJS</title>
+    <title>IRMS</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="icon" type="image/png" href="http://fountainjs.io/assets/imgs/fountain.png" />
@@ -20,6 +20,8 @@
     <!-- css files will be automatically insert here -->
     <!-- endinject -->
     <!-- endbuild -->
+    <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyAvZKb80TdlprwDF1Bn-yjHDIofwIhlR1U'></script>
+
   </head>
 
 
@@ -27,24 +29,41 @@
     <nav class="navbar navbar-inverse navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
           <a class="navbar-brand" ui-sref="/">IRMS</a>
         </div>
-        <ul class="nav navbar-nav">
-          <li><a ui-sref="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-          <li><a ui-sref="reports"><span class="glyphicon glyphicon-comment"></span> Reports</a></li>
-          <li><a ui-sref="forum"><span class="glyphicon glyphicon-th-list"></span> Forum</a></li>
-          <li><a ui-sref="graphs"><span class="glyphicon glyphicon-stats"></span> Graphs</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        </ul>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a ui-sref="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+            <li><a ui-sref="reports"><span class="glyphicon glyphicon-comment"></span> Reports</a></li>
+            <li><a ui-sref="forum"><span class="glyphicon glyphicon-th-list"></span> Forum</a></li>
+            <li><a ui-sref="graphs"><span class="glyphicon glyphicon-stats"></span> Graphs</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
 
     <div class="container-fluid">
       <ui-view></ui-view>
     </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="col-md-10 col-md-offset-1">
+            <p>&copy 2017</p>
+        </div>
+      </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="bower_components\bootstrap\dist\js\bootstrap.js"></script>
   </body>
+
 
   <!-- build:js({.tmp,src}) scripts/vendor.js -->
   <!-- bower:js -->
@@ -60,7 +79,7 @@
   <!-- angular templates will be automatically converted in js and inserted here -->
   <!-- endinject -->
   <!-- endbuild -->
-  <script>
+  <!-- <script>
     var map;
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
@@ -68,10 +87,9 @@
         zoom: 4
       });
     }
-  </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvZKb80TdlprwDF1Bn-yjHDIofwIhlR1U&callback=initMap"
-  async defer></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="bower_components\bootstrap\dist\js\bootstrap.js"></script>
+  </script> -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvZKb80TdlprwDF1Bn-yjHDIofwIhlR1U&callback=initMap"
+  async defer></script> -->
+
 
 </html>

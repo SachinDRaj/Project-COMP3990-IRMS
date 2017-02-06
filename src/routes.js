@@ -1,6 +1,18 @@
 angular
   .module('app')
-  .config(routesConfig);
+  .config(routesConfig)
+  .controller('homeCon',function(){
+    console.log('Home contrller');
+  })
+  .controller('reportCon',function($scope){
+    console.log('Report ctrl');
+    $scope.map = {
+      center: {
+        latitude: 10.651522, longitude: -61.398245
+      },
+      zoom: 15
+    }
+  });
 
 /** @ngInject */
 function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -10,11 +22,13 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('/', {
       url: '/',
-      templateUrl:'app/templates/home.html'
+      templateUrl:'app/templates/home.html',
+      controller:'homeCon'
     })
     .state('reports', {
       url: '/reports',
-      templateUrl:'app/templates/reports.html'
+      templateUrl:'app/templates/reports.html',
+      controller:'reportCon'
 
     })
     .state('forum', {
