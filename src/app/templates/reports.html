@@ -2,7 +2,7 @@
   <div class="col-lg-10 col-lg-offset-1 text-center">
     <!-- Make a Report -->
     <div class="col-lg-8">
-      <button class="btn btn-block btn btn-danger"type="button" name="button"><b>Make a Report</b> <span class="glyphicon glyphicon-pencil"></span> </button>
+      <button class="btn btn-block btn btn-danger" type="button" name="button" data-toggle="modal" data-target="#myModal"><b>Make a Report</b> <span class="glyphicon glyphicon-pencil"></span> </button>
     </div>
     <!-- Select Category -->
     <div class="col-lg-4">
@@ -72,3 +72,116 @@
 
   </div>
 </div>
+
+<!-- Modal Begin -->
+<div class="modal fade" tabindex="-1" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+
+
+          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+          <h3 class="modal-title">Make A Report</h3>
+        </div>
+
+        <!-- progress bar -->
+
+        <div class="container">
+
+          <div class="row bs-wizard" style="border-bottom:0;">
+
+              <div class="col-xs-3 bs-wizard-step active">
+                <div class="text-center bs-wizard-stepnum">Step 1</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+                <div class="bs-wizard-info text-center">Enter Report Details</div>
+              </div>
+
+              <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+                <div class="text-center bs-wizard-stepnum">Step 2</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+                <div class="bs-wizard-info text-center">Enter Location</div>
+              </div>
+
+              <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
+                <div class="text-center bs-wizard-stepnum">Step 3</div>
+                <div class="progress"><div class="progress-bar"></div></div>
+                <a href="#" class="bs-wizard-dot"></a>
+                <div class="bs-wizard-info text-center">Upload Picture and Submit Report</div>
+              </div>
+
+
+          </div>
+      </div>
+
+        <!-- end progress bar -->
+        <hr>
+
+        <div class="modal-body">
+
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="email">Title:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="title" placeholder="Enter Title">
+              </div>
+            </div>
+
+
+            <div class="form-group">
+
+              <label class="control-label col-sm-2" for="description">Description:</label>
+
+              <div class="col-sm-10">
+              <textarea class="form-control" rows="5" id="description"></textarea>
+              </div>
+            </div>
+
+            <br><br>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <button type="back" class="btn btn-danger pull-left">Back</button>
+                <button type="next" class="btn btn-primary pull-right">Next</button>
+              </div>
+            </div>
+
+          </form>
+          <!-- panel -->
+          <!-- <div id="r1" class="panel panel-default">
+
+            <div class="panel-heading">
+              <h3 class="panel-title">Report Details</h3>
+            </div>
+            <div class="panel-body">
+              <div class="col-md-4">
+                <div class="dropdown">
+                  <button class="btn btn-block btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select a Category <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Option 1</a></li>
+                    <li><a href="#">Option 2</a></li>
+                    <li><a href="#">Option 3</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div id="b1" class="col-md-8">
+                <h4>Enter Title:</h4>
+              </div>
+
+            </div>
+
+          </div> -->
+          <!-- end panel -->
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+</div>
+<!-- Modal End -->
