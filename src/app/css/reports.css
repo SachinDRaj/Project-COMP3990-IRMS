@@ -29,6 +29,10 @@
   width: 55%;
 }
 
+#m1{
+  margin-right: 5%;
+  margin-left: 5%;
+}
 
 
 .bs-wizard {margin-top: 40px;}
