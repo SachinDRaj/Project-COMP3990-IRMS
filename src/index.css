@@ -3,12 +3,12 @@ html,body{
 }
 body {
   /*padding-top: 70px;*/
-  background-color: #F7F9FA;
+  background-color: white;
   min-height: 100%;
 }
 .footer{
-  padding-top: 10px;
+  padding-top: 40px;
   margin-top: 30px;
   background-color: #444;
-  color: white;
+  color: #C0D1D0;
 }
