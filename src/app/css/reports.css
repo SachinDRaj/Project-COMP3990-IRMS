@@ -35,6 +35,11 @@
 }
 
 
+.modal { overflow: auto; }
+/*body.modal-open {
+    overflow: hidden;
+}*/
+
 .bs-wizard {margin-top: 40px;}
 
 /*Form Wizard*/

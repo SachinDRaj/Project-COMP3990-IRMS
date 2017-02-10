@@ -18,12 +18,16 @@ body {
   position: relative;
 
 }
+.tcolor{
+  color: #707B7C;
+}
+
 
 #body1{
     /*height: 700px;*/
 }
 
-#ff1{
+/*#ff1{
 
   border-bottom: 0px;
   border-left: 0px;
@@ -41,4 +45,4 @@ body {
   border-right: 1px;
   border-color: white;
   border-style: solid;
-}
+}*/
