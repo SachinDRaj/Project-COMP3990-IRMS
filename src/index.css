@@ -7,13 +7,38 @@ body {
   min-height: 100%;
 }
 .footer{
-  padding-top: 40px;
-  margin-top: 30px;
-<<<<<<< HEAD
-  background-color: #444;
-  color: #C0D1D0;
-=======
+  padding-top: 10px;
   background-color: #141414;
   color: white;
->>>>>>> origin/master
+  padding-bottom: 10px;
+
+  width: 100%;
+  margin-top: 30px;
+  bottom: 0;
+  position: relative;
+
+}
+
+#body1{
+    /*height: 700px;*/
+}
+
+#ff1{
+
+  border-bottom: 0px;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 1px;
+  border-color: white;
+  border-style: solid;
+}
+
+#ff2{
+  height: 100%;
+  border-bottom: 0px;
+  border-left: 0px;
+  border-top: 0px;
+  border-right: 1px;
+  border-color: white;
+  border-style: solid;
 }
