@@ -1,0 +1,9 @@
+1. Install mongodb community server
+2. Open cmd prompt in Backend folder
+3. Run the 3 commands below
+	npm install mongoose -s
+	install express -s
+	npm install compression -s
+4. You should see a node module folder
+
+Link to tutorial: https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4
