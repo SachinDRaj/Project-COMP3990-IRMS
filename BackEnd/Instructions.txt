@@ -2,7 +2,7 @@
 2. Open cmd prompt in Backend folder
 3. Run the 3 commands below
 	npm install mongoose -s
-	install express -s
+	npm install express -s
 	npm install compression -s
 4. You should see a node module folder
 
