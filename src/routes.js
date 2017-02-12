@@ -11,7 +11,26 @@ angular
         latitude: 10.450429,
         longitude: -61.314820
       },
-      zoom: 9
+      zoom: 9,
+      markers: [],
+      events: {
+        click: function (map, eventName, originalEventArgs) {
+            var e = originalEventArgs[0];
+            var lat = e.latLng.lat(),lon = e.latLng.lng();
+            var marker = {
+                id: Date.now(),
+                coords: {
+                    latitude: lat,
+                    longitude: lon
+                }
+            };
+            $scope.map.markers.pop(marker);
+            $scope.map.markers.push(marker);
+            console.log($scope.map.markers);
+            $scope.$apply();
+        }
+    }
+
     }
   })
   .controller('forumCon',function(){

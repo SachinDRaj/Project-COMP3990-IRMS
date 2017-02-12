@@ -33,7 +33,9 @@
         </div>
         <div class="panel-body">
           <div id="r1">
-            <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
+              <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id"></ui-gmap-marker>
+            </ui-gmap-google-map>
           </div>
         </div>
       </div>
@@ -273,10 +275,10 @@
     </div>
 </div>
 <!-- myModal2 end -->
-<<<<<<< HEAD
+
 <div class="row" ng-include="'app/templates/footer.html'">
 </div>
-=======
+
 
 <!-- myModal3 Begin -->
 <div class="modal fade" tabindex="-1" id="myModal3" role="dialog">
@@ -374,4 +376,3 @@
     </div>
 </div>
 <!-- myModal3 end -->
->>>>>>> origin/master
