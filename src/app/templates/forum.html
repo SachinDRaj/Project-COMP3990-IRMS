@@ -1,57 +1,61 @@
-
-
-<div class="col-md-10 col-md-offset-1">
-  <button class="btn btn-block btn btn-danger disabled" type="button" name="button"><b>Make a Post</b> <span class="glyphicon glyphicon-pencil"></span> </button>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <button class="btn btn-block btn btn-danger disabled" type="button" name="button"><b>Make a Post</b> <span class="glyphicon glyphicon-pencil"></span> </button>
+  </div>
 </div>
 <br><br><br>
-<div class="col-md-10 col-md-offset-1">
-  <div id="r1" class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Infrastructure Reports Forum</h3>
-    </div>
-      
-        <table class="table table-bordered">
-          <thead>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div id="r1" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Infrastructure Reports Forum</h3>
+      </div>
+
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Date Posted</th>
+                <th>Like/Dislike</th>
+              </tr>
+            </thead>
+            <tbody>
             <tr>
-              <th>Title</th>
-              <th>Date Posted</th>
-              <th>Like/Dislike</th>
+
+              <td class="" data-href='url://'>Title of a report</td>
+              <td class="wtable">03/01/2017</td>
+
+              <td class="wtable1">
+                <a class="btn btn-primary" href="#">
+                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                </a>
+                <span class="badge">5</span>
+                <a class="btn btn-danger" href="#">
+                  <span class="glyphicon glyphicon-thumbs-down"></span>
+                </a>
+                <span class="badge">1</span>
+              </td>
+
             </tr>
-          </thead>
-          <tbody>
-          <tr>
+            <tr>
+              <td class="" data-href='url://'>Title of a report</td>
+              <td>03/01/2017</td>
+              <td>
+                <a class="btn btn-primary" href="#">
+                  <span class="glyphicon glyphicon-thumbs-up"></span>
+                </a>
+                <span class="badge">5</span>
+                <a class="btn btn-danger" href="#">
+                  <span class="glyphicon glyphicon-thumbs-down"></span>
+                </a>
+                <span class="badge">1</span>
+              </td>
+            </tr>
+          </tbody>
+          </table>
 
-            <td class="" data-href='url://'>Title of a report</td>
-            <td class="wtable">03/01/2017</td>
-
-            <td class="wtable1">
-              <a class="btn btn-primary" href="#">
-                <span class="glyphicon glyphicon-thumbs-up"></span>
-              </a>
-              <span class="badge">5</span>
-              <a class="btn btn-danger" href="#">
-                <span class="glyphicon glyphicon-thumbs-down"></span>
-              </a>
-              <span class="badge">1</span>
-            </td>
-
-          </tr>
-          <tr>
-            <td class="" data-href='url://'>Title of a report</td>
-            <td>03/01/2017</td>
-            <td>
-              <a class="btn btn-primary" href="#">
-                <span class="glyphicon glyphicon-thumbs-up"></span>
-              </a>
-              <span class="badge">5</span>
-              <a class="btn btn-danger" href="#">
-                <span class="glyphicon glyphicon-thumbs-down"></span>
-              </a>
-              <span class="badge">1</span>
-            </td>
-          </tr>
-        </tbody>
-        </table>
-
+    </div>
   </div>
+</div>
+<div class="row" ng-include="'app/templates/footer.html'">
 </div>

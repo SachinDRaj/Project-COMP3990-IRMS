@@ -2,10 +2,10 @@ angular
   .module('app')
   .config(routesConfig)
   .controller('homeCon',function(){
-    console.log('Home contrller');
+    console.log('Home controller');
   })
   .controller('reportCon',function($scope){
-    console.log('Report ctrl');
+    console.log('Report controller');
     $scope.map = {
       center: {
         latitude: 10.450429,
@@ -13,11 +13,10 @@ angular
       },
       zoom: 9
     }
+  })
+  .controller('forumCon',function(){
+    console.log('Forum contrller');
   });
-
-
-
-
 
 
 /** @ngInject */
@@ -39,7 +38,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('forum', {
       url: '/forum',
-      templateUrl:'app/templates/forum.html'
+      templateUrl:'app/templates/forum.html',
+      controller:'forumCon'
 
     })
     .state('graphs', {
