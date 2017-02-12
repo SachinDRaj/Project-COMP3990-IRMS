@@ -48,6 +48,6 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('login', {
       url: '/login',
-      template:'<h1>This is the login part.[Modal].</h1>'
+      templateUrl:'app/templates/login.html'
     });
 }
