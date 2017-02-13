@@ -34,6 +34,11 @@
   margin-left: 5%;
 }
 
+.aheader{
+  margin-left: 1px;
+  font-size: 15px
+
+}
 
 .modal { overflow: auto; }
 /*body.modal-open {
