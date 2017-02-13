@@ -3,6 +3,7 @@ angular
   .config(routesConfig)
   .controller('homeCon',function(){
     console.log('Home controller');
+
   })
   .controller('reportCon',function($scope){
     console.log('Report controller');
@@ -24,7 +25,7 @@ angular
                     longitude: lon
                 }
             };
-            $scope.map.markers.pop(marker);
+            // $scope.map.markers.pop(marker);
             $scope.map.markers.push(marker);
             console.log($scope.map.markers);
             $scope.$apply();
@@ -68,5 +69,21 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('login', {
       url: '/login',
       templateUrl:'app/templates/login.html'
+    })
+    .state('makereport', {
+      url: '/makereport',
+      templateUrl:'app/templates/makereport.html'
+    })
+    .state('makereport.1', {
+      url: '/1',
+      templateUrl:'app/templates/makereporttemps/makereport1.html'
+    })
+    .state('makereport.2', {
+      url: '/2',
+      templateUrl:'app/templates/makereporttemps/makereport2.html'
+    })
+    .state('makereport.3', {
+      url: '/3',
+      templateUrl:'app/templates/makereporttemps/makereport3.html'
     });
 }
