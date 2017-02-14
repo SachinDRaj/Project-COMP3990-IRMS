@@ -55,7 +55,17 @@ router.route('/reports')
             res.json({ message: 'Report created!' });
         });
         
+    })
+	
+	.get(function(req, res) {
+        Report.find(function(err, reports) {
+            if (err)
+                res.send(err);
+
+            res.json(reports);
+        });
     });
+	
 	
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
