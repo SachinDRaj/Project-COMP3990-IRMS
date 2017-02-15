@@ -3,7 +3,6 @@ angular
   .config(routesConfig)
   .controller('homeCon',function(){
     console.log('Home controller');
-
   })
   .controller('reportCon',function($scope){
     console.log('Report controller');
@@ -57,39 +56,38 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('/', {
       url: '/',
-      templateUrl:'app/templates/home.html',
-      controller:'homeCon'
+      templateUrl: 'app/templates/home.html',
+      controller: 'homeCon'
     })
     .state('reports', {
       url: '/reports',
-      templateUrl:'app/templates/reports.html',
-      controller:'reportCon'
-
+      templateUrl: 'app/templates/reports.html',
+      controller: 'reportCon'
     })
     .state('forum', {
       url: '/forum',
-      templateUrl:'app/templates/forum.html',
-      controller:'forumCon'
-
+      templateUrl: 'app/templates/forum.html',
+      controller: 'forumCon'
     })
     .state('graphs', {
       url: '/graphs',
-      templateUrl:'app/templates/graphs.html'
+      templateUrl: 'app/templates/graphs.html'
     })
     .state('login', {
       url: '/login',
-      templateUrl:'app/templates/login.html'
+      templateUrl: 'app/templates/login.html'
     })
     .state('makereport', {
       url: '/makereport',
-      templateUrl:'app/templates/makereport.html'
+      templateUrl: 'app/templates/makereport.html'
     })
     .state('makereport.1', {
       url: '/1',
-      templateUrl:'app/templates/makereporttemps/makereport1.html'
+      templateUrl: 'app/templates/makereporttemps/makereport1.html'
     })
     .state('makereport.2', {
       url: '/2',
+<<<<<<< HEAD
       templateUrl:'app/templates/makereporttemps/makereport2.html',
       controller:'makereport2Con'
     })
@@ -100,5 +98,12 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('makereport.4', {
       url: '/4',
       templateUrl:'app/templates/makereporttemps/makereport4.html'
+=======
+      templateUrl: 'app/templates/makereporttemps/makereport2.html'
+    })
+    .state('makereport.3', {
+      url: '/3',
+      templateUrl: 'app/templates/makereporttemps/makereport3.html'
+>>>>>>> origin/master
     });
 }

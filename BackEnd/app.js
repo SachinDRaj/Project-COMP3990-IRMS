@@ -16,7 +16,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 3000;        // set our port
+var port = process.env.PORT || 8080;        // set our port
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -38,7 +38,7 @@ router.get('/', function(req, res) {
 
 router.route('/reports')
 
-    // create a report (accessed at POST http://localhost:3000/api/reports)
+    // create a report (accessed at POST http://localhost:8080/api/reports)
     .post(function(req, res) {
         
         var report = new Report();      // create a new instance of a Report
@@ -55,7 +55,17 @@ router.route('/reports')
             res.json({ message: 'Report created!' });
         });
         
+    })
+	
+	.get(function(req, res) {
+        Report.find(function(err, reports) {
+            if (err)
+                res.send(err);
+
+            res.json(reports);
+        });
     });
+	
 	
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
