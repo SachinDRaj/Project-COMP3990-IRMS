@@ -87,7 +87,6 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('makereport.2', {
       url: '/2',
-<<<<<<< HEAD
       templateUrl:'app/templates/makereporttemps/makereport2.html',
       controller:'makereport2Con'
     })
@@ -98,12 +97,5 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('makereport.4', {
       url: '/4',
       templateUrl:'app/templates/makereporttemps/makereport4.html'
-=======
-      templateUrl: 'app/templates/makereporttemps/makereport2.html'
-    })
-    .state('makereport.3', {
-      url: '/3',
-      templateUrl: 'app/templates/makereporttemps/makereport3.html'
->>>>>>> origin/master
     });
 }
