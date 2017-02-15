@@ -1,80 +1,30 @@
+<div class="col-lg-5 col-md-5 col-sm-5">
+  <h3>Enter Details</h3>
+  <form>
+    <div class="form-group">
+      <label for="Select">Category:</label>
+        <select id="disabledSelect" class="form-control">
+          <option>Select</option>
+        </select>
+    </div>
 
-          <h3>Make A Report</h3>
-        <!-- progress bar -->
-
-        <div class="container">
-
-          <div class="row bs-wizard" style="border-bottom:0;">
-
-              <div class="col-xs-3 bs-wizard-step active">
-                <div class="text-center bs-wizard-stepnum">Step 1</div>
-                <div class="progress"><div class="progress-bar"></div></div>
-                <a href="#" class="bs-wizard-dot"></a>
-                <div class="bs-wizard-info text-center">Enter Report Details</div>
-              </div>
-
-              <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
-                <div class="text-center bs-wizard-stepnum">Step 2</div>
-                <div class="progress"><div class="progress-bar"></div></div>
-                <a href="#" class="bs-wizard-dot"></a>
-                <div class="bs-wizard-info text-center">Enter Address/Location and Upload Picture</div>
-              </div>
-
-              <div class="col-xs-3 bs-wizard-step disabled"><!-- complete -->
-                <div class="text-center bs-wizard-stepnum">Step 3</div>
-                <div class="progress"><div class="progress-bar"></div></div>
-                <a href="#" class="bs-wizard-dot"></a>
-                <div class="bs-wizard-info text-center">Summary/Submit Report</div>
-              </div>
+    <div class="form-group">
+      <label for="email">Title:</label>
+      <input type="text" class="form-control" id="title" placeholder="Enter Title">
+    </div>
 
 
-          </div>
-      </div>
-      <hr>
-        <!-- end progress bar -->
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea class="form-control" rows="5" id="description"></textarea>
+    </div>
 
-        <div class="">
+    <hr>
+    <div class="form-group">
+      <button type="back" class="btn btn-danger disabled">Back</button>
+      <button type="next" class="btn btn-primary pull-right" ui-sref="makereport.2">Next</button>
+    </div>
+  </form>
 
-            <form class="form-horizontal" id="m1">
-
-              <div class="form-group">
-                <label for="Select" class="col-sm-2 control-label">Category:</label>
-                <div class="col-sm-10">
-                  <select id="disabledSelect" class="form-control">
-                    <option>Select</option>
-                  </select>
-                </div>
-              </div>
-
-
-              <div class="form-group">
-                <label class="control-label col-sm-2" for="email">Title:</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="title" placeholder="Enter Title">
-                </div>
-              </div>
-
-
-              <div class="form-group">
-
-                <label class="control-label col-sm-2" for="description">Description:</label>
-
-                <div class="col-sm-10">
-                <textarea class="form-control" rows="5" id="description"></textarea>
-                </div>
-              </div>
-
-              <br><br>
-              <div class="form-group">
-                <div class="col-sm-12">
-                  <button type="back" class="btn btn-danger pull-left disabled">Back</button>
-                  <button type="next" class="btn btn-primary pull-right" data-dismiss="modal" data-toggle="modal" href="#myModal2">Next</button>
-                </div>
-              </div>
-
-            </form>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        </div>
+  <button class="btn btn-default" type="button" name="button" ui-sref="reports">Cancel</button>
+</div>

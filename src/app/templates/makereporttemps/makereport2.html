@@ -1,0 +1,46 @@
+<!-- right column -->
+<div class="col-lg-5 col-md-5 col-sm-5">
+  <h3>Enter Location</h3>
+  <form>
+    <div class="form-group">
+      <label for="Select"><b>Address Line:</b></label>
+      <input type="text" class="form-control" id="title" placeholder="Enter Address line 1">
+    </div>
+
+    <div class="form-group">
+      <label for="sel1">Select City:</label>
+      <select class="form-control" id="sel1">
+        <option>Chaguanas</option>
+        <option>Port-of-Spain</option>
+        <option>St.Augustine</option>
+        <option>San Fernando</option>
+      </select>
+    </div>
+
+    <div class="text-center">
+      <h4><b><i>OR</i></b></h4>
+    </div>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-info btn-block">Use Current Location</button>
+    </div>
+    
+    <hr>
+    <div class="form-group">
+      <button type="back" class="btn btn-danger" ui-sref="makereport.1">Back</button>
+      <button type="next" class="btn btn-primary pull-right" ui-sref="makereport.3">Next</button>
+    </div>
+    <button class="btn btn-default" type="button" name="button" ui-sref="reports">Cancel</button>
+  </form>
+</div>
+<!-- left column -->
+<div class="col-lg-7 col-md-7 col-sm-7">
+  <h3>Location on the Map</h3>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
+
+      </ui-gmap-google-map>
+    </div>
+  </div>
+</div>

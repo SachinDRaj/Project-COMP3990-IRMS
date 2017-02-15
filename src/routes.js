@@ -30,12 +30,22 @@ angular
             console.log($scope.map.markers);
             $scope.$apply();
         }
-    }
-
+      }
     }
   })
   .controller('forumCon',function(){
-    console.log('Forum contrller');
+    console.log('Forum controller');
+  })
+  .controller('makereport2Con',function($scope){
+    console.log('Make report 2 controller');
+    $scope.map = {
+      center: {
+        latitude: 10.450429,
+        longitude: -61.314820
+      },
+      zoom: 9
+    }
+
   });
 
 
@@ -80,10 +90,15 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('makereport.2', {
       url: '/2',
-      templateUrl:'app/templates/makereporttemps/makereport2.html'
+      templateUrl:'app/templates/makereporttemps/makereport2.html',
+      controller:'makereport2Con'
     })
     .state('makereport.3', {
       url: '/3',
       templateUrl:'app/templates/makereporttemps/makereport3.html'
+    })
+    .state('makereport.4', {
+      url: '/4',
+      templateUrl:'app/templates/makereporttemps/makereport4.html'
     });
 }
