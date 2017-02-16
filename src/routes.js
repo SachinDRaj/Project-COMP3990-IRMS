@@ -44,7 +44,16 @@ angular
       },
       zoom: 9
     }
-
+  })
+  .controller('makepostCon',function($scope){
+    console.log('Make post controller');
+    $scope.map = {
+      center: {
+        latitude: 10.450429,
+        longitude: -61.314820
+      },
+      zoom: 9
+    }
   });
 
 
@@ -97,5 +106,9 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('makereport.4', {
       url: '/4',
       templateUrl:'app/templates/makereporttemps/makereport4.html'
+    }).state('makepost', {
+      url: '/makepost',
+      templateUrl:'app/templates/makepost.html',
+      controller:'makepostCon'
     });
 }

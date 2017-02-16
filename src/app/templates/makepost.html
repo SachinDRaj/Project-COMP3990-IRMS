@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-lg-10 col-lg-offset-1">
+    <h2>Make a Post</h2>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-10 col-lg-offset-1">
+
+      <div class="col-lg-5 col-md-5 col-sm-5">
+        <h3>Enter Details</h3>
+        <form>
+          <div class="form-group">
+            <label for="Select">Category:</label>
+              <select id="disabledSelect" class="form-control">
+                <option>Select</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <label for="Select"><b>Address Line:</b></label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="title" placeholder="Search for Address...">
+              <span class="input-group-btn">
+                <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>
+              </span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Status:</label>
+            <select id="disabledSelect" class="form-control">
+              <option>Select</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="description">Summary:</label>
+            <textarea class="form-control" rows="5" id="summary"></textarea>
+          </div>
+
+          <hr>
+          <div class="form-group">
+            <button type="submit" class="btn btn-block btn-success" ui-sref="forum">Submit Report</button>
+          </div>
+        </form>
+
+        <button class="btn btn-default" type="button" name="button" ui-sref="forum">Cancel</button>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <div class="alert alert-info" role="alert">
+          <h4><span class="glyphicon glyphicon-info-sign"></span> How to add the location</h4>
+
+          <p>
+            <small>
+              To select a loction by address, type the address then search. The location will be displayed on the map.
+            </small>
+          </p>
+          <p>
+            <small>
+              To use your current location, click the 'Use Current Location button'. The location will be displayed on the map.
+            </small>
+          </p>
+        </div>
+
+        <h3>Location on the Map</h3>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
+
+            </ui-gmap-google-map>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+</div>
+
+<div class="row" ng-include="'app/templates/footer.html'">
+</div>

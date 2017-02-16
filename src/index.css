@@ -14,8 +14,8 @@ body {
 
   width: 100%;
   margin-top: 100px;
-  bottom: 0;
-  position: relative;
+  bottom: 0px;
+  position: relative;;
 }
 .tcolor{
   color: #707B7C;

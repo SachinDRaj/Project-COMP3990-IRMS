@@ -12,3 +12,18 @@
 .wtable1{
   width: 20%;
 }
+
+.hoverTitle:hover{
+  background-color: #CADEE5;
+  color: black;
+  font-style: italic;
+  cursor:pointer;
+}
+.hoverTitle:active{
+  background-color: #707B7F;
+}
+
+
+.modal-title{
+  text-align: center;
+}
