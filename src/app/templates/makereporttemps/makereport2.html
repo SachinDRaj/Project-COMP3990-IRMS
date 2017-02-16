@@ -1,30 +1,27 @@
 <!-- right column -->
 <div class="col-lg-5 col-md-5 col-sm-5">
-  <h3>Enter Location</h3>
+  <h3>Problem Location</h3>
   <form>
     <div class="form-group">
       <label for="Select"><b>Address Line:</b></label>
-      <input type="text" class="form-control" id="title" placeholder="Enter Address line 1">
+      <div class="input-group">
+        <input type="text" class="form-control" id="title" placeholder="Search for Address...">
+        <span class="input-group-btn">
+          <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="sel1">Select City:</label>
-      <select class="form-control" id="sel1">
-        <option>Chaguanas</option>
-        <option>Port-of-Spain</option>
-        <option>St.Augustine</option>
-        <option>San Fernando</option>
-      </select>
-    </div>
-
-    <div class="text-center">
-      <h4><b><i>OR</i></b></h4>
+    <div class="row">
+      <div class="text-center">
+        <h4><b><i>OR</i></b></h4>
+      </div>
     </div>
 
     <div class="form-group">
         <button type="button" class="btn btn-info btn-block">Use Current Location</button>
     </div>
-    
+
     <hr>
     <div class="form-group">
       <button type="back" class="btn btn-danger" ui-sref="makereport.1">Back</button>
@@ -35,6 +32,21 @@
 </div>
 <!-- left column -->
 <div class="col-lg-7 col-md-7 col-sm-7">
+  <div class="alert alert-info" role="alert">
+    <h4><span class="glyphicon glyphicon-info-sign"></span> How to add the location</h4>
+
+    <p>
+      <small>
+        To select a loction by address, type the address then search. The location will be displayed on the map.
+      </small>
+    </p>
+    <p>
+      <small>
+        To use your current location, click the 'Use Current Location button'. The location will be displayed on the map.
+      </small>
+    </p>
+  </div>
+
   <h3>Location on the Map</h3>
   <div class="panel panel-default">
     <div class="panel-body">
