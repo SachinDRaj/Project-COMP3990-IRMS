@@ -36,7 +36,7 @@ router.get('/', function(req, res) {
 
 // more routes for our API will happen here
 
-router.route('/reports')
+router.route('/add_new_report')
 
     // create a report (accessed at POST http://localhost:8080/api/reports)
     .post(function(req, res) {
@@ -55,7 +55,9 @@ router.route('/reports')
             res.json({ message: 'Report created!' });
         });
         
-    })
+    });
+	
+router.route('/get_reports')
 	
 	.get(function(req, res) {
         Report.find(function(err, reports) {
@@ -66,7 +68,7 @@ router.route('/reports')
         });
     });
 	
-router.route('/reports/:report_id')
+router.route('/get_reports/:report_id')
 
     // get the report with that id (accessed at GET http://localhost:8080/api/reports/:report_id)
     .get(function(req, res) {
@@ -75,7 +77,9 @@ router.route('/reports/:report_id')
                 res.send(err);
             res.json(reports);
         });
-    })
+    });
+
+router.route('/delete_reports/:report_id')
 	
 	.delete(function(req, res) {
         Report.remove({
