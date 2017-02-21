@@ -66,6 +66,31 @@ router.route('/reports')
         });
     });
 	
+router.route('/reports/:report_id')
+
+    // get the report with that id (accessed at GET http://localhost:8080/api/reports/:report_id)
+    .get(function(req, res) {
+        Report.findById(req.params.report_id, function(err, reports) {
+            if (err)
+                res.send(err);
+            res.json(reports);
+        });
+    })
+	
+	.delete(function(req, res) {
+        Report.remove({
+            _id: req.params.report_id
+        }, function(err, reports) {
+            if (err)
+                res.send(err);
+
+            res.json({ message: 'Successfully deleted' });
+        });
+    });
+
+
+
+
 	
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
