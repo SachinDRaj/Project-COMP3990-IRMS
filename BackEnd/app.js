@@ -4,6 +4,7 @@
 // =============================================================================
 var Report 	   = require('./app/models/report');
 var mongoose   = require('mongoose');
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://127.0.0.1:27017'); // connect to our database
 
 // call the packages we need
@@ -21,17 +22,19 @@ var port = process.env.PORT || 8080;        // set our port
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router
-
+router.use(function(req, res, next) {// allow cross domain requests
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers","Content-Type");
+  next();
+});
 // middleware to use for all requests
-router.use(function(req, res, next) {
-    // do logging
-    console.log('Something is happening.');
-    next(); // make sure we go to the next routes and don't stop here
+router.use('/', function(req, res, next) {
+	next();
 });
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });   
+    res.json({ message: 'hooray! welcome to our api!' });
 });
 
 // more routes for our API will happen here
@@ -40,7 +43,7 @@ router.route('/add_new_report')
 
     // create a report (accessed at POST http://localhost:8080/api/reports)
     .post(function(req, res) {
-        
+
         var report = new Report();      // create a new instance of a Report
         report.report_type1 = req.body.report_type1;  // set the report type(general) (comes from the request)
         report.report_type2 = req.body.report_type2;  // set the report type(general) (comes from the request)
@@ -54,11 +57,11 @@ router.route('/add_new_report')
 
             res.json({ message: 'Report created!' });
         });
-        
+
     });
-	
+
 router.route('/get_reports')
-	
+
 	.get(function(req, res) {
         Report.find(function(err, reports) {
             if (err)
@@ -67,7 +70,7 @@ router.route('/get_reports')
             res.json(reports);
         });
     });
-	
+
 router.route('/get_reports/:report_id')
 
     // get the report with that id (accessed at GET http://localhost:8080/api/reports/:report_id)
@@ -80,7 +83,7 @@ router.route('/get_reports/:report_id')
     });
 
 router.route('/delete_reports/:report_id')
-	
+
 	.delete(function(req, res) {
         Report.remove({
             _id: req.params.report_id
@@ -95,7 +98,7 @@ router.route('/delete_reports/:report_id')
 
 
 
-	
+
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
