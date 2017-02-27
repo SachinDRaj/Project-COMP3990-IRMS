@@ -14,6 +14,7 @@ function addReport(){
 	};
 	
 
+//send the request to app.js route api/add_new_report
 	$.ajax({
 		url: "http://localhost:8080/api/add_new_report",
 		data : dataToSend,
@@ -26,3 +27,4 @@ function addReport(){
 	});
 	
 }
+
