@@ -12,8 +12,11 @@
         <form>
           <div class="form-group">
             <label for="Select">Category:</label>
-              <select id="disabledSelect" class="form-control">
+              <select id="categorySelect" class="form-control">
                 <option>Select</option>
+				<option value="flooding">Flooding</option>
+				<option value="road_repair">Road Repairs</option>
+				<option value="garbage_collection">Garbage Collection</option>
               </select>
           </div>
           <div class="form-group">
@@ -28,8 +31,10 @@
 
           <div class="form-group">
             <label for="email">Status:</label>
-            <select id="disabledSelect" class="form-control">
+            <select id="statusSelect" class="form-control">
               <option>Select</option>
+			  <option value="ongoing">Ongoing</option>
+			  <option value="fixed">Fixed</option>
             </select>
           </div>
 
@@ -41,7 +46,7 @@
 
           <hr>
           <div class="form-group">
-            <button type="submit" class="btn btn-block btn-success" ui-sref="forum">Submit Report</button>
+            <button type="submit" class="btn btn-block btn-success" onclick="addPost();" ui-sref="forum">Submit Report</button>
           </div>
         </form>
 

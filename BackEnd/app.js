@@ -3,6 +3,7 @@
 // BASE SETUP
 // =============================================================================
 var Report 	   = require('./app/models/report');
+var ForumPost  = require('./app/models/forum');
 var mongoose   = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://127.0.0.1:27017'); // connect to our database
@@ -96,9 +97,38 @@ router.route('/delete_reports/:report_id')
     });
 
 
+router.route('/add_new_post')
 
+	.post(function(req, res) {
 
+        var post = new ForumPost();      
+        post.category1 = req.body.category1;  
+        post.category2 = req.body.category2;  
+		post.current_status = req.body.current_status;
+		post.summary = req.body.summary;
+		post.likes = req.body.likes;
+		post.dislikes = req.body.dislikes;
+		//post.loc = req.body.loc;
+        
+        post.save(function(err) {
+            if (err)
+                res.send(err);
 
+            res.json({ message: 'Post created!' });
+        });
+
+    });
+
+router.route('/get_posts')
+
+	.get(function(req, res) {
+        ForumPost.find(function(err, post) {
+            if (err)
+                res.send(err);
+
+            res.json(post);
+        });
+    });
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
