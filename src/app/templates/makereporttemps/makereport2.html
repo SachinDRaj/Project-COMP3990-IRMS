@@ -5,9 +5,9 @@
     <div class="form-group">
       <label for="Select"><b>Address Line:</b></label>
       <div class="input-group">
-        <input type="text" class="form-control" id="title" placeholder="Search for Address...">
+        <input type="text" class="form-control" id="newAddress" placeholder="Search for Address...">
         <span class="input-group-btn">
-          <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>
+          <button class="btn btn-info" type="button" ng-click="getLocation2()"><span class="glyphicon glyphicon-search"></span></button>
         </span>
       </div>
     </div>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="form-group">
-        <button type="button" class="btn btn-info btn-block">Use Current Location</button>
+        <button type="button" class="btn btn-info btn-block" ng-click='getLocation()'>Use Current Location</button>
     </div>
 
     <hr>
@@ -51,7 +51,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
-
+        <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" options="markerOptions"></ui-gmap-marker>
       </ui-gmap-google-map>
     </div>
   </div>

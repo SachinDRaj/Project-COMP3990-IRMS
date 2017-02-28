@@ -6,30 +6,14 @@ angular
   })
   .controller('reportCon',function($scope){
     console.log('Report controller');
+
     $scope.map = {
       center: {
         latitude: 10.450429,
         longitude: -61.314820
       },
       zoom: 9,
-      markers: [],
-      events: {
-        click: function (map, eventName, originalEventArgs) {
-            var e = originalEventArgs[0];
-            var lat = e.latLng.lat(),lon = e.latLng.lng();
-            var marker = {
-                id: Date.now(),
-                coords: {
-                    latitude: lat,
-                    longitude: lon
-                }
-            };
-            // $scope.map.markers.pop(marker);
-            $scope.map.markers.push(marker);
-            console.log($scope.map.markers);
-            $scope.$apply();
-        }
-      }
+      markers: []
     }
   })
   .controller('forumCon',function(){
@@ -42,8 +26,56 @@ angular
         latitude: 10.450429,
         longitude: -61.314820
       },
+      markers: [],
       zoom: 9
+
     }
+    $scope.markerOptions = { draggable: true }
+
+    $scope.getLocation2 = function(){
+      var geocoder = new google.maps.Geocoder();
+      var addr = document.getElementById('newAddress').value;
+      geocoder.geocode( { "address": addr }, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK && results.length > 0) {
+            var location = results[0].geometry.location,
+            lat      = location.lat(),
+            lng      = location.lng();
+            var marker = {
+                id: Date.now(),
+                coords: {
+                    latitude: lat,
+                    longitude: lng
+                }
+            };
+            $scope.map.markers.pop(marker);
+            $scope.map.markers.push(marker);
+            console.log($scope.map.markers);
+            $scope.$apply($scope.map);
+          }
+      });
+
+    }
+
+    $scope.getLocation = function() {
+      if (navigator.geolocation)
+        navigator.geolocation.getCurrentPosition(showPosition);
+      else
+        alert('Geolocation is not supported by this browser.');
+    };
+    function showPosition(position) {
+      var marker = {
+          id: Date.now(),
+          coords: {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+          }
+      };
+      $scope.map.markers.pop(marker);
+      $scope.map.markers.push(marker);
+      console.log($scope.map.markers);
+      $scope.$apply($scope.map);
+    }
+
   })
   .controller('makereport4Con',function($scope){
     console.log('Make report4 controller');
