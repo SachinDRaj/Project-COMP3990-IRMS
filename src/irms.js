@@ -69,7 +69,7 @@ function addReport(){
     console.log("Request failed");
 	});
 
-<<<<<<< HEAD
+
 function getCategory(category){
 	if(category == "flooding")
 		return "disaster";
@@ -83,7 +83,7 @@ function getCategory(category){
 }
 
 function addPost(){
-	
+
 	var c = document.getElementById("categorySelect");
 	var s = document.getElementById("statusSelect");
 	var summ = document.getElementById("summary").value;
@@ -94,7 +94,7 @@ function addPost(){
 		alert("Insufficient information");
 	else{
 		var cat1 = getCategory(category);
-		
+
 		var dataToSend = {
 			category1: cat1,
 			category2: category,
@@ -104,7 +104,7 @@ function addPost(){
 			dislikes: 0
 			//loc: [126.4, 10.1]
 		};
-				
+
 		$.ajax({
 			url: "http://localhost:8080/api/add_new_post",
 			data : dataToSend,
@@ -115,9 +115,8 @@ function addPost(){
 		}).fail(function(){ //this block executes if the request failed
 			console.log("Request failed");
 		});
-		
+
 	}
 }
-=======
+
 }
->>>>>>> origin/master
