@@ -1,10 +1,12 @@
 <div class="col-lg-5 col-md-5 col-sm-5">
   <h3>Problem Details</h3>
-  <form>
+  <form name="rForm1">
     <div class="form-group">
       <label for="Select">Category:</label>
-        <select id="disabledSelect" class="form-control">
-          <option>Select</option>
+        <select id="Select" class="form-control">
+          <option value="Flooding">Flooding</option>
+          <option value="Road Repairs">Road Repairs</option>
+          <option value="Garbage Collection">Garbage Collection</option>
         </select>
     </div>
 
@@ -22,7 +24,7 @@
     <hr>
     <div class="form-group">
       <button type="back" class="btn btn-danger disabled">Back</button>
-      <button type="next" class="btn btn-primary pull-right" ui-sref="makereport.2">Next</button>
+      <button type="submit" value="submit" onclick="validateForm1();" class="btn btn-primary pull-right" ui-sref="makereport.2">Next</button>
     </div>
   </form>
 

@@ -45,6 +45,12 @@ angular
       zoom: 9
     }
   })
+  .controller('makereport4Con',function($scope){
+    console.log('Make report4 controller');
+    document.getElementById("ca").innerHTML = localStorage.getItem("select");
+  	document.getElementById("tt").innerHTML = localStorage.getItem("title");
+  	document.getElementById("de").innerHTML = localStorage.getItem("desc");
+  })
   .controller('makepostCon',function($scope){
     console.log('Make post controller');
     $scope.map = {
@@ -105,7 +111,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('makereport.4', {
       url: '/4',
-      templateUrl:'app/templates/makereporttemps/makereport4.html'
+      templateUrl:'app/templates/makereporttemps/makereport4.html',
+      controller:'makereport4Con'
     }).state('makepost', {
       url: '/makepost',
       templateUrl:'app/templates/makepost.html',
