@@ -1,4 +1,19 @@
 
+function clearLS(){
+  var select = localStorage.getItem("select");
+  var title = localStorage.getItem("title");
+  var desc = localStorage.getItem("desc");
+  if (title !== ""){
+    localStorage.removeItem("title");
+  }
+  if (desc !== ""){
+    localStorage.removeItem("desc");
+  }
+  if (select !== ""){
+    localStorage.removeItem("select");
+  }
+}
+
 function validateForm1() {
     var c = document.getElementById("Select");
 		var select = c.options[c.selectedIndex].value;
@@ -10,8 +25,8 @@ function validateForm1() {
         alert("title must be filled out");
         return false;
     }
-		if (title == "") {
-        alert("title must be filled out");
+		if (desc == "") {
+        alert("desc must be filled out");
         return false;
     }
 
