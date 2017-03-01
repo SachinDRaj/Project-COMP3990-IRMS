@@ -21,14 +21,14 @@ function validateForm1() {
 		var title = document.getElementById("title").value;
 		var desc = document.getElementById("description").value;
 
-    if (title == "") {
-        alert("title must be filled out");
-        return false;
-    }
-		if (desc == "") {
-        alert("desc must be filled out");
-        return false;
-    }
+    // if (title == "") {
+    //     alert("title must be filled out");
+    //     return false;
+    // }
+		// if (desc == "") {
+    //     alert("desc must be filled out");
+    //     return false;
+    // }
 
 		if (typeof(Storage) !== "undefined") {
 	    localStorage.setItem("select", select);
