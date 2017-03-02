@@ -79,9 +79,19 @@ angular
   })
   .controller('makereport4Con',function($scope){
     console.log('Make report4 controller');
+    $scope.map = {
+      center: {
+        latitude: 10.450429,
+        longitude: -61.314820
+      },
+      markers: [],
+      zoom: 9
+
+    }
     document.getElementById("ca").innerHTML = localStorage.getItem("select");
   	document.getElementById("tt").innerHTML = localStorage.getItem("title");
   	document.getElementById("de").innerHTML = localStorage.getItem("desc");
+
   })
   .controller('makepostCon',function($scope){
     console.log('Make post controller');
