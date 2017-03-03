@@ -6,6 +6,16 @@ body {
   min-height: 100%;
    overflow-x:hidden;
 }
+.ani>li{
+  transition: background-color 0.3s linear 0s;
+}
+.ani>li:hover{
+  background-color: #263240;
+}
+.ani>li:active{
+  border-radius: 5px;
+  background-color: #435870;
+}
 
 .footer{
   padding-top: 10px;

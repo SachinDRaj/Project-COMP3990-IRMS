@@ -30,10 +30,14 @@ angular
           longitude: lg
         },
         events: {
-          dragend: function() {
-            console.log(this.coords);
+          dragend: function (marker) {
+            $scope.$apply(function () {
+               console.log(marker.position.lat());
+               console.log(marker.position.lng());
+            });
+            console.log(marker.coords);
           },
-          drag: function() {
+          dragstart: function() {
             console.log('dragging now..');
           }
         }
