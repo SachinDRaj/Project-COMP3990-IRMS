@@ -1,26 +1,46 @@
 angular
   .module('app')
   .config(routesConfig)
-  .controller('homeCon',function(){
+  .controller('homeCon', function() {
     console.log('Home controller');
   })
-  .controller('reportCon',function($scope){
+  .controller('reportCon', function($scope) {
     console.log('Report controller');
-
     $scope.map = {
       center: {
         latitude: 10.450429,
         longitude: -61.314820
       },
       zoom: 9,
+      pan: true,
       markers: []
-    }
+    };
   })
-  .controller('forumCon',function(){
-    console.log('Forum controller');
+  .controller('makereport1Con', function($scope) {
+    console.log('Make report 1 controller');
   })
-  .controller('makereport2Con',function($scope){
+  .controller('makereport2Con', function($scope) {
     console.log('Make report 2 controller');
+
+    function makeMarker(lt, lg) {
+      var marker = {
+        id: Date.now(),
+        coords: {
+          latitude: lt,
+          longitude: lg
+        },
+        events: {
+          dragend: function() {
+            console.log(this.coords);
+          },
+          drag: function() {
+            console.log('dragging now..');
+          }
+        }
+      };
+      return marker;
+    }
+    // Map
     $scope.map = {
       center: {
         latitude: 10.450429,
@@ -28,62 +48,64 @@ angular
       },
       markers: [],
       zoom: 9
-
-    }
-    $scope.markerOptions = { draggable: true }
-
-    $scope.getLocation2 = function(){
+    };
+    $scope.markerOptions = {
+      draggable: true,
+      icon: "/app/images/marker.png"
+    };
+    // Using geocoding
+    $scope.getLocation2 = function() {
       var geocoder = new google.maps.Geocoder();
       var addr = document.getElementById('newAddress').value;
-      geocoder.geocode( { "address": addr }, function(results, status) {
-          if (status == google.maps.GeocoderStatus.OK && results.length > 0) {
-            var location = results[0].geometry.location,
-            lat      = location.lat(),
-            lng      = location.lng();
-            var marker = {
-                id: Date.now(),
-                coords: {
-                    latitude: lat,
-                    longitude: lng
-                }
-            };
-            $scope.map.markers.pop(marker);
-            $scope.map.markers.push(marker);
-            console.log($scope.map.markers);
-            $scope.$apply($scope.map);
-          }
+      geocoder.geocode({
+        "address": addr
+      }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK && results.length > 0) {
+          var location = results[0].geometry.location,
+            lat = location.lat(),
+            lng = location.lng();
+          var marker = makeMarker(lat, lng);
+          $scope.map.markers.pop(marker);
+          $scope.map.markers.push(marker);
+          console.log(lat, lng);
+          $scope.$apply();
+        } else {
+          console.log("Geocoding not supported");
+        }
       });
-
-    }
-
+    };
+      //Using geolocation
     $scope.getLocation = function() {
       if (navigator.geolocation)
         navigator.geolocation.getCurrentPosition(showPosition);
       else
         alert('Geolocation is not supported by this browser.');
     };
+
     function showPosition(position) {
-      var marker = {
-          id: Date.now(),
-          coords: {
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude
-          }
-      };
+      var lat = position.coords.latitude;
+      var lng = position.coords.longitude;
+      var marker = makeMarker(lat, lng);
       $scope.map.markers.pop(marker);
       $scope.map.markers.push(marker);
-      console.log($scope.map.markers);
-      $scope.$apply($scope.map);
+      console.log(lat, lng);
+      $scope.$apply();
     }
 
   })
-  .controller('makereport4Con',function($scope){
+  .controller('makereport3Con', function($scope) {
+    console.log('Make a report 3 controller');
+  })
+  .controller('makereport4Con', function($scope) {
     console.log('Make report4 controller');
     document.getElementById("ca").innerHTML = localStorage.getItem("select");
-  	document.getElementById("tt").innerHTML = localStorage.getItem("title");
-  	document.getElementById("de").innerHTML = localStorage.getItem("desc");
+    document.getElementById("tt").innerHTML = localStorage.getItem("title");
+    document.getElementById("de").innerHTML = localStorage.getItem("desc");
   })
-  .controller('makepostCon',function($scope){
+  .controller('forumCon', function() {
+    console.log('Forum controller');
+  })
+  .controller('makepostCon', function($scope) {
     console.log('Make post controller');
     $scope.map = {
       center: {
@@ -91,7 +113,7 @@ angular
         longitude: -61.314820
       },
       zoom: 9
-    }
+    };
   });
 
 
@@ -130,24 +152,27 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('makereport.1', {
       url: '/1',
-      templateUrl: 'app/templates/makereporttemps/makereport1.html'
+      templateUrl: 'app/templates/makereporttemps/makereport1.html',
+      controller: 'makereport1Con'
     })
     .state('makereport.2', {
       url: '/2',
-      templateUrl:'app/templates/makereporttemps/makereport2.html',
-      controller:'makereport2Con'
+      templateUrl: 'app/templates/makereporttemps/makereport2.html',
+      controller: 'makereport2Con'
     })
     .state('makereport.3', {
       url: '/3',
-      templateUrl:'app/templates/makereporttemps/makereport3.html'
+      templateUrl: 'app/templates/makereporttemps/makereport3.html',
+      controller: 'makereport3Con'
     })
     .state('makereport.4', {
       url: '/4',
-      templateUrl:'app/templates/makereporttemps/makereport4.html',
-      controller:'makereport4Con'
-    }).state('makepost', {
+      templateUrl: 'app/templates/makereporttemps/makereport4.html',
+      controller: 'makereport4Con'
+    })
+    .state('makepost', {
       url: '/makepost',
-      templateUrl:'app/templates/makepost.html',
-      controller:'makepostCon'
+      templateUrl: 'app/templates/makepost.html',
+      controller: 'makepostCon'
     });
 }
