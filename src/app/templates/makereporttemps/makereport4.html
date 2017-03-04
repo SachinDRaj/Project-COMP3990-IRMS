@@ -1,32 +1,39 @@
 <!-- right column -->
-<div class="col-lg-5 col-md-5 col-sm-5">
-  <h3>Summary and Confirmation</h3>
-  <h4>Category</h4>
-  <p id="ca"></p>
-  <h4>Title</h4>
-  <p id="tt"></p>
-  <h4>Description</h4>
-  <p id="de"></p>
+<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h3>Summary and Confirmation</h3>
+      <h4>Category</h4>
+      <p id="ca"></p>
+      <h4>Title</h4>
+      <p id="tt"></p>
+      <h4>Description</h4>
+      <p id="de"></p>
 
-  <hr>
-  <div class="form-group">
-    <button type="back" class="btn btn-danger" ui-sref="makereport.3">Back</button>
-    <button class="btn btn-default pull-right" type="button" name="button" ui-sref="reports">Cancel</button>
+      <hr>
+      <div class="form-group">
+        <button type="back" class="btn btn-danger" ui-sref="makereport.3">Back</button>
+        <button class="btn btn-default pull-right" type="button" name="button" ui-sref="reports">Cancel</button>
+      </div>
+    </div>
   </div>
   <button type="submit" class="btn btn-block btn-success" onclick="addReport();">Submit Report</button><!--addReport function found in irms.js-->
 </div>
 <!-- left column -->
-<div class="col-lg-7 col-md-7 col-sm-7">
-  <h4>Location</h4>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
-        
-      </ui-gmap-google-map>
+<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+  <div class="col-lg-6 col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
+        </ui-gmap-google-map>
+      </div>
     </div>
+    <h4>Location</h4>
   </div>
-  <h4>Problem Photo</h4>
-  <div class="thumbnail">
-
+  <div class="col-lg-6 col-md-6">
+    <div class="thumbnail">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    <h4>Problem Photo</h4>
   </div>
 </div>

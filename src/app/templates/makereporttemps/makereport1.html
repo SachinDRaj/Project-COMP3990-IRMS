@@ -1,35 +1,39 @@
-<div class="col-lg-5 col-md-5 col-sm-5">
-  <h3>Problem Details</h3>
-  <form name="rForm1">
-    <div class="form-group">
-      <label for="Select">Category:</label>
-        <select id="Select" class="form-control">
-          <option value="Flooding">Flooding</option>
-          <option value="Road Repairs">Road Repairs</option>
-          <option value="Garbage Collection">Garbage Collection</option>
-        </select>
-    </div>
+<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h3>Problem Details</h3>
+      <form name="rForm1">
+        <div class="form-group">
+          <label for="Select">Category:</label>
+            <select id="Select" class="form-control">
+              <option value="Flooding">Flooding</option>
+              <option value="Road Repairs">Road Repairs</option>
+              <option value="Garbage Collection">Garbage Collection</option>
+            </select>
+        </div>
 
-    <div class="form-group">
-      <label for="email">Title:</label>
-      <input type="text" class="form-control" id="title" placeholder="Enter Title">
-    </div>
+        <div class="form-group">
+          <label for="email">Title:</label>
+          <input type="text" class="form-control" id="title" placeholder="Enter Title">
+        </div>
 
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea class="form-control" rows="5" id="description"></textarea>
-    </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea class="form-control" rows="5" id="description"></textarea>
+        </div>
 
-    <hr>
-    <div class="form-group">
-      <button type="back" class="btn btn-danger disabled">Back</button>
-      <button type="submit" value="submit" onclick="validateForm1();" class="btn btn-primary pull-right" ui-sref="makereport.2">Next</button>
+        <hr>
+        <div class="form-group">
+          <button type="back" class="btn btn-danger disabled">Back</button>
+          <button type="submit" value="submit" onclick="validateForm1();" class="btn btn-primary pull-right" ui-sref="makereport.2">Next</button>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 
   <button class="btn btn-default" type="button" name="button" ui-sref="reports">Cancel</button>
 </div>
-<div class="col-lg-7 col-md-7 col-sm-7">
+<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
   <div class="alert alert-info" role="alert">
     <h4><span class="glyphicon glyphicon-info-sign"></span> About problem details</h4>
     <p>

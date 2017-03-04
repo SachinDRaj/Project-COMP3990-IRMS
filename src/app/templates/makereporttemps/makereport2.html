@@ -1,37 +1,41 @@
 <!-- right column -->
-<div class="col-lg-5 col-md-5 col-sm-5">
-  <h3>Problem Location</h3>
-  <form>
-    <div class="form-group">
-      <label for="Select"><b>Address Line:</b></label>
-      <div class="input-group">
-        <input type="text" class="form-control" id="newAddress" placeholder="Search for Address...">
-        <span class="input-group-btn">
-          <button class="btn btn-info" type="button" ng-click="getLocation2()"><span class="glyphicon glyphicon-search"></span></button>
-        </span>
-      </div>
-    </div>
+<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h3>Problem Location</h3>
+      <form>
+        <div class="form-group">
+          <label for="Select"><b>Address Line:</b></label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="newAddress" placeholder="Search for Address...">
+            <span class="input-group-btn">
+              <button class="btn btn-info" type="button" ng-click="getLocation2()"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+          </div>
+        </div>
 
-    <div class="row">
-      <div class="text-center">
-        <h4><b><i>OR</i></b></h4>
-      </div>
-    </div>
+        <div class="row">
+          <div class="text-center">
+            <h4><b><i>OR</i></b></h4>
+          </div>
+        </div>
 
-    <div class="form-group">
-      <button type="button" class="btn btn-info btn-block" ng-click='getLocation()'>Use Current Location</button>
-    </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-info btn-block" ng-click='getLocation()'>Use Current Location</button>
+        </div>
 
-    <hr>
-    <div class="form-group">
-      <button type="back" class="btn btn-danger" ui-sref="makereport.1">Back</button>
-      <button type="next" class="btn btn-primary pull-right" ui-sref="makereport.3">Next</button>
+        <hr>
+        <div class="form-group">
+          <button type="back" class="btn btn-danger" ui-sref="makereport.1">Back</button>
+          <button type="next" class="btn btn-primary pull-right" ui-sref="makereport.3">Next</button>
+        </div>
+      </form>
     </div>
-    <button class="btn btn-default" type="button" name="button" ui-sref="reports">Cancel</button>
-  </form>
+  </div>
+  <button class="btn btn-default" type="button" name="button" ui-sref="reports">Cancel</button>
 </div>
 <!-- left column -->
-<div class="col-lg-7 col-md-7 col-sm-7">
+<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
   <div class="alert alert-info" role="alert">
     <h4><span class="glyphicon glyphicon-info-sign"></span> How to add the location</h4>
     <p>
