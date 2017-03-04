@@ -10,6 +10,7 @@ body {
   transition: background-color 0.3s linear 0s;
 }
 .ani>li:hover{
+  border-radius: 5px;
   background-color: #263240;
 }
 .ani>li:active{
@@ -20,7 +21,7 @@ body {
 .footer{
   padding-top: 10px;
   background-color: #141414;
-  color: white;
+  color: #B5C7C8;
   padding-bottom: 10px;
   width: 100%;
   margin-top: 30px;
