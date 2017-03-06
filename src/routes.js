@@ -11,6 +11,14 @@ angular
         latitude: 10.450429,
         longitude: -61.314820
       },
+      events:{
+        dragstart: function(map){
+          console.log('moving map');
+        },
+        dragend: function($scope){
+          console.log('moved map...');
+        }
+      },
       zoom: 9,
       pan: true,
       markers: []
