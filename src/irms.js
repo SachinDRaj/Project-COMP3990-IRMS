@@ -52,7 +52,7 @@ function getCategory(category){
 
 }
 
-function getCategoryMain(category){
+function getCategoryMain(category){//returns category format that is stored in database
 	if(category == "Flooding")
 		return "flooding";
 	else
@@ -65,10 +65,12 @@ function getCategoryMain(category){
 }
 function addReport(){
 
-	var r1 = getCategoryMain(document.getElementById("ca").innerHTML);
+	var r1 = getCategoryMain(document.getElementById("ca").innerHTML);//gets innerHTML element and plugs it into function.
 	var r2 = getCategory(r1);
 	var t = document.getElementById("tt").innerHTML;
 	var d = document.getElementById("de").innerHTML;
+	
+	//Debugging checks in console window
 	console.log(r1);
 	console.log(r2);
 	console.log(t);
