@@ -80,19 +80,6 @@ function addReport(){
 		report_type2: r2,
 		title: t,
 		description: d,
-
-	var cat = document.getElementById("ca").value;
-	var title = document.getElementById("tt").value;
-	var des = document.getElementById("de").value;
-  // var lat = document.getElementById("");
-  // var lng = document.getElementById("");
-  // var pic = document.getElementById("");
-	var v = 0;
-
-	var dataToSend = {
-		report_type1: cat,
-		report_type2: title,
-		description: des,
 		votes: 0,
 		//loc: [126.4, 10.1]
 	};
