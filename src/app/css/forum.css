@@ -15,8 +15,8 @@
 
 .hoverTitle:hover{
   background-color: #CADEE5;
-  color: black;
-  font-style: italic;
+  color: grey;
+  font-style: normal;
   cursor:pointer;
 }
 .hoverTitle:active{
