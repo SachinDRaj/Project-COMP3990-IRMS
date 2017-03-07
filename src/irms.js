@@ -125,12 +125,16 @@ function addPost(){
 		alert("Insufficient information");
 	else{
 		var cat1 = getCategory(category);
-
+		var date = new Date();
+		console.log(date);
+		var jdate = JSON.stringify(date);
+		console.log(jdate);
 		var dataToSend = {
 			category1: cat1,
 			category2: category,
 			current_status: curr_status,
 			summary: summ,
+			date: jdate,
 			likes: 0,
 			dislikes: 0
 			//loc: [126.4, 10.1]

@@ -108,6 +108,7 @@ router.route('/add_new_post')
         post.category2 = req.body.category2;  
 		post.current_status = req.body.current_status;
 		post.summary = req.body.summary;
+		post.date = req.body.date;
 		post.likes = req.body.likes;
 		post.dislikes = req.body.dislikes;
 		//post.loc = req.body.loc;

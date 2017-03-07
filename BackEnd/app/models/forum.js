@@ -6,6 +6,7 @@ var ForumSchema   = new Schema({
 	category2: String,
 	current_status: String,
 	summary: String,
+	date: String,
 	likes: Number,
 	dislikes: Number,
 	loc: {
