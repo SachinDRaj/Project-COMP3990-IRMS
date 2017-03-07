@@ -40,17 +40,45 @@ function validateForm1() {
 		}
 }
 
+function getCategory(category){
+	if(category == "flooding" || category == "Flooding")
+		return "disaster";
+	else
+	if(category == "road_repair" || category == "Road Repairs")
+		return "public_infrastructure";
+	else
+	if(category == "garbage_collection" || category == "Garbage Collection")
+		return "health_hazard";
 
+}
+
+function getCategoryMain(category){
+	if(category == "Flooding")
+		return "flooding";
+	else
+	if(category == "Road Repairs")
+		return "road_repair";
+	else
+	if(category == "Garbage Collection")
+		return "garbage_collection";
+
+}
 function addReport(){
 
-	var r1 = "infrastructure";
-	var r2 = "road";
-	var d = "pot holes";
-	var v = 0;
+	var r1 = getCategoryMain(document.getElementById("ca").innerHTML);
+	var r2 = getCategory(r1);
+	var t = document.getElementById("tt").innerHTML;
+	var d = document.getElementById("de").innerHTML;
+	console.log(r1);
+	console.log(r2);
+	console.log(t);
+	console.log(d);
+
 
 	var dataToSend = {
 		report_type1: r1,
 		report_type2: r2,
+		title: t,
 		description: d,
 		votes: 0,
 		//loc: [126.4, 10.1]
@@ -68,17 +96,6 @@ function addReport(){
 	}).fail(function(){ //this block executes if the request failed
     console.log("Request failed");
 	});
-
-
-function getCategory(category){
-	if(category == "flooding")
-		return "disaster";
-	else
-	if(category == "road_repair")
-		return "public_infrastructure";
-	else
-	if(category == "garbage_collection")
-		return "health_hazard";
 
 }
 
@@ -119,4 +136,3 @@ function addPost(){
 	}
 }
 
-}

@@ -48,6 +48,7 @@ router.route('/add_new_report')
         var report = new Report();      // create a new instance of a Report
         report.report_type1 = req.body.report_type1;  // set the report type(general) (comes from the request)
         report.report_type2 = req.body.report_type2;  // set the report type(general) (comes from the request)
+		report.title = req.body.title;
 		report.description = req.body.description;
 		report.votes = req.body.votes;
 		report.loc = req.body.loc;
