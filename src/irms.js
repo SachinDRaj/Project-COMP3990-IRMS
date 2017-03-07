@@ -65,8 +65,8 @@ function getCategoryMain(category){//returns category format that is stored in d
 }
 function addReport(){
 
-	var r1 = getCategoryMain(document.getElementById("ca").innerHTML);//gets innerHTML element and plugs it into function.
-	var r2 = getCategory(r1);
+	var r2 = getCategoryMain(document.getElementById("ca").innerHTML);//gets innerHTML element and plugs it into function.
+	var r1 = getCategory(r2);
 	var t = document.getElementById("tt").innerHTML;
 	var d = document.getElementById("de").innerHTML;
 	

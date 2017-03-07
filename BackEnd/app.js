@@ -98,6 +98,7 @@ router.route('/delete_reports/:report_id')
     });
 
 
+
 router.route('/add_new_post')
 
 	.post(function(req, res) {
