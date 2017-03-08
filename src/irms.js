@@ -1,4 +1,4 @@
-
+ 
 function clearLS(){
   var select = localStorage.getItem("select");
   var title = localStorage.getItem("title");
@@ -43,7 +43,7 @@ function validateForm1() {
 function validateForm2() {
     var c = document.getElementById("select2");
 		var region = c.options[c.selectedIndex].value;
-    
+
 		if (typeof(Storage) !== "undefined") {
 	    localStorage.setItem("region", region);
 		}
@@ -81,6 +81,7 @@ function addReport(){
 	var r1 = getCategory(r2);
 	var t = document.getElementById("tt").innerHTML;
 	var d = document.getElementById("de").innerHTML;
+  var reg = localStorage.getItem("region");
 
 	var date = new Date();
 	console.log(date);
