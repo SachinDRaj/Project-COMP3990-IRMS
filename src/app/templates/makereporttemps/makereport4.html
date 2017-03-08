@@ -34,6 +34,8 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
+            <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" data-events="m.events" options="markerOptions">
+            </ui-gmap-marker>
           </ui-gmap-google-map>
         </div>
       </div>

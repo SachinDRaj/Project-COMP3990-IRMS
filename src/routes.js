@@ -44,7 +44,7 @@ angular
         },
         dragend: function(markers){
           console.log('moved map...');
-          console.log(markers);
+
         }
       }
     };
@@ -83,7 +83,7 @@ angular
             lat = location.lat(),
             lng = location.lng();
           var marker = makeMarker(lat, lng);
-          // $scope.map.markers.pop(marker);
+          $scope.map.markers.pop(marker);
           $scope.map.markers.push(marker);
           $scope.$apply();
           console.log($scope.map.markers[0].coords);
@@ -109,20 +109,49 @@ angular
       $scope.$apply();
       console.log($scope.map.markers[0].coords);
     }
-
+    $scope.getLatLng = function() {
+      var lat = $scope.map.markers[0].coords.latitude;
+      var lng = $scope.map.markers[0].coords.longitude;
+      if (typeof(Storage) !== "undefined") {
+  	    localStorage.setItem("lat",lat);
+  			localStorage.setItem("lng", lng);
+  		}
+  		else {
+  		    alert("Sorry, your browser does not support Web Storage...");
+  		}
+      console.log(lat,lng);
+    };
   })
   .controller('makereport3Con', function($scope) {
     console.log('Make a report 3 controller');
   })
   .controller('makereport4Con', function($scope) {
     console.log('Make report4 controller');
+    // localStorage.setItem("lat",10.4);
+    // localStorage.setItem("lng",-61.3);
+
     $scope.map = {
       center: {
         latitude: 10.450429,
         longitude: -61.314820
       },
-      zoom: 9
+      zoom: 9,
+      markers:[],
+      events:{
+          idle: function(){
+            var marker = {
+              id:1,
+              coords:{
+                latitude : localStorage.getItem("lat"),
+                longitude : localStorage.getItem("lng")
+              }
+            };
+            $scope.map.markers.push(marker);
+            $scope.$apply();
+          }
+      }
     };
+
     document.getElementById("ca").innerHTML = localStorage.getItem("select");
     document.getElementById("tt").innerHTML = localStorage.getItem("title");
     document.getElementById("de").innerHTML = localStorage.getItem("desc");

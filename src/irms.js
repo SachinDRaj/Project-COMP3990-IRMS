@@ -69,7 +69,7 @@ function addReport(){
 	var r1 = getCategory(r2);
 	var t = document.getElementById("tt").innerHTML;
 	var d = document.getElementById("de").innerHTML;
-	
+
 	//Debugging checks in console window
 	console.log(r1);
 	console.log(r2);
