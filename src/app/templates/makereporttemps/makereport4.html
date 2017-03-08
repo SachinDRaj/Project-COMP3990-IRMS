@@ -5,15 +5,15 @@
       <div class="panel-body">
         <h3>Summary and Confirmation</h3>
         <h4>Category</h4>
-        <div class="alert alert-success">
+        <div class="alert alert-warning">
           <p id="ca"></p>
         </div>
         <h4>Title</h4>
-        <div class="alert alert-success">
+        <div class="alert alert-warning">
           <p id="tt"></p>
         </div>
         <h4>Description</h4>
-        <div class="alert alert-success">
+        <div class="alert alert-warning">
           <p id="de"></p>
         </div>
 
@@ -30,15 +30,17 @@
   </div>
   <!-- left column -->
   <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-    <h4>Location</h4>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
-            <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" data-events="m.events" options="markerOptions">
-            </ui-gmap-marker>
-          </ui-gmap-google-map>
-        </div>
+    <div class="">
+      <h4 id="regSumHeader">Location - Region: </h4>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
+          <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" data-events="m.events" options="markerOptions">
+          </ui-gmap-marker>
+        </ui-gmap-google-map>
       </div>
+    </div>
   </div>
 </div>
 <h4>Problem Photo</h4>

@@ -4,15 +4,22 @@
     max-height: 200px;
     overflow-x: hidden;
 }
+
 #a1{
   padding-top: 20px;
 }
+
 .angular-google-map-container  {
   height: 400px;
 }
 
 .dropdown-menu{
   width: 100%;
+}
+
+.mheader{
+    font-size: 20px;
+    padding-top: 2px;
 }
 
 #b1{
@@ -23,6 +30,14 @@
   border-color: grey;
   border-style: solid;
 
+}
+
+#region1{
+  width: 30%;
+}
+
+.hmap{
+  height: 50px;
 }
 
 .rtable{

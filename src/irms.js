@@ -40,6 +40,18 @@ function validateForm1() {
 		}
 }
 
+function validateForm2() {
+    var c = document.getElementById("select2");
+		var region = c.options[c.selectedIndex].value;
+    
+		if (typeof(Storage) !== "undefined") {
+	    localStorage.setItem("region", region);
+		}
+		else {
+		    alert("Sorry, your browser does not support Web Storage...");
+		}
+}
+
 function getCategory(category){
 	if(category == "flooding" || category == "Flooding")
 		return "disaster";

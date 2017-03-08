@@ -5,6 +5,15 @@
       <h3>Problem Location</h3>
       <form>
         <div class="form-group">
+          <label for="email">Region:</label>
+          <select id="select2" class="form-control">
+            <option value="">Select Region</option>
+            <option value="Chaguanas">Chaguanas</option>
+            <option value="Port-of-Spain">Port-of-Spain</option>
+            <option value="San Fernando">San Fernando</option>
+          </select>
+        </div>
+        <div class="form-group">
           <label for="Select"><b>Address Line:</b></label>
           <div class="input-group">
             <input type="text" class="form-control" id="newAddress" placeholder="Search for Address...">
@@ -27,7 +36,7 @@
         <hr>
         <div class="form-group">
           <button type="back" class="btn btn-danger" ui-sref="makereport.1">Back</button>
-          <button type="next" class="btn btn-primary pull-right" ng-click="getLatLng()" ui-sref="makereport.3">Next</button>
+          <button type="next" class="btn btn-primary pull-right" ng-click="getLatLng()" onclick="validateForm2();" ui-sref="makereport.3">Next</button>
         </div>
       </form>
     </div>

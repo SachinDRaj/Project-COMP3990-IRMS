@@ -1,5 +1,6 @@
 html,body{
   height: 100%;
+  background-image: url("app/images/bmap.jpg");
 }
 body {
   background-color: #fff;
@@ -18,7 +19,7 @@ body {
   background-color: #263240;
 }
 .ht{
-  height: 470px;
+  height: 480px;
 }
 
 .footer{

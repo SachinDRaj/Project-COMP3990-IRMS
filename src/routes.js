@@ -155,6 +155,7 @@ angular
     document.getElementById("ca").innerHTML = localStorage.getItem("select");
     document.getElementById("tt").innerHTML = localStorage.getItem("title");
     document.getElementById("de").innerHTML = localStorage.getItem("desc");
+    document.getElementById("regSumHeader").innerHTML += localStorage.getItem("region");
   })
   .controller('forumCon', function() {
     console.log('Forum controller');
