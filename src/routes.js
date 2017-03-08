@@ -12,11 +12,12 @@ angular
         longitude: -61.314820
       },
       events:{
-        dragstart: function(map){
+        dragstart: function(){
           console.log('moving map');
         },
         dragend: function($scope){
           console.log('moved map...');
+          console.log(markers);
         }
       },
       zoom: 9,
@@ -29,7 +30,24 @@ angular
   })
   .controller('makereport2Con', function($scope) {
     console.log('Make report 2 controller');
-
+    // Map
+    $scope.map = {
+      center: {
+        latitude: 10.450429,
+        longitude: -61.314820
+      },
+      markers: [],
+      zoom: 9,
+      events:{
+        dragstart: function(){
+          console.log('moving map');
+        },
+        dragend: function(markers){
+          console.log('moved map...');
+          console.log(markers);
+        }
+      }
+    };
     function makeMarker(lt, lg) {
       var marker = {
         id: Date.now(),
@@ -39,11 +57,8 @@ angular
         },
         events: {
           dragend: function (marker) {
-            $scope.$apply(function () {
-               console.log(marker.position.lat());
-               console.log(marker.position.lng());
-            });
-            console.log(marker.coords);
+            marker.coords = marker.model.coords;
+            console.log('Coords:',marker.coords);
           },
           dragstart: function() {
             console.log('dragging now..');
@@ -52,15 +67,6 @@ angular
       };
       return marker;
     }
-    // Map
-    $scope.map = {
-      center: {
-        latitude: 10.450429,
-        longitude: -61.314820
-      },
-      markers: [],
-      zoom: 9
-    };
     $scope.markerOptions = {
       draggable: true,
       icon: "/app/images/marker.png"
@@ -77,31 +83,31 @@ angular
             lat = location.lat(),
             lng = location.lng();
           var marker = makeMarker(lat, lng);
-          $scope.map.markers.pop(marker);
+          // $scope.map.markers.pop(marker);
           $scope.map.markers.push(marker);
-          console.log(lat, lng);
           $scope.$apply();
+          console.log($scope.map.markers[0].coords);
         } else {
           console.log("Geocoding not supported");
         }
       });
     };
-      //Using geolocation
+    //Using geolocation
     $scope.getLocation = function() {
       if (navigator.geolocation)
         navigator.geolocation.getCurrentPosition(showPosition);
       else
         alert('Geolocation is not supported by this browser.');
     };
-
+    //Renders marker on the map
     function showPosition(position) {
       var lat = position.coords.latitude;
       var lng = position.coords.longitude;
       var marker = makeMarker(lat, lng);
       $scope.map.markers.pop(marker);
       $scope.map.markers.push(marker);
-      console.log(lat, lng);
       $scope.$apply();
+      console.log($scope.map.markers[0].coords);
     }
 
   })
