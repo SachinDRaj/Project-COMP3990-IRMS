@@ -28,21 +28,21 @@
         <div class="panel-heading">
           <h3 class="panel-title">Infrastructure Reports Forum</h3>
         </div>
-          <table class="table table-bordered table-striped table-condensed">
+          <table class="table table-bordered table-condensed">
             <thead>
               <tr>
                 <th>Title</th>
                 <th>Status</th>
                 <th>Date Posted</th>
-                <th>Like/Dislike</th>
+                <!-- <th>Like/Dislike</th> -->
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr id="status" class="alert alert-warning">
                 <td class="hoverTitle" data-toggle="modal" data-target="#myModal">Title of a report</td>
-                <td class="wtable">Ongoing</td>
+                <td class="wtable" id="status1">Ongoing<span id="status2" class="glyphicon glyphicon-cog pull-right"></span></td>
                 <td class="wtable">03/01/2017</td>
-                <td class="wtable1">
+                <!-- <td class="wtable1">
                   <a class="btn btn-primary" href="#">
                     <span class="glyphicon glyphicon-thumbs-up"></span>
                   </a>
@@ -51,13 +51,13 @@
                     <span class="glyphicon glyphicon-thumbs-down"></span>
                   </a>
                   <span class="badge">1</span>
-                </td>
+                </td> -->
               </tr>
-              <tr>
+              <tr class="alert alert-success">
                 <td class="hoverTitle" data-toggle="modal" data-target="#myModal">Title of a report</td>
-                <td>Fixed</td>
+                <td>Fixed<span class="glyphicon glyphicon-ok pull-right"></span></td>
                 <td>03/01/2017</td>
-                <td>
+                <!-- <td>
                   <a class="btn btn-primary" href="#">
                     <span class="glyphicon glyphicon-thumbs-up"></span>
                   </a>
@@ -66,7 +66,7 @@
                     <span class="glyphicon glyphicon-thumbs-down"></span>
                   </a>
                   <span class="badge">1</span>
-                </td>
+                </td> -->
               </tr>
             </tbody>
           </table>
