@@ -5,6 +5,7 @@ var ReportSchema   = new Schema({
     report_type1: String,
 	report_type2: String,
 	title: String,
+	date: String,
 	description: String,
 	votes: Number,
 	loc: {
