@@ -69,6 +69,10 @@ function addReport(){
 	var r1 = getCategory(r2);
 	var t = document.getElementById("tt").innerHTML;
 	var d = document.getElementById("de").innerHTML;
+	var date = new Date();
+	console.log(date);
+	var jdate = JSON.stringify(date);
+	console.log(jdate);
 	
 	//Debugging checks in console window
 	console.log(r1);
@@ -81,6 +85,7 @@ function addReport(){
 		report_type1: r1,
 		report_type2: r2,
 		title: t,
+		date: jdate,
 		description: d,
 		votes: 0,
 		//loc: [126.4, 10.1]
@@ -111,6 +116,32 @@ function getCategory(category){
 	if(category == "garbage_collection")
 		return "health_hazard";
 
+}
+
+function getPost(){
+	$.ajax({
+            url:"http://localhost:8080/api/get_posts",
+            type:"GET"
+            }).done(function(data, textStatus, xhr){
+                if(data){
+                    
+					console.log(data);
+                }
+                else{
+                    //if(callback) callback(null);
+                }
+                
+            }).fail(function(xhr){
+                var status = xhr.status;
+                var message = null;
+                if(xhr.responseText){
+                    var obj = JSON.parse(xhr.responseText);
+                    message = obj.message;
+                }
+
+                if(callback) callback(null);
+                console.log(xhr);
+            });
 }
 
 function addPost(){
