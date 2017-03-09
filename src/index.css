@@ -21,7 +21,17 @@ body {
 .ht{
   height: 480px;
 }
-
+.bshadow{
+  box-shadow: 0px 0px 1px #888888;
+}
+.jumbotron{
+  background-color: white;
+  box-shadow: 0px 0px 2px #888888;
+}
+.well{
+  background-color: white;
+  box-shadow: 0px 0px 1px #888888;
+}
 .footer{
   padding-top: 10px;
   background-color: #141414;
