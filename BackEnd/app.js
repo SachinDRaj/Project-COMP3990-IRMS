@@ -85,6 +85,19 @@ router.route('/get_reports/:report_id')
         });
     });
 
+router.route('/get_reports/:report_type1')
+
+	.get(function(req, res) {
+		if(req.params.report_type1){
+			Report.find({ report_type1: req.params.report_type1 }, function(err, reports) {
+				if (err)
+					res.send(err);
+				res.json(reports);
+        });
+		}
+    });
+
+	
 router.route('/delete_reports/:report_id')
 
 	.delete(function(req, res) {
