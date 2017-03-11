@@ -81,7 +81,7 @@ function addReport(){
 	var r1 = getCategory(r2);
 	var t = document.getElementById("tt").innerHTML;
 	var d = document.getElementById("de").innerHTML;
-  var reg = localStorage.getItem("region");
+	var reg = localStorage.getItem("region");
 
 	var date = new Date();
 	console.log(date);

@@ -63,16 +63,19 @@ router.route('/add_new_report')
 
     });
 
+	
 router.route('/get_reports')
 
 	.get(function(req, res) {
-        Report.find(function(err, reports) {
+		
+        Report.find(req.query, function(err, reports) {
             if (err)
                 res.send(err);
 
             res.json(reports);
         });
     });
+
 
 router.route('/get_reports/:report_id')
 
@@ -85,9 +88,9 @@ router.route('/get_reports/:report_id')
         });
     });
 
-router.route('/get_reports/:report_type1')
+/*router.route('/get_reports/:report_type1')
 
-	.get(function(req, res) {
+	.get(function(req, res){
 		if(req.params.report_type1){
 			Report.find({ report_type1: req.params.report_type1 }, function(err, reports) {
 				if (err)
@@ -95,7 +98,14 @@ router.route('/get_reports/:report_type1')
 				res.json(reports);
         });
 		}
-    });
+		else if(req.params.report_type2){
+			Report.find({ report_type2: req.params.report_type2 }, function(err, reports) {
+				if (err)
+					res.send(err);
+				res.json(reports);
+        });
+		}
+    });*/
 
 	
 router.route('/delete_reports/:report_id')
