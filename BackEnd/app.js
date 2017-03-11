@@ -4,6 +4,7 @@
 // =============================================================================
 var Report 	   = require('./app/models/report');
 var ForumPost  = require('./app/models/forum');
+var User 	   = require('./app/models/user');
 var mongoose   = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://127.0.0.1:27017'); // connect to our database
@@ -88,24 +89,6 @@ router.route('/get_reports/:report_id')
         });
     });
 
-/*router.route('/get_reports/:report_type1')
-
-	.get(function(req, res){
-		if(req.params.report_type1){
-			Report.find({ report_type1: req.params.report_type1 }, function(err, reports) {
-				if (err)
-					res.send(err);
-				res.json(reports);
-        });
-		}
-		else if(req.params.report_type2){
-			Report.find({ report_type2: req.params.report_type2 }, function(err, reports) {
-				if (err)
-					res.send(err);
-				res.json(reports);
-        });
-		}
-    });*/
 
 	
 router.route('/delete_reports/:report_id')
@@ -156,6 +139,37 @@ router.route('/get_posts')
             res.json(post);
         });
     });
+	
+	
+//LOG IN TEST -----------------------------------------------
+var testUser = new User({//User schema found in app/models folder
+    username: 'admin',
+    password: 'admin'
+});
+
+// save user to database
+testUser.save(function(err) {
+    if (err) throw err;
+
+});
+
+User.findOne({ username: 'admin' }, function(err, user) {//find username admin
+        if (err) throw err;
+
+        // test a matching password
+        user.comparePassword('admin', function(err, isMatch) {
+            if (err) throw err;
+            console.log('admin:', isMatch); // -> Password123: true
+        });
+		
+        // test a failing password
+        user.comparePassword('not admin', function(err, isMatch) {
+            if (err) throw err;
+            console.log('not admin:', isMatch); // -> 123Password: false
+        });
+    });
+
+//-----------------------------------------------------------
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
