@@ -23,7 +23,7 @@
           <div class="input-group">
             <input type="text" class="form-control" id="newAddress" placeholder="Search for Address...">
             <span class="input-group-btn">
-              <button class="btn btn-info" type="button" ng-click="getLocation2()"><span class="glyphicon glyphicon-search"></span></button>
+              <button class="btn btn-info" type="button" ng-click="getLocation2()">View on Map <span class="glyphicon glyphicon-search"></span></button>
             </span>
           </div>
         </div>
@@ -62,9 +62,14 @@
         To use your current location, click the 'Use Current Location button'. The location will be displayed on the map.
       </small>
     </p>
+    <p>
+      <small>
+        Marker is draggable and can be moved to any location specified.
+      </small>
+    </p>
   </div>
   <!-- Map -->
-  <h3>Location on the Map</h3>
+  <h3>Location (Marker is draggable)</h3>
   <div class="panel panel-default">
     <div class="panel-body">
       <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
