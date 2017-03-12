@@ -148,10 +148,11 @@ var testUser = new User({//User schema found in app/models folder
 });
 
 // save user to database
+/*
 testUser.save(function(err) {
     if (err) throw err;
 
-});
+});*/
 
 User.findOne({ username: 'admin' }, function(err, user) {//find username admin
         if (err) throw err;

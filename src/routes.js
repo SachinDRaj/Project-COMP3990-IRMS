@@ -6,6 +6,7 @@ angular
   })
   .controller('reportCon', function($scope) {
     console.log('Report controller');
+	getReports();
     $scope.map = {
       center: {
         latitude: 10.450429,
@@ -159,6 +160,7 @@ angular
   })
   .controller('forumCon', function() {
     console.log('Forum controller');
+	getPost();
   })
   .controller('makepostCon', function($scope) {
     console.log('Make post controller');
