@@ -169,7 +169,74 @@ angular
         latitude: 10.450429,
         longitude: -61.314820
       },
-      zoom: 9
+      markers: [],
+      zoom: 9,
+      events:{
+        dragstart: function(){
+          console.log('moving map');
+        },
+        dragend: function(markers){
+          console.log('moved map...');
+
+        }
+      }
+    };
+    function makeMarker(lt, lg) {
+      var marker = {
+        id: Date.now(),
+        coords: {
+          latitude: lt,
+          longitude: lg
+        },
+        events: {
+          dragend: function (marker) {
+            marker.coords = marker.model.coords;
+            console.log('Coords:',marker.coords);
+          },
+          dragstart: function() {
+            console.log('dragging now..');
+          }
+        }
+      };
+      return marker;
+    }
+    $scope.markerOptions = {
+      draggable: true,
+      icon: "/app/images/marker.png"
+    };
+    // Using geocoding
+    $scope.getLocation3 = function() {
+      var geocoder = new google.maps.Geocoder();
+      var addr = document.getElementById('newAddressPost').value;
+      geocoder.geocode({
+        "address": addr
+      }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK && results.length > 0) {
+          var location = results[0].geometry.location,
+            lat = location.lat(),
+            lng = location.lng();
+          var marker = makeMarker(lat, lng);
+          $scope.map.markers.pop(marker);
+          $scope.map.markers.push(marker);
+          $scope.$apply();
+          console.log($scope.map.markers[0].coords);
+        } else {
+          console.log("Geocoding not supported");
+        }
+      });
+    };
+
+    $scope.getLatLng = function() {
+      var lat = $scope.map.markers[0].coords.latitude;
+      var lng = $scope.map.markers[0].coords.longitude;
+      if (typeof(Storage) !== "undefined") {
+  	    localStorage.setItem("lat",lat);
+  			localStorage.setItem("lng", lng);
+  		}
+  		else {
+  		    alert("Sorry, your browser does not support Web Storage...");
+  		}
+      console.log(lat,lng);
     };
   });
 
