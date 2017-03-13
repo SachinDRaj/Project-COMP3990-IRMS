@@ -1,6 +1,21 @@
 angular
   .module('app')
   .config(routesConfig)
+  .directive('dlEnterKey', function() {
+    return function(scope, element, attrs) {
+        element.bind("keydown keypress", function(event) {
+            var keyCode = event.which || event.keyCode;
+            // If enter key is pressed
+            if (keyCode === 13) {
+                scope.$apply(function() {
+                        // Evaluate the expression
+                    scope.$eval(attrs.dlEnterKey);
+                });
+                event.preventDefault();
+            }
+        });
+    };
+})
   .controller('homeCon', function() {
     console.log('Home controller');
   })
@@ -76,6 +91,9 @@ angular
       draggable: true,
       icon: "/app/images/marker.png"
     };
+    function search($event) {
+      console.log('ENTER works');
+    }
     // Using geocoding
     $scope.getLocation2 = function() {
       var geocoder = new google.maps.Geocoder();
