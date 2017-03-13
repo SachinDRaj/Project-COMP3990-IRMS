@@ -1,45 +1,43 @@
 <!-- right column -->
-<div class="row">
-  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <h3>Summary and Confirmation</h3>
-        <h4>Category</h4>
-        <div class="alert alert-warning">
-          <p id="ca"></p>
-        </div>
-        <h4>Title</h4>
-        <div class="alert alert-warning">
-          <p id="tt"></p>
-        </div>
-        <h4>Description</h4>
-        <div class="alert alert-warning">
-          <p id="de"></p>
-        </div>
+<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h3>Summary and Confirmation</h3>
+      <h4>Category</h4>
+      <div class="alert alert-warning">
+        <p id="ca"></p>
+      </div>
+      <h4>Title</h4>
+      <div class="alert alert-warning">
+        <p id="tt"></p>
+      </div>
+      <h4>Description</h4>
+      <div class="alert alert-warning">
+        <p id="de"></p>
+      </div>
 
-        <div class="form-group">
-          <button type="submit" class="btn btn-block btn-success" onclick="addReport();">Submit Report</button><!--addReport function found in irms.js-->
-        </div>
-        <hr>
-        <div class="form-group">
-          <button type="back" class="btn btn-danger" ui-sref="makereport.3">Back</button>
-          <button class="btn btn-default pull-right" type="button" name="button" ui-sref="reports">Cancel</button>
-        </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-block btn-success" onclick="addReport();">Submit Report</button><!--addReport function found in irms.js-->
+      </div>
+      <hr>
+      <div class="form-group">
+        <button type="back" class="btn btn-danger" ui-sref="makereport.3">Back</button>
+        <button class="btn btn-default pull-right" type="button" name="button" ui-sref="reports">Cancel</button>
       </div>
     </div>
   </div>
-  <!-- left column -->
-  <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-    <div class="">
-      <h4 id="regSumHeader">Location - Region: </h4>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
-          <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" data-events="m.events" options="markerOptions">
-          </ui-gmap-marker>
-        </ui-gmap-google-map>
-      </div>
+</div>
+<!-- left column -->
+<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+  <div class="">
+    <h4 id="regSumHeader">Location - Region: </h4>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
+        <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" data-events="m.events" options="markerOptions">
+        </ui-gmap-marker>
+      </ui-gmap-google-map>
     </div>
   </div>
 </div>
