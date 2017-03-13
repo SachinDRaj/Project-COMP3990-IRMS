@@ -11,7 +11,7 @@ body {
   margin-top: -20px;
   background-color: #111;
   color: #fff;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 .ani>li{
   transition: background-color 0.3s linear 0s;

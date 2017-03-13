@@ -130,13 +130,15 @@ angular
     console.log('Make report4 controller');
     // localStorage.setItem("lat",10.4);
     // localStorage.setItem("lng",-61.3);
-
+    $scope.markerOptions = {
+      icon: "/app/images/marker.png"
+    };
     $scope.map = {
       center: {
-        latitude: 10.450429,
-        longitude: -61.314820
+        latitude: localStorage.getItem("lat"),
+        longitude: localStorage.getItem("lng")
       },
-      zoom: 9,
+      zoom: 12,
       markers:[],
       events:{
           idle: function(){
@@ -164,6 +166,7 @@ angular
   })
   .controller('makepostCon', function($scope) {
     console.log('Make post controller');
+    // Map
     $scope.map = {
       center: {
         latitude: 10.450429,
