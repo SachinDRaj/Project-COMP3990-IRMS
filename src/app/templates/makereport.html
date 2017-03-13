@@ -1,16 +1,9 @@
+<!-- header -->
+<div class="row" ng-include="'app/templates/header.html'">
+</div>
 <div class="row">
   <div class="col-lg-10 col-lg-offset-1">
-    <div class="panel panel-default bshadow">
-
-        <!-- <div class="col-lg-10"> -->
-      <div class="panel-heading">
-        <h3>Make a Report</h3>
-      </div>
-        <!-- </div> -->
-      <div class="panel-body">
-        <ui-view></ui-view>
-      </div>
-    </div>
+    <ui-view></ui-view>
   </div>
 </div>
 <div class="row" ng-include="'app/templates/footer.html'">
