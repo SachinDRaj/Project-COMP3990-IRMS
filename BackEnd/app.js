@@ -132,7 +132,7 @@ router.route('/add_new_post')
 router.route('/get_posts')
 
 	.get(function(req, res) {
-        ForumPost.find(function(err, post) {
+        ForumPost.find(req.query, function(err, post) {
             if (err)
                 res.send(err);
 

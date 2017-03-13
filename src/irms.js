@@ -146,6 +146,34 @@ function getReports(){
                 console.log(xhr);
             });
 }
+/*
+function getPostQ(){
+	
+	var url = "http://localhost:8080/api/get_posts";
+	$.ajax({
+            url: url,
+            type:"GET"
+            }).done(function(data, textStatus, xhr){
+                if(data){
+                    console.log(JSON.stringify(data));
+                }
+                else{
+                    //if(callback) callback(null);
+                }
+
+            }).fail(function(xhr){
+                var status = xhr.status;
+                var message = null;
+                if(xhr.responseText){
+                    var obj = JSON.parse(xhr.responseText);
+                    message = obj.message;
+                }
+
+                if(callback) callback(null);
+                console.log(xhr);
+            });
+}
+*/
 function getCategory(category){
 	if(category == "flooding")
 		return "disaster";
