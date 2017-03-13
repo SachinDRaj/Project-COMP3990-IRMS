@@ -1,13 +1,7 @@
 <!-- header -->
-<div class="row">
-  <nav class="navbar navbar-colour navbar-static-top">
-    <div class="col-lg-10 col-lg-offset-1">
-        <div class="navbar-text">
-          <h1>Make a Post</h1>
-        </div>
-    </div>
-  </nav>
+<div class="row" ng-include="'app/templates/header.html'">
 </div>
+
 <div class="row">
   <div class="col-lg-10 col-lg-offset-1">
     <!-- left column -->
@@ -24,6 +18,10 @@
                 <option value="road_repair">Road Repairs</option>
                 <option value="garbage_collection">Garbage Collection</option>
               </select>
+            </div>
+            <div class="form-group">
+              <label for="title">Title:</label>
+              <input class="form-control" type="text" id="title" placeholder="Enter Title">
             </div>
             <div class="form-group">
               <label for="Select"><b>Address Line:</b></label>

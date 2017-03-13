@@ -6,6 +6,7 @@ angular
   })
   .controller('reportCon', function($scope) {
     console.log('Report controller');
+    $scope.header = 'Reports';
 	  // getReports();
     $scope.map = {
       center: {
@@ -25,6 +26,9 @@ angular
       pan: true,
       markers: []
     };
+  })
+  .controller('makereportCon', function($scope){//Base
+    $scope.header = 'Make a Report';
   })
   .controller('makereport1Con', function($scope) {
     console.log('Make report 1 controller');
@@ -160,12 +164,14 @@ angular
     document.getElementById("de").innerHTML = localStorage.getItem("desc");
     document.getElementById("regSumHeader").innerHTML += localStorage.getItem("region");
   })
-  .controller('forumCon', function() {
+  .controller('forumCon', function($scope) {
     console.log('Forum controller');
+    $scope.header = 'Forum';
 	  getPost();
   })
   .controller('makepostCon', function($scope) {
     console.log('Make post controller');
+    $scope.header = 'Make a Post';
     // Map
     $scope.map = {
       center: {
@@ -241,6 +247,10 @@ angular
   		}
       console.log(lat,lng);
     };
+  })
+  .controller('graphsCon', function($scope) {
+    console.log('Graphs controller');
+    $scope.header = 'Graphs';
   });
 
 
@@ -267,7 +277,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('graphs', {
       url: '/graphs',
-      templateUrl: 'app/templates/graphs.html'
+      templateUrl: 'app/templates/graphs.html',
+      controller: 'graphsCon'
     })
     .state('login', {
       url: '/login',
@@ -275,7 +286,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('makereport', {
       url: '/makereport',
-      templateUrl: 'app/templates/makereport.html'
+      templateUrl: 'app/templates/makereport.html',
+      controller: 'makereportCon'
     })
     .state('makereport.1', {
       url: '/1',
