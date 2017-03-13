@@ -7,6 +7,12 @@ body {
   min-height: 100%;
    overflow-x:hidden;
 }
+.navbar-colour{
+  margin-top: -20px;
+  background-color: #111;
+  color: #fff;
+  opacity: 0.5;
+}
 .ani>li{
   transition: background-color 0.3s linear 0s;
 }
