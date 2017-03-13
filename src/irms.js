@@ -148,19 +148,15 @@ function getReports(){
 }
 /*
 function getPostQ(){
-	
+
 	var url = "http://localhost:8080/api/get_posts";
 	$.ajax({
             url: url,
             type:"GET"
             }).done(function(data, textStatus, xhr){
                 if(data){
-                    var htmlStr="";
-                    for (var i = 0; i < data.length; i++) {
-                      htmlStr += "<tr id='status' class='alert alert-warning'><td class='hoverTitle' data-toggle='modal' data-target='#myModal'>"+data[i].category2+"</td><td class='wtable' id='status1'>"+data[i].current_status+"<span id='status2' class='glyphicon glyphicon-cog pull-right'></span></td><td class='wtable'>"+data[i].date+"</td></tr>";
-                    }
-                    console.log(htmlStr);
-                    $("#posttable").append(htmlStr);
+                    console.log(JSON.stringify(data));
+
                 }
                 else{
                     //if(callback) callback(null);
@@ -197,7 +193,12 @@ function getPost(){
             type:"GET"
             }).done(function(data, textStatus, xhr){
                 if(data){
-                    console.log(JSON.stringify(data));
+                  var htmlStr="";
+                  for (var i = 0; i < data.length; i++) {
+                    htmlStr += "<tr id='status' class='alert alert-warning'><td class='hoverTitle' data-toggle='modal' data-target='#myModal'>"+data[i].category2+"</td><td class='wtable' id='status1'>"+data[i].current_status+"<span id='status2' class='glyphicon glyphicon-cog pull-right'></span></td><td class='wtable'>"+data[i].date+"</td></tr>";
+                  }
+                  console.log(htmlStr);
+                  $("#posttable").append(htmlStr);
                 }
                 else{
                     //if(callback) callback(null);
