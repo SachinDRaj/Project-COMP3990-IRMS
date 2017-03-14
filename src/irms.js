@@ -234,8 +234,9 @@ function getPost(){
                     console.log(data[i].title);
                     var al = rowAlert(data[i]);
                     var stat = rowStatus(data[i]);
+                    var func1=  "onclick='modalQ(\""+data[i]._id+"\");'";
                     htmlStr += "<tr id='status'"+al+">";
-                    htmlStr += "<td class='hoverTitle' data-toggle='modal' data-target='#myModal'>"+data[i].title+"</td>";
+                    htmlStr += "<td class='hoverTitle' data-toggle='modal' data-target='#myModal' "+func1+">"+data[i].title+"</td>";
                     htmlStr += "<td class='wtable' id='status1'>"+data[i].current_status+"<span id='status2'"+ stat+"</td>";
                     htmlStr += "<td class='wtable'>"+data[i].date+"</td></tr>";
                   }

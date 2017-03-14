@@ -72,8 +72,10 @@ function getPostQ2(){
                     console.log(data[i].title);
                     var al = rowAlert1(data[i]);
                     var stat = rowStatus1(data[i]);
+
+                    var func1=  "onclick='modalQ(\""+data[i]._id+"\");'";
                     htmlStr += "<tr id='status'"+al+">";
-                    htmlStr += "<td class='hoverTitle' data-toggle='modal' data-target='#myModal'>"+data[i].title+"</td>";
+                    htmlStr += "<td class='hoverTitle' data-toggle='modal' data-target='#myModal' "+func1+">"+data[i].title+"</td>";
                     htmlStr += "<td class='wtable' id='status1'>"+data[i].current_status+"<span id='status2'"+ stat+"</td>";
                     htmlStr += "<td class='wtable'>"+data[i].date+"</td></tr>";
                   }
@@ -140,6 +142,47 @@ function getReportsQ(){
                   // console.log(htmlStr);
                   $("#reportTable").append(htmlStr);
 
+                }
+                else{
+                    //if(callback) callback(null);
+                }
+
+            }).fail(function(xhr){
+                var status = xhr.status;
+                var message = null;
+                if(xhr.responseText){
+                    var obj = JSON.parse(xhr.responseText);
+                    message = obj.message;
+                }
+
+                if(callback) callback(null);
+                console.log(xhr);
+            });
+}
+
+function modalQ(id){
+  var query="?_id="+id;
+	var url = "http://localhost:8080/api/get_posts";
+  url+=query;
+	$.ajax({
+            url: url,
+            type:"GET"
+            }).done(function(data, textStatus, xhr){
+                if(data){
+                  $("#mTitle").html("Title: ");
+                  $("#mTitle").append(data[0].title);
+                  $("#mCat").html("");
+                  $("#mCat").append(data[0].category2);
+                  $("#mStatus").html("");
+                  $("#mStatus").append(data[0].current_status);
+                  $("#mSum").html("");
+                  $("#mSum").append(data[0].summary);
+                  $("#mDate").html("");
+                  $("#mDate").append(data[0].date);
+                  $("#mLoc").html("");
+                  $("#mLoc").append("<b>Address: </b>Lat:"+data[0].lat+" Lng:"+data[0].lng);
+                  $("#mCounty").html("<b>County: </b>");
+                  $("#mCounty").append(data[0].county);
                 }
                 else{
                     //if(callback) callback(null);
