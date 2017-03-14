@@ -1,6 +1,18 @@
 
 //posts queries
 
+function properF(cat1){
+  if (cat1=="All Categories") {
+    return "All";
+  }else if (cat1=="Flooding") {
+    return "flooding";
+  }else if (cat1=="Road Repairs") {
+    return "road_repair";
+  }else if (cat1=="Garbage Collection") {
+    return "garbage_collection";
+  }
+}
+
 function updateTag(cat1){
   $("#Cat").html("");
   $("#Cat").append(cat1);
@@ -9,6 +21,7 @@ function getQuery(cat1){
   var c = document.getElementById("region2");
   var select = c.options[c.selectedIndex].value;
   var q="";
+  cat1 = properF(cat1);
   if (select=="All" && cat1=="All") {
     q="";
   }else if (select=="All"){
@@ -95,6 +108,7 @@ function getQuery1(cat1){
   var c = document.getElementById("region1");
   var select = c.options[c.selectedIndex].value;
   var q="";
+  cat1 = properF(cat1);
   if (select=="All" && cat1=="All") {
     q="";
   }else if (select=="All"){
