@@ -46,7 +46,7 @@ angular
       return marker;
     }
     function populateMap(data){
-      for(var i = 2; i < data.length; i++){
+      for(var i = 0; i < data.length; i++){
         var m = makeMarker(data[i],i);
         $scope.map.markers.push(m);
       }
