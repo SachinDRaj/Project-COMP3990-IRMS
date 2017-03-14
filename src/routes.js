@@ -91,13 +91,14 @@ angular
       draggable: true,
       icon: "/app/images/marker.png"
     };
-    function search($event) {
-      console.log('ENTER works');
-    }
+
     // Using geocoding
     $scope.getLocation2 = function() {
       var geocoder = new google.maps.Geocoder();
-      var addr = document.getElementById('newAddress').value;
+      var c = document.getElementById("select2");
+  		var region = c.options[c.selectedIndex].value;
+      var addr = document.getElementById('newAddress').value +' '+region;
+
       geocoder.geocode({
         "address": addr
       }, function(results, status) {
