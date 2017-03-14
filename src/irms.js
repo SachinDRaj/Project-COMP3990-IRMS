@@ -191,7 +191,28 @@ function getCategory(category){
 		return "health_hazard";
 
 }
-
+//Get Post
+//Row builder
+function rowAlert(data) {
+  var alert;
+  if(data.current_status == 'fixed'){
+     alert = 'class="alert alert-success"';
+  }
+  else if (data.current_status == 'ongoing') {
+     alert = 'class="alert alert-warning"';
+  }
+  return alert;
+}
+function rowStatus(data) {
+  var status;
+  if(data.current_status == 'fixed') {
+    status = 'class="glyphicon glyphicon-ok pull-right"';
+  }
+  else if (data.current_status == 'ongoing') {
+    status = 'class="glyphicon glyphicon-cog pull-right"';
+  }
+  return status;
+}
 function getPost(){
 	$.ajax({
             url:"http://localhost:8080/api/get_posts",
@@ -200,7 +221,12 @@ function getPost(){
                 if(data){
                   var htmlStr="";
                   for (var i = 0; i < data.length; i++) {
-                    htmlStr += "<tr id='status' class='alert alert-warning'><td class='hoverTitle' data-toggle='modal' data-target='#myModal'>"+data[i].category2+"</td><td class='wtable' id='status1'>"+data[i].current_status+"<span id='status2' class='glyphicon glyphicon-cog pull-right'></span></td><td class='wtable'>"+data[i].date+"</td></tr>";
+                    var al = rowAlert(data[i]);
+                    var stat = rowStatus(data[i]);
+                    htmlStr += "<tr id='status'"+al+">";
+                    htmlStr += "<td class='hoverTitle' data-toggle='modal' data-target='#myModal'>"+data[i].category2+"</td>";
+                    htmlStr += "<td class='wtable' id='status1'>"+data[i].current_status+"<span id='status2'"+ stat+"</td>";
+                    htmlStr += "<td class='wtable'>"+data[i].date+"</td></tr>";
                   }
                   console.log(htmlStr);
                   $("#posttable").append(htmlStr);
