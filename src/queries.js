@@ -16,6 +16,7 @@ function properF(cat1){
 function updateTag(cat1){
   $("#Cat").html("");
   $("#Cat").append(cat1);
+  getPostQ2();
 }
 function getQuery(cat1){
   var c = document.getElementById("region2");
@@ -105,6 +106,7 @@ function getPostQ2(){
 function updateTag1(cat1){
   $("#Cat2").html("");
   $("#Cat2").append(cat1);
+  getReportsQ();
 }
 function getQuery1(cat1){
   var c = document.getElementById("region1");
@@ -125,6 +127,7 @@ function getQuery1(cat1){
 }
 
 function getReportsQ(){
+  console.log("work");
   var cat1 = document.getElementById("Cat2").innerHTML;
   var query=getQuery1(cat1);
 	var url = "http://localhost:8080/api/get_reports";
