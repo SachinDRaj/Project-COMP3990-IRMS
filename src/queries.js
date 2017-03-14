@@ -1,4 +1,5 @@
 
+//posts queries
 
 function updateTag(cat1){
   $("#Cat").html("");
@@ -64,6 +65,67 @@ function getPostQ2(){
                     htmlStr += "<td class='wtable'>"+data[i].date+"</td></tr>";
                   }
                   $("#posttable").append(htmlStr);
+                }
+                else{
+                    //if(callback) callback(null);
+                }
+
+            }).fail(function(xhr){
+                var status = xhr.status;
+                var message = null;
+                if(xhr.responseText){
+                    var obj = JSON.parse(xhr.responseText);
+                    message = obj.message;
+                }
+
+                if(callback) callback(null);
+                console.log(xhr);
+            });
+}
+
+
+//************************************************************************
+//report queries
+
+function updateTag1(cat1){
+  $("#Cat2").html("");
+  $("#Cat2").append(cat1);
+}
+function getQuery1(cat1){
+  var c = document.getElementById("region1");
+  var select = c.options[c.selectedIndex].value;
+  var q="";
+  if (select=="All" && cat1=="All") {
+    q="";
+  }else if (select=="All"){
+    q="?report_type2="+cat1;
+  }else if (cat1=="All") {
+    q="?county="+select;
+  }else {
+    q="?report_type2="+cat1+"&county="+select;
+  }
+  return q;
+  // console.log(cat1);
+}
+
+function getReportsQ(){
+  var cat1 = document.getElementById("Cat2").innerHTML;
+  var query=getQuery1(cat1);
+	var url = "http://localhost:8080/api/get_reports";
+  url+=query;
+	$.ajax({
+            url:url,
+            type:"GET"
+            }).done(function(data, textStatus, xhr){
+                if(data){
+                  $("#reportTable").html("");
+                  var htmlStr="";
+                  for (var i = 0; i < data.length; i++) {
+                    htmlStr += "<tr><td class='hoverTitle'>"+data[i].title+"</td><td class='rtable'><a class='btn btn-primary' href='#'> <span class='glyphicon glyphicon-thumbs-up'></span></a> <span class='badge'>5</span> <a class='btn btn-danger' href='#'> <span class='glyphicon glyphicon-thumbs-down'></span></a> <span class='badge'>1</span></td></tr>";
+                  }
+                  // console.log(htmlStr);
+                  $("#reportTable").append(htmlStr);
+
                 }
                 else{
                     //if(callback) callback(null);

@@ -6,21 +6,23 @@
 
     <!-- Make a Report -->
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-      <button class="btn btn-block btn btn-danger" type="button" ui-sref="makereport.1" onclick="clearLS();"><b>Make a New Report</b> <span class="glyphicon glyphicon-pencil"></span> </button>
+      <button class="btn btn-block btn btn-danger" type="button" ui-sref="makereport.1" onclick="clearLS();"><b>Click to make a New Report</b> <span class="glyphicon glyphicon-pencil"></span> </button>
     </div>
     <!-- Select Category -->
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
       <div class="dropdown">
         <button class="btn btn-block btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Category <span class="caret"></span></button>
         <ul class="dropdown-menu">
+          <li><a href="" onclick="updateTag1('All');">All Categories</a></li>
+          <li role="separator" class="divider"></li>
           <li class="dropdown-header">Disaster</li>
-          <li><a href="">Flooding</a></li>
+          <li><a href="" onclick="updateTag1('flooding');">Flooding</a></li>
           <li role="separator" class="divider"></li>
           <li class="dropdown-header">Public Infrasture</li>
-          <li><a href="">Road Repairs</a></li>
+          <li><a href="" onclick="updateTag1('road_repair');">Road Repairs</a></li>
           <li role="separator" class="divider"></li>
           <li class="dropdown-header">Health Hazards</li>
-          <li><a href="">Garbage Collection</a></li>
+          <li><a href="" onclick="updateTag1('garbage_collection');">Garbage Collection</a></li>
         </ul>
       </div>
     </div>
@@ -33,9 +35,12 @@
     <div class="col-lg-8 col-md-8 col-sm-8">
       <div class="panel panel-default bshadow">
         <div class="panel-heading hmap">
-          <div id="region1" class="form-group pull-right">
-            <select class="form-control">
-              <option value="">Counties - All</option>
+          <div class="form-group pull-right">
+            <button type="submit" class="btn btn-warning" onclick="getReportsQ();">Update</button>
+          </div>
+          <div id="regio1" class="form-group pull-right space">
+            <select  id="region1" class="form-control">
+              <option value="All">Counties - All</option>
               <option value="Caroni">Caroni</option>
               <option value="Mayaro">Mayaro</option>
               <option value="Nariva">Nariva</option>
@@ -46,7 +51,7 @@
               <option value="Victoria">Victoria</option>
             </select>
           </div>
-          <h3 class="panel-title mheader">Map</h3>
+          <h3 class="panel-title mheader">Map : <a href="#" id="Cat2">All</a></h3>
         </div>
         <div class="panel-body">
           <div id="r1">
@@ -66,20 +71,7 @@
 
         <table id="reportTable" class="table table-striped table-condensed">
           <tr>
-            <td class="hoverTitle">Title for report and blah</td>
-            <td class="rtable">
-              <a class="btn btn-primary" href="#">
-                <span class="glyphicon glyphicon-thumbs-up"></span>
-              </a>
-              <span class="badge">5</span>
-              <a class="btn btn-danger" href="#">
-                <span class="glyphicon glyphicon-thumbs-down"></span>
-              </a>
-              <span class="badge">1</span>
-            </td>
-          </tr>
-          <tr>
-            <td class="hoverTitle">Title for report</td>
+            <td class="hoverTitle">Default Report</td>
             <td class="rtable">
 
               <a class="btn btn-primary" href="#">
