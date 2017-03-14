@@ -4,20 +4,22 @@
 <div class="row">
   <div class="col-lg-10 col-lg-offset-1 text-center">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-      <button class="btn btn-block btn btn-danger" type="button" name="button" ui-sref="makepost"><b>Make a Post</b> <span class="glyphicon glyphicon-pencil"></span> </button>
+      <button class="btn btn-block btn btn-danger" type="button" name="button" ui-sref="makepost"><b>Click to make a New Post</b> <span class="glyphicon glyphicon-pencil"></span> </button>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
       <div class="dropdown">
         <button class="btn btn-block btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Category <span class="caret"></span></button>
         <ul class="dropdown-menu">
+          <li><a href="" onclick="updateTag('All Categories');">All Categories</a></li>
+          <li role="separator" class="divider"></li>
           <li class="dropdown-header">Disaster</li>
-          <li><a href="">Flooding</a></li>
+          <li><a href="" onclick="updateTag('Flooding');">Flooding</a></li>
           <li role="separator" class="divider"></li>
           <li class="dropdown-header">Public Infrasture</li>
-          <li><a href="">Road Repairs</a></li>
+          <li><a href="" onclick="updateTag('Road Repairs');">Road Repairs</a></li>
           <li role="separator" class="divider"></li>
           <li class="dropdown-header">Health Hazards</li>
-          <li><a href="">Garbage Collection</a></li>
+          <li><a href="" onclick="updateTag('Garbage Collection');">Garbage Collection</a></li>
         </ul>
       </div>
     </div>
@@ -29,9 +31,12 @@
     <div class="col-lg-12 col-md-12 col-sm-12">
       <div id="r1" class="panel panel-default bshadow">
         <div class="panel-heading hmap2">
-          <div id="region1" class="form-group pull-right">
-            <select class="form-control">
-              <option value="">Counties - All</option>
+          <div class="form-group pull-right">
+            <button type="submit" class="btn btn-warning" onclick="getPostQ2();">Update</button>
+          </div>
+          <div class="form-group pull-right space">
+            <select id="region2" class="form-control">
+              <option value="All">Counties - All</option>
               <option value="Caroni">Caroni</option>
               <option value="Mayaro">Mayaro</option>
               <option value="Nariva">Nariva</option>
@@ -42,7 +47,7 @@
               <option value="Victoria">Victoria</option>
             </select>
           </div>
-          <h3 class="panel-title mheader">Infrastructure Reports Forum</h3>
+          <h3 class="panel-title mheader">Infrastructure Reports Forum : <b id="Cat">All Categories</b></h3>
         </div>
           <table class="table table-bordered table-condensed">
             <thead>
@@ -55,15 +60,10 @@
             </thead>
             <tbody id="posttable">
               <tr id="status" class="alert alert-warning">
-                <td class="hoverTitle" data-toggle="modal" data-target="#myModal">Title of a report</td>
+                <td class="hoverTitle" data-toggle="modal" data-target="#myModal">Default Post</td>
                 <td class="wtable" id="status1">Ongoing<span id="status2" class="glyphicon glyphicon-cog pull-right"></span></td>
                 <td class="wtable">03/01/2017</td>
               </tr>
-              <!-- <tr class="alert alert-success">
-                <td class="hoverTitle" data-toggle="modal" data-target="#myModal">Title of a report</td>
-                <td>Fixed<span class="glyphicon glyphicon-ok pull-right"></span></td>
-                <td>03/01/2017</td>
-              </tr> -->
             </tbody>
           </table>
       </div>

@@ -122,8 +122,6 @@ function addReport(){
 	}).fail(function(){ //this block executes if the request failed
     console.log("Request failed");
 	});
-
-
 }
 
 function getReports(){
@@ -156,32 +154,40 @@ function getReports(){
                 console.log(xhr);
             });
 }
-function getPostQ(){
-
-	var url = "http://localhost:8080/api/get_posts";
+//Get reports data to be used in map
+function getReportsData(){
 	$.ajax({
-            url: url,
-            type:"GET"
-            }).done(function(data, textStatus, xhr){
-                if(data){
-                    console.log(JSON.stringify(data));
-
-                }
-                else{
-                    //if(callback) callback(null);
-                }
-
-            }).fail(function(xhr){
-                var status = xhr.status;
-                var message = null;
-                if(xhr.responseText){
-                    var obj = JSON.parse(xhr.responseText);
-                    message = obj.message;
-                }
-
-                if(callback) callback(null);
-                console.log(xhr);
-            });
+    url:"http://localhost:8080/api/get_reports",
+    type:"GET"
+    }).done(function(data, textStatus, xhr){
+      if(data){
+        var rdata = [];
+        for(var i = 0; i < data.length; i++){
+          var d = {
+            id: data[i].id,
+            coords:{
+              latitude: data[i].latitude,
+              longitude: data[i].longitude
+            }
+          };
+          rdata.push(d);
+        }
+        console.log(rdata);
+        return rdata;
+      }
+      else{
+          //if(callback) callback(null);
+      }
+    }).fail(function(xhr){
+      var status = xhr.status;
+      var message = null;
+      if(xhr.responseText){
+          var obj = JSON.parse(xhr.responseText);
+          message = obj.message;
+      }
+      if(callback) callback(null);
+      console.log(xhr);
+    });
 }
 
 function getCategory(category){
