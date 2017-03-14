@@ -24,6 +24,20 @@
               <input class="form-control" type="text" id="tpost" placeholder="Enter Title">
             </div>
             <div class="form-group">
+              <label for="email">County:</label>
+              <select id="select3" class="form-control">
+                <option value="">Counties - All</option>
+                <option value="Caroni">Caroni</option>
+                <option value="Mayaro">Mayaro</option>
+                <option value="Nariva">Nariva</option>
+                <option value="Saint Andrew">Saint Andrew</option>
+                <option value="Saint David">Saint David</option>
+                <option value="Saint George">Saint George</option>
+                <option value="Saint Patrick">Saint Patrick</option>
+                <option value="Victoria">Victoria</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label for="Select"><b>Address Line:</b></label>
               <div class="input-group">
                 <input type="text" class="form-control" dl-enter-key="getLocation3()"id="newAddressPost" placeholder="Search for Address...">
@@ -46,7 +60,12 @@
             </div>
             <hr>
             <div class="form-group">
-              <button type="submit" class="btn btn-block btn-success" ng-click="getLatLng()" onclick="addPost();" ui-sref="forum">Submit Report</button>
+              <div class="col-md-6">
+                <button type="submit" class="btn btn-block btn-warning" ng-click="getLatLng()">Submit Location</button>
+              </div>
+              <div class="col-md-6">
+                <button type="submit" class="btn btn-block btn-success" onclick="addPost();" ui-sref="forum">Submit Report</button>
+              </div>
             </div>
           </form>
         </div>

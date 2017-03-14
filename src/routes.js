@@ -21,7 +21,7 @@ angular
   })
   .controller('reportCon', function($scope) {
     console.log('Report controller');
-    $scope.header = 'Reports';
+    $scope.header = 'View Reports';
 	  getReports();
     $scope.map = {
       center: {

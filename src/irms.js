@@ -82,11 +82,12 @@ function addReport(){
 	var t = document.getElementById("tt").innerHTML;
 	var d = document.getElementById("de").innerHTML;
 	var reg = localStorage.getItem("region");
-
+  var lat = localStorage.getItem("lat");
+  var lng = localStorage.getItem("lng");
 	var date = new Date();
-	console.log(date);
+	// console.log(date);
 	var jdate = JSON.stringify(date);
-	console.log(jdate);
+	// console.log(jdate);
 
 
 	//Debugging checks in console window
@@ -103,6 +104,9 @@ function addReport(){
 		date: jdate,
 		description: d,
 		votes: 0,
+    county: reg,
+    lat: lat,
+    lng: lng,
 		//loc: [126.4, 10.1]
 	};
 
@@ -151,7 +155,7 @@ function getReports(){
                 console.log(xhr);
             });
 }
-/*
+
 function getPostQ(){
 
 	var url = "http://localhost:8080/api/get_posts";
@@ -179,7 +183,7 @@ function getPostQ(){
                 console.log(xhr);
             });
 }
-*/
+
 function getCategory(category){
 	if(category == "flooding")
 		return "disaster";
@@ -254,9 +258,15 @@ function addPost(){
 	var s = document.getElementById("statusSelect");
   var ti = document.getElementById("tpost").value;
 	var summ = document.getElementById("summary").value;
+  var t = document.getElementById("select3");
+  var county = t.options[t.selectedIndex].value;
 	var category = c.options[c.selectedIndex].value;
 	var curr_status = s.options[s.selectedIndex].value;
-
+  console.log(localStorage.getItem("lat"));
+  console.log(localStorage.getItem("lng"));
+  console.log(county);
+  var lat = localStorage.getItem("lat");
+  var lng = localStorage.getItem("lng");
 	if(category == "Select" || curr_status == "Select")
 		alert("Insufficient information");
 	else{
@@ -273,7 +283,10 @@ function addPost(){
 			summary: summ,
 			date: jdate,
 			likes: 0,
-			dislikes: 0
+			dislikes: 0,
+      county:county,
+      lat: lat,
+      lng: lng,
 			//loc: [126.4, 10.1]
 		};
 

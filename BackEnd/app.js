@@ -53,7 +53,12 @@ router.route('/add_new_report')
 		report.date = req.body.date;
 		report.description = req.body.description;
 		report.votes = req.body.votes;
-		report.loc = req.body.loc;
+    report.county = req.body.county;
+    report.lat = req.body.lat;
+    report.lng = req.body.lng;
+
+
+
         // save the report and check for errors
         report.save(function(err) {
             if (err)
@@ -64,11 +69,11 @@ router.route('/add_new_report')
 
     });
 
-	
+
 router.route('/get_reports')
 
 	.get(function(req, res) {
-		
+
         Report.find(req.query, function(err, reports) {
             if (err)
                 res.send(err);
@@ -90,7 +95,7 @@ router.route('/get_reports/:report_id')
     });
 
 
-	
+
 router.route('/delete_reports/:report_id')
 
 	.delete(function(req, res) {
@@ -110,16 +115,20 @@ router.route('/add_new_post')
 
 	.post(function(req, res) {
 
-        var post = new ForumPost();      
-        post.category1 = req.body.category1;  
-        post.category2 = req.body.category2;  
+        var post = new ForumPost();
+        post.category1 = req.body.category1;
+        post.category2 = req.body.category2;
 		post.current_status = req.body.current_status;
+    post.title = req.body.title;
 		post.summary = req.body.summary;
 		post.date = req.body.date;
 		post.likes = req.body.likes;
 		post.dislikes = req.body.dislikes;
+    post.county = req.body.county;
+    post.lat = req.body.lat;
+    post.lng = req.body.lng;
 		//post.loc = req.body.loc;
-        
+
         post.save(function(err) {
             if (err)
                 res.send(err);
@@ -139,8 +148,8 @@ router.route('/get_posts')
             res.json(post);
         });
     });
-	
-	
+
+
 //LOG IN TEST -----------------------------------------------
 var testUser = new User({//User schema found in app/models folder
     username: 'admin',
@@ -162,7 +171,7 @@ User.findOne({ username: 'admin' }, function(err, user) {//find username admin
             if (err) throw err;
             console.log('admin:', isMatch); // -> Password123: true
         });
-		
+
         // test a failing password
         user.comparePassword('not admin', function(err, isMatch) {
             if (err) throw err;

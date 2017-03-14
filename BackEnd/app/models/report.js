@@ -8,11 +8,14 @@ var ReportSchema   = new Schema({
 	date: String,
 	description: String,
 	votes: Number,
+  county: String,
+  lat: Number,
+  lng: Number,
 	loc: {
 	type: [Number], //[<longitude>, <latitude>]
 	index: '2d'		//create the geospatial index
 	}
-	
+
 });
 
 module.exports = mongoose.model('Report', ReportSchema);

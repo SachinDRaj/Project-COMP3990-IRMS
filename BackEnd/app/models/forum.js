@@ -10,6 +10,9 @@ var ForumSchema   = new Schema({
 	date: String,
 	likes: Number,
 	dislikes: Number,
+  county: String,
+  lat: Number,
+  lng: Number,
 	loc: {
 	type: [Number], //[<longitude>, <latitude>]
 	index: '2d'		//create the geospatial index
