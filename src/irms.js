@@ -226,7 +226,7 @@ function addPost(){
 
 	var c = document.getElementById("categorySelect");
 	var s = document.getElementById("statusSelect");
-  var ti = document.getElementById("title");
+  var ti = document.getElementById("tpost").value;
 	var summ = document.getElementById("summary").value;
 	var category = c.options[c.selectedIndex].value;
 	var curr_status = s.options[s.selectedIndex].value;
