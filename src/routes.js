@@ -278,6 +278,7 @@ angular
           $scope.map.markers.push(marker);
           $scope.$apply();
           console.log($scope.map.markers[0].coords);
+          $scope.getLatLng();//Local storage for latlng
         } else {
           console.log("Geocoding not supported");
         }
