@@ -138,6 +138,7 @@ function getReports(){
                   }
                   // console.log(htmlStr);
                   $("#reportTable").append(htmlStr);
+
                 }
                 else{
                     //if(callback) callback(null);
@@ -154,6 +155,41 @@ function getReports(){
                 if(callback) callback(null);
                 console.log(xhr);
             });
+}
+//Get reports data to be used in map
+function getReportsData(){
+	$.ajax({
+    url:"http://localhost:8080/api/get_reports",
+    type:"GET"
+    }).done(function(data, textStatus, xhr){
+      if(data){
+        var rdata = [];
+        for(var i = 0; i < data.length; i++){
+          var d = {
+            id: data[i].id,
+            coords:{
+              latitude: data[i].latitude,
+              longitude: data[i].longitude
+            }
+          };
+          rdata.push(d);
+        }
+        console.log(rdata);
+        return rdata;
+      }
+      else{
+          //if(callback) callback(null);
+      }
+    }).fail(function(xhr){
+      var status = xhr.status;
+      var message = null;
+      if(xhr.responseText){
+          var obj = JSON.parse(xhr.responseText);
+          message = obj.message;
+      }
+      if(callback) callback(null);
+      console.log(xhr);
+    });
 }
 
 function getPostQ(){

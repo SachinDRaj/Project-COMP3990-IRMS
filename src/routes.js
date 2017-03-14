@@ -19,10 +19,41 @@ angular
   .controller('homeCon', function() {
     console.log('Home controller');
   })
-  .controller('reportCon', function($scope) {
+  .controller('reportCon', function($scope,$http) {
     console.log('Report controller');
     $scope.header = 'View Reports';
-	  getReports();
+    getReports(); //Reports bar
+    //Report markers data
+    $http.get('http://localhost:8080/api/get_reports').then(
+      function(success) {
+        var data = success.data;
+        console.log('Data: ',data);
+        populateMap(data);
+        console.log('Markers: ',$scope.map.markers);
+      },
+      function(data, status, headers, config) {
+        // log error
+      }
+    );
+    function makeMarker(el,i) { //Marker maker
+      var marker = {
+        id: i,
+        coords: {
+          latitude: el.lat,
+          longitude: el.lng
+        },
+      };
+      return marker;
+    }
+    function populateMap(data){
+      for(var i = 2; i < data.length; i++){
+        var m = makeMarker(data[i],i);
+        $scope.map.markers.push(m);
+      }
+    }
+    $scope.markerOptions = {
+      icon: "/app/images/marker.png"
+    };
     $scope.map = {
       center: {
         latitude: 10.450429,
@@ -34,7 +65,6 @@ angular
         },
         dragend: function($scope){
           console.log('moved map...');
-          console.log(markers);
         }
       },
       zoom: 9,
@@ -97,7 +127,7 @@ angular
       var geocoder = new google.maps.Geocoder();
       var c = document.getElementById("select2");
   		var region = c.options[c.selectedIndex].value;
-      var addr = document.getElementById('newAddress').value +' '+region;
+      var addr = document.getElementById('newAddress').value +' '+region+' Trinidad';
 
       geocoder.geocode({
         "address": addr
