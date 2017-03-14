@@ -5,6 +5,7 @@ var ForumSchema   = new Schema({
     category1: String,
 	category2: String,
 	current_status: String,
+  title: String,
 	summary: String,
 	date: String,
 	likes: Number,
@@ -13,7 +14,7 @@ var ForumSchema   = new Schema({
 	type: [Number], //[<longitude>, <latitude>]
 	index: '2d'		//create the geospatial index
 	}
-	
+
 });
 
 module.exports = mongoose.model('ForumPost', ForumSchema);

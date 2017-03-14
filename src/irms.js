@@ -226,6 +226,7 @@ function addPost(){
 
 	var c = document.getElementById("categorySelect");
 	var s = document.getElementById("statusSelect");
+  var ti = document.getElementById("title");
 	var summ = document.getElementById("summary").value;
 	var category = c.options[c.selectedIndex].value;
 	var curr_status = s.options[s.selectedIndex].value;
@@ -242,6 +243,7 @@ function addPost(){
 			category1: cat1,
 			category2: category,
 			current_status: curr_status,
+      title: ti,
 			summary: summ,
 			date: jdate,
 			likes: 0,
