@@ -128,7 +128,12 @@ function getReports(){
             type:"GET"
             }).done(function(data, textStatus, xhr){
                 if(data){
-                    console.log(JSON.stringify(data));
+                  var htmlStr="";
+                  for (var i = 0; i < data.length; i++) {
+                    htmlStr += "<tr><td class='hoverTitle'>"+data[i].title+"</td><td class='rtable'><a class='btn btn-primary' href='#'> <span class='glyphicon glyphicon-thumbs-up'></span></a> <span class='badge'>5</span> <a class='btn btn-danger' href='#'> <span class='glyphicon glyphicon-thumbs-down'></span></a> <span class='badge'>1</span></td></tr>";
+                  }
+                  // console.log(htmlStr);
+                  $("#reportTable").append(htmlStr);
                 }
                 else{
                     //if(callback) callback(null);
