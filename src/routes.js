@@ -22,7 +22,7 @@ angular
   .controller('reportCon', function($scope) {
     console.log('Report controller');
     $scope.header = 'Reports';
-	  // getReports();
+	  getReports();
     $scope.map = {
       center: {
         latitude: 10.450429,
