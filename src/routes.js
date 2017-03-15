@@ -22,12 +22,22 @@ angular
   .controller('reportCon', function($scope,$http) {
     console.log('Report controller');
     $scope.header = 'View Reports';
+    $scope.counties = [ //Counties
+      {text:"Counties - All", value:"All"},
+      {text:"Caroni", value:"Caroni"},
+      {text:"Mayaro", value:"Mayaro"},
+      {text:"Nariva", value:"Nariva"},
+      {text:"Saint Andrew", value:"Saint Andrew"},
+      {text:"Saint David", value:"Saint David"},
+      {text:"Saint George", value:"Saint George"},
+      {text:"Saint Patrick", value:"Saint Patrick"},
+      {text:"Victoria", value:"Victoria"}
+    ];
     //Reports & markers data
     $http.get('http://localhost:8080/api/get_reports').then(
       function(success) {
         $scope.reports = []; //Reports
         $scope.reports = success.data;
-
         var data = success.data;  //Map markers
         console.log('Data: ',data);
         populateMap(data);
@@ -121,7 +131,8 @@ angular
       }
     }
     $scope.markerOptions = {
-      icon: "/app/images/marker.png"
+      icon: "/app/images/marker.png",
+      // animation: google.maps.Animation.DROP
     };
     $scope.map = {
       center: {
