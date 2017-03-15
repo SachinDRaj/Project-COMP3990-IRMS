@@ -22,11 +22,13 @@ angular
   .controller('reportCon', function($scope,$http) {
     console.log('Report controller');
     $scope.header = 'View Reports';
-    getReports(); //Reports bar
-    //Report markers data
+    //Reports & markers data
     $http.get('http://localhost:8080/api/get_reports').then(
       function(success) {
-        var data = success.data;
+        $scope.reports = []; //Reports
+        $scope.reports = success.data;
+
+        var data = success.data;  //Map markers
         console.log('Data: ',data);
         populateMap(data);
         console.log('Markers: ',$scope.map.markers);
@@ -72,18 +74,15 @@ angular
       var cat1 = document.getElementById("Cat2").innerHTML;
       var query=getQuery1(cat1);
     	var url = "http://localhost:8080/api/get_reports";
-      url+=query;
+      url += query;
     	$.ajax({
         url:url,
         type:"GET"
       }).done(function(data, textStatus, xhr){
+        $scope.reports = [];
         if(data){
-          $("#reportTable").html("");
-          var htmlStr="";
-          for (var i = 0; i < data.length; i++) {
-            htmlStr += "<tr><td class='hoverTitle'>"+data[i].title+"</td><td class='rtable'><a class='btn btn-primary' href='#'> <span class='glyphicon glyphicon-thumbs-up'></span></a> <span class='badge'>5</span> <a class='btn btn-danger' href='#'> <span class='glyphicon glyphicon-thumbs-down'></span></a> <span class='badge'>1</span></td></tr>";
-          }
-          $("#reportTable").append(htmlStr);
+          //Load reports
+          $scope.reports = data;
           //Populating Map
           populateMap(data);
           $scope.$apply();
@@ -139,7 +138,10 @@ angular
       },
       zoom: 9,
       pan: true,
-      markers: []
+      markers: [],
+      options:{
+        scrollwheel: false
+      }
     };
     $scope.windowOptions = {
       visible: false
