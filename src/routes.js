@@ -24,20 +24,91 @@ angular
     $scope.header = 'View Reports';
     getReports(); //Reports bar
     //Report markers data
-    $http.get('http://localhost:8080/api/get_reports').then(
-      function(success) {
-        var data = success.data;
-        console.log('Data: ',data);
-        populateMap(data);
-        console.log('Markers: ',$scope.map.markers);
-      },
-      function(data, status, headers, config) {
-        // log error
+    // $http.get('http://localhost:8080/api/get_reports').then(
+    //   function(success) {
+    //     var data = success.data;
+    //     console.log('Data: ',data);
+    //     populateMap(data);
+    //     console.log('Markers: ',$scope.map.markers);
+    //   },
+    //   function(data, status, headers, config) {
+    //     // log error
+    //   }
+    // );
+    function properF1(cat1){
+      if (cat1=="All Categories") {
+        return "All";
+      }else if (cat1=="Flooding") {
+        return "flooding";
+      }else if (cat1=="Road Repairs") {
+        return "road_repair";
+      }else if (cat1=="Garbage Collection") {
+        return "garbage_collection";
       }
-    );
+    }
+    $scope.updateTag1 = function(cat1){
+      $("#Cat2").html("");
+      $("#Cat2").append(cat1);
+      $scope.getReportsQ();
+    };
+    function getQuery1(cat1){
+    var c = document.getElementById("region1");
+    var select = c.options[c.selectedIndex].value;
+    var q="";
+    cat1 = properF1(cat1);
+    if (select=="All" && cat1=="All") {
+      q="";
+    }else if (select=="All"){
+      q="?report_type2="+cat1;
+    }else if (cat1=="All") {
+      q="?county="+select;
+    }else {
+      q="?report_type2="+cat1+"&county="+select;
+    }
+    return q;
+    // console.log(cat1);
+  }
+
+  $scope.getReportsQ = function(){
+    var cat1 = document.getElementById("Cat2").innerHTML;
+    var query=getQuery1(cat1);
+  	var url = "http://localhost:8080/api/get_reports";
+    url+=query;
+  	$.ajax({
+              url:url,
+              type:"GET"
+            }).done(function(data, textStatus, xhr){
+                  if(data){
+                    $("#reportTable").html("");
+                    var htmlStr="";
+                    for (var i = 0; i < data.length; i++) {
+                      htmlStr += "<tr><td class='hoverTitle'>"+data[i].title+"</td><td class='rtable'><a class='btn btn-primary' href='#'> <span class='glyphicon glyphicon-thumbs-up'></span></a> <span class='badge'>5</span> <a class='btn btn-danger' href='#'> <span class='glyphicon glyphicon-thumbs-down'></span></a> <span class='badge'>1</span></td></tr>";
+                    }
+                    // console.log(htmlStr);
+                    $("#reportTable").append(htmlStr);
+                    //Populating Map
+                    populateMap(data);
+                    $scope.$apply();
+                  }
+                  else{
+                      //if(callback) callback(null);
+                  }
+
+              }).fail(function(xhr){
+                  var status = xhr.status;
+                  var message = null;
+                  if(xhr.responseText){
+                      var obj = JSON.parse(xhr.responseText);
+                      message = obj.message;
+                  }
+
+                  if(callback) callback(null);
+                  console.log(xhr);
+              });
+  };
     function makeMarker(el,i) { //Marker maker
       var marker = {
-        id: i,
+        id: el._id,
         coords: {
           latitude: el.lat,
           longitude: el.lng
@@ -46,6 +117,7 @@ angular
       return marker;
     }
     function populateMap(data){
+      $scope.map.markers = [];
       for(var i = 0; i < data.length; i++){
         var m = makeMarker(data[i],i);
         $scope.map.markers.push(m);

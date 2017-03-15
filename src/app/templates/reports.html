@@ -13,16 +13,16 @@
       <div class="dropdown">
         <button class="btn btn-block btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Category <span class="caret"></span></button>
         <ul class="dropdown-menu">
-          <li><a href="" onclick="updateTag1('All Categories');">All Categories</a></li>
+          <li><a href="" ng-click="updateTag1('All Categories');">All Categories</a></li>
           <li role="separator" class="divider"></li>
           <li class="dropdown-header">Disaster</li>
-          <li><a href="" onclick="updateTag1('Flooding');">Flooding</a></li>
+          <li><a href="" ng-click="updateTag1('Flooding');">Flooding</a></li>
           <li role="separator" class="divider"></li>
           <li class="dropdown-header">Public Infrasture</li>
-          <li><a href="" onclick="updateTag1('Road Repairs');">Road Repairs</a></li>
+          <li><a href="" ng-click="updateTag1('Road Repairs');">Road Repairs</a></li>
           <li role="separator" class="divider"></li>
           <li class="dropdown-header">Health Hazards</li>
-          <li><a href="" onclick="updateTag1('Garbage Collection');">Garbage Collection</a></li>
+          <li><a href="" ng-click="updateTag1('Garbage Collection');">Garbage Collection</a></li>
         </ul>
       </div>
     </div>
@@ -36,7 +36,7 @@
       <div class="panel panel-default bshadow">
         <div class="panel-heading hmap">
           <div id="regio1" class="form-group pull-right space">
-            <select  id="region1" class="form-control" onclick="getReportsQ()">
+            <select  id="region1" class="form-control" ng-click="getReportsQ()">
               <option value="All">Counties - All</option>
               <option value="Caroni">Caroni</option>
               <option value="Mayaro">Mayaro</option>
