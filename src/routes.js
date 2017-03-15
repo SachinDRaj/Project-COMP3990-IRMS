@@ -143,6 +143,11 @@ angular
       pan: true,
       markers: []
     };
+    //Update dropdown text
+    $(".dropdown-menu li a").click(function(){
+      $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+      $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+    });
   })
   .controller('makereportCon', function($scope){//Base
     $scope.header = 'Make a Report';
@@ -289,6 +294,12 @@ angular
     console.log('Forum controller');
     $scope.header = 'Forum';
 	  getPost();
+    //Update dropdown textStatus
+    $(".dropdown-menu li a").click(function(){
+      $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+      $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+    });
+
   })
   .controller('makepostCon', function($scope) {
     console.log('Make post controller');
