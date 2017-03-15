@@ -24,17 +24,17 @@ angular
     $scope.header = 'View Reports';
     getReports(); //Reports bar
     //Report markers data
-    // $http.get('http://localhost:8080/api/get_reports').then(
-    //   function(success) {
-    //     var data = success.data;
-    //     console.log('Data: ',data);
-    //     populateMap(data);
-    //     console.log('Markers: ',$scope.map.markers);
-    //   },
-    //   function(data, status, headers, config) {
-    //     // log error
-    //   }
-    // );
+    $http.get('http://localhost:8080/api/get_reports').then(
+      function(success) {
+        var data = success.data;
+        console.log('Data: ',data);
+        populateMap(data);
+        console.log('Markers: ',$scope.map.markers);
+      },
+      function(data, status, headers, config) {
+        // log error
+      }
+    );
     function properF1(cat1){
       if (cat1=="All Categories") {
         return "All";
