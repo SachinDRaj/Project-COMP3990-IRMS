@@ -33,7 +33,7 @@ angular
       {text:"Saint Patrick", value:"Saint Patrick"},
       {text:"Victoria", value:"Victoria"}
     ];
-    //Reports & markers data
+    //Reports & markers data initial
     $http.get('http://localhost:8080/api/get_reports').then(
       function(success) {
         $scope.reports = []; //Reports
@@ -113,14 +113,40 @@ angular
       });
     };
     //Map and map functions
-    function makeMarker(el,i) { //Marker maker
+    function reverseGeocode(m) {
+      geocoder = new google.maps.Geocoder();
+      var latlng = new google.maps.LatLng(m.lat, m.lng);
+
+      geocoder.geocode({'latLng': latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[0]) {
+            m.window.addr = results[0].formatted_address;
+            console.log(results[0].formatted_address);
+            $scope.$apply();
+          } else {
+            console.log('No results found');
+          }
+        }
+        else if(status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+          console.log('Geocoder failed due to: ' + status);
+        }
+      });
+    }
+    function makeMarker(el) { //Marker maker
       var marker = {
         id: el._id,
         coords: {
           latitude: el.lat,
           longitude: el.lng
         },
+        window:{
+          title :el.title,
+          addr:'',
+          desc: el.description,
+          date: el.date,
+        }
       };
+      reverseGeocode(marker);
       return marker;
     }
     function populateMap(data){

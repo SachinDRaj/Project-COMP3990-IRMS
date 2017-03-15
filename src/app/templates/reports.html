@@ -46,7 +46,12 @@
           <div id="r1">
             <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events' options="map.options" bounds='map.bounds'>
               <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" options="markerOptions">
-                <ui-gmap-window options="windowOptions" closeClick="closeClick()">
+                <ui-gmap-window coords="m.coords" options="windowOptions" closeClick="closeClick()">
+                  <div class="">
+                    <h5>{{m.window.title}} {{m.window.date}}</h5>
+                    <h6>{{m.window.addr}} !#@</h6>
+                    <p>{{m.window.desc}}</p>
+                  </div>
                 </ui-gmap-window>
               </ui-gmap-marker>
             </ui-gmap-google-map>
