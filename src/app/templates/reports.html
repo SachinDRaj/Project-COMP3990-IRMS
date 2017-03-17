@@ -48,9 +48,9 @@
               <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" options="markerOptions">
                 <ui-gmap-window coords="m.coords" options="windowOptions" closeClick="closeClick()">
                   <div class="">
-                    <h5>{{m.window.title}} {{m.window.date}}</h5>
-                    <h6>{{m.window.addr}} !#@</h6>
-                    <p>{{m.window.desc}}</p>
+                    <h5>{{m.window.title}} <span>|</span> <small>{{m.window.date}}</small></h5>
+                    <h6>{{m.window.addr}}</h6>
+                    <p>-"{{m.window.desc}}"</p>
                   </div>
                 </ui-gmap-window>
               </ui-gmap-marker>

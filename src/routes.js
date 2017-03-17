@@ -115,7 +115,7 @@ angular
     //Map and map functions
     function reverseGeocode(m) {
       geocoder = new google.maps.Geocoder();
-      var latlng = new google.maps.LatLng(m.lat, m.lng);
+      var latlng = new google.maps.LatLng(m.coords.latitude, m.coords.longitude);
 
       geocoder.geocode({'latLng': latlng}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
@@ -128,7 +128,7 @@ angular
           }
         }
         else if(status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
-          console.log('Geocoder failed due to: ' + status);
+          console.log('Geocoder failed due to: ' + status + m.window.title);
         }
       });
     }
@@ -181,7 +181,7 @@ angular
       }
     };
     $scope.windowOptions = {
-      visible: false
+      visible: false,
     };
     $scope.onClick = function() {
       $scope.windowOptions.visible = !$scope.windowOptions.visible;
