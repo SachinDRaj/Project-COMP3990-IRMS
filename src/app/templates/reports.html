@@ -45,7 +45,7 @@
         <div class="panel-body">
           <div id="r1">
             <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events' options="map.options" bounds='map.bounds'>
-              <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" options="markerOptions">
+              <ui-gmap-marker doCluster=true ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" options="markerOptions">
                 <ui-gmap-window coords="m.coords" options="windowOptions" closeClick="closeClick()">
                   <div class="">
                     <h5>{{m.window.title}} <span>|</span> <small>{{m.window.date}}</small></h5>
@@ -54,6 +54,10 @@
                   </div>
                 </ui-gmap-window>
               </ui-gmap-marker>
+              <ui-gmap-circle ng-repeat="c in circles track by c.id" center="c.center" stroke="c.stroke" fill="c.fill" radius="c.radius"
+                visible="c.visible" geodesic="c.geodesic" editable="c.editable" draggable="c.draggable" clickable="c.clickable" control="c.control">
+                  
+                </ui-gmap-circle>
             </ui-gmap-google-map>
           </div>
         </div>
@@ -69,6 +73,7 @@
         <table class="table table-striped table-condensed table-bordered">
           <tbody id="reportTable">
             <tr ng-repeat="r in reports">
+              <td class="hidden">{{r._id}}</td>
               <td class="hoverTitle">{{r.title}}</td>
               <td class="rtable">
 

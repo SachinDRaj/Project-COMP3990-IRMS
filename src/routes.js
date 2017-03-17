@@ -181,7 +181,7 @@ angular
       }
     };
     $scope.windowOptions = {
-      visible: false,
+      visible: false
     };
     $scope.onClick = function() {
       $scope.windowOptions.visible = !$scope.windowOptions.visible;
@@ -350,24 +350,7 @@ angular
   .controller('makepostCon', function($scope) {
     console.log('Make post controller');
     $scope.header = 'Make a Post';
-    // Map
-    $scope.map = {
-      center: {
-        latitude: 10.450429,
-        longitude: -61.314820
-      },
-      markers: [],
-      zoom: 9,
-      events:{
-        dragstart: function(){
-          console.log('moving map');
-        },
-        dragend: function(markers){
-          console.log('moved map...');
 
-        }
-      }
-    };
     function makeMarker(lt, lg) {
       var marker = {
         id: Date.now(),
@@ -425,6 +408,55 @@ angular
   		    alert("Sorry, your browser does not support Web Storage...");
   		}
       console.log(lat,lng);
+    };
+    // Map stuff
+    $scope.rectangle =  {
+      fill: {
+        color: '#08B21F',
+        opacity: 0.5
+      },
+      stroke: {
+        color: '#08B21F',
+        weight: 2,
+        opacity: 1
+      },
+      bounds:{
+        ne: {
+          latitude: 10.5,
+          longitude: -61.168250
+        },
+        sw: {
+          latitude: 10.3,
+          longitude: -61.366004
+        }
+      },
+      draggable: true,
+      editable:true,
+      events:{
+        bounds_changed : function() {
+          console.log('Bounds changed',$scope.rectangle.bounds);
+        },
+        click : function(){
+          console.log('Bounds changed',$scope.rectangle.bounds);
+        }
+      }
+    };
+    $scope.map = {
+      center: {
+        latitude: 10.450429,
+        longitude: -61.314820
+      },
+      markers: [],
+      zoom: 9,
+      events:{
+        dragstart: function(){
+          console.log('moving map');
+        },
+        dragend: function(markers){
+          console.log('moved map...');
+
+        }
+      }
     };
   })
   .controller('graphsCon', function($scope) {
