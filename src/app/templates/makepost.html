@@ -11,22 +11,18 @@
           <h3>Enter Details</h3>
           <form>
             <div class="form-group">
-              <label for="Select">Category:</label>
-              <select id="categorySelect" class="form-control">
-                <option>Select</option>
+              <label for="select">Category:</label>
+              <select id="cat" class="form-control" ng-click="getReportsQ()">
+                <option value="All">All Categories</option>
                 <option value="flooding">Flooding</option>
                 <option value="road_repair">Road Repairs</option>
                 <option value="garbage_collection">Garbage Collection</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="title">Title:</label>
-              <input class="form-control" type="text" id="tpost" placeholder="Enter Title">
-            </div>
-            <div class="form-group">
               <label for="email">County:</label>
-              <select id="select3" class="form-control">
-                <option value="">Counties - All</option>
+              <select id="county" class="form-control" ng-click="getReportsQ()">
+                <option value="All">Counties - All</option>
                 <option value="Caroni">Caroni</option>
                 <option value="Mayaro">Mayaro</option>
                 <option value="Nariva">Nariva</option>
@@ -38,6 +34,10 @@
               </select>
             </div>
             <div class="form-group">
+              <label for="title">Title:</label>
+              <input class="form-control" type="text" id="tpost" placeholder="Enter Title">
+            </div>
+            <!-- <div class="form-group">
               <label for="Select"><b>Address Line:</b></label>
               <div class="input-group">
                 <input type="text" class="form-control" dl-enter-key="getLocation3()"id="newAddressPost" placeholder="Search for Address...">
@@ -45,7 +45,7 @@
                   <button class="btn btn-info" type="button" ng-click='getLocation3()'>View on Map <span class="glyphicon glyphicon-search"></span></button>
                 </span>
               </div>
-            </div>
+            </div> -->
             <div class="form-group">
               <label for="email">Status:</label>
               <select id="statusSelect" class="form-control">
@@ -94,6 +94,14 @@
         <div class="panel-body">
           <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
             <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" data-events="m.events" options="markerOptions">
+              <ui-gmap-window coords="m.coords" options="windowOptions" closeClick="closeClick()">
+                <div class="">
+                  <h5>{{m.window.title}} <span>|</span> <small>{{m.window.date}}</small></h5>
+                  <h6>{{m.window.addr}}</h6>
+                  <p>-"{{m.window.desc}}"</p>
+                </div>
+              </ui-gmap-window>
+            </ui-gmap-marker>
             </ui-gmap-marker>
             <ui-gmap-rectangle fill='rectangle.fill' stroke='rectangle.stroke' bounds="rectangle.bounds" clickable='rectangle.clickable' draggable='rectangle.draggable' editable='rectangle.editable' visible='true' events='rectangle.events'>
             </ui-gmap-rectangle>

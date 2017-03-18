@@ -351,28 +351,113 @@ angular
     console.log('Make post controller');
     $scope.header = 'Make a Post';
 
-    function makeMarker(lt, lg) {
+    function getQuery(){
+      var cat = document.getElementById('cat');
+      var county = document.getElementById('county');
+      var c = cat.options[cat.selectedIndex].value;
+      var cty = county.options[county.selectedIndex].value;
+      console.log('Category:',c,'County:',cty);
+      var q = '';
+      if (c == 'All' && cty == 'All') {
+        q = '';
+      }else if (cty == 'All'){
+        q = "?report_type2=" + c;
+      }else if (c == 'All') {
+        q="?county=" + cty;
+      }else {
+        q="?report_type2=" + c + "&county=" + cty;
+      }
+      console.log(q);
+      return q;
+    }
+
+    $scope.getReportsQ = function(){ //Updates map for Post area
+      var query=getQuery();
+    	var url = "http://localhost:8080/api/get_reports";
+      url += query;
+    	$.ajax({
+        url:url,
+        type:"GET"
+      }).done(function(data, textStatus, xhr){
+        $scope.reports = [];
+        if(data){
+          //Load reports
+          $scope.reports = data;
+          //Populating Map
+          populateMap(data);
+          $scope.$apply();
+        }
+        else{
+            //if(callback) callback(null);
+        }
+      }).fail(function(xhr){
+        var status = xhr.status;
+        var message = null;
+        if(xhr.responseText){
+            var obj = JSON.parse(xhr.responseText);
+            message = obj.message;
+        }
+
+        if(callback) callback(null);
+        console.log(xhr);
+      });
+    };
+    //Map and map functions
+    // function reverseGeocode(m) {
+    //   geocoder = new google.maps.Geocoder();
+    //   var latlng = new google.maps.LatLng(m.coords.latitude, m.coords.longitude);
+    //
+    //   geocoder.geocode({'latLng': latlng}, function(results, status) {
+    //     if (status == google.maps.GeocoderStatus.OK) {
+    //       if (results[0]) {
+    //         m.window.addr = results[0].formatted_address;
+    //         console.log(results[0].formatted_address);
+    //         $scope.$apply();
+    //       } else {
+    //         console.log('No results found');
+    //       }
+    //     }
+    //     else if(status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+    //       console.log('Geocoder failed due to: ' + status + m.window.title);
+    //     }
+    //   });
+    // }
+    function makeMarker(el) { //Marker maker
       var marker = {
-        id: Date.now(),
+        id: el._id,
         coords: {
-          latitude: lt,
-          longitude: lg
+          latitude: el.lat,
+          longitude: el.lng
         },
-        events: {
-          dragend: function (marker) {
-            marker.coords = marker.model.coords;
-            console.log('Coords:',marker.coords);
-          },
-          dragstart: function() {
-            console.log('dragging now..');
-          }
+        window:{
+          title :el.title,
+          addr:'',
+          desc: el.description,
+          date: el.date,
         }
       };
+      // reverseGeocode(marker);
       return marker;
     }
+    function populateMap(data){
+      $scope.map.markers = [];
+      for(var i = 0; i < data.length; i++){
+        var m = makeMarker(data[i]);
+        $scope.map.markers.push(m);
+      }
+    }
     $scope.markerOptions = {
-      draggable: true,
-      icon: "/app/images/marker.png"
+      icon: "/app/images/marker.png",
+      // animation: google.maps.Animation.DROP
+    };
+    $scope.windowOptions = {
+      visible: false
+    };
+    $scope.onClick = function() {
+      $scope.windowOptions.visible = !$scope.windowOptions.visible;
+    };
+    $scope.closeClick = function() {
+      $scope.windowOptions.visible = false;
     };
     // Using geocoding
     $scope.getLocation3 = function() {
