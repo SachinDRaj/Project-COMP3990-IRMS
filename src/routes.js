@@ -8,8 +8,7 @@ angular
         // If enter key is pressed
         if (keyCode === 13) {
           scope.$apply(function() {
-                  // Evaluate the expression
-              scope.$eval(attrs.dlEnterKey);
+            scope.$eval(attrs.dlEnterKey);
           });
           event.preventDefault();
         }
@@ -79,7 +78,6 @@ angular
       }
       return q;
     }
-
     $scope.getReportsQ = function(){ //Updates Column & Map
       var cat1 = document.getElementById("Cat2").innerHTML;
       var query=getQuery1(cat1);
@@ -116,7 +114,6 @@ angular
     function reverseGeocode(m) {
       geocoder = new google.maps.Geocoder();
       var latlng = new google.maps.LatLng(m.coords.latitude, m.coords.longitude);
-
       geocoder.geocode({'latLng': latlng}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           if (results[0]) {
@@ -203,48 +200,6 @@ angular
   })
   .controller('makereport2Con', function($scope) {
     console.log('Make report 2 controller');
-    // Map
-    $scope.map = {
-      center: {
-        latitude: 10.450429,
-        longitude: -61.314820
-      },
-      markers: [],
-      zoom: 9,
-      events:{
-        dragstart: function(){
-          console.log('moving map');
-        },
-        dragend: function(markers){
-          console.log('moved map...');
-
-        }
-      }
-    };
-    function makeMarker(lt, lg) {
-      var marker = {
-        id: Date.now(),
-        coords: {
-          latitude: lt,
-          longitude: lg
-        },
-        events: {
-          dragend: function (marker) {
-            marker.coords = marker.model.coords;
-            console.log('Coords:',marker.coords);
-          },
-          dragstart: function() {
-            console.log('dragging now..');
-          }
-        }
-      };
-      return marker;
-    }
-    $scope.markerOptions = {
-      draggable: true,
-      icon: "/app/images/marker.png"
-    };
-
     // Using geocoding
     $scope.getLocation2 = function() {
       var geocoder = new google.maps.Geocoder();
@@ -298,14 +253,57 @@ angular
   		}
       console.log(lat,lng);
     };
+    // Map and map functions
+    function makeMarker(lt, lg) {
+      var marker = {
+        id: Date.now(),
+        coords: {
+          latitude: lt,
+          longitude: lg
+        },
+        events: {
+          dragend: function (marker) {
+            marker.coords = marker.model.coords;
+            console.log('Coords:',marker.coords);
+          },
+          dragstart: function() {
+            console.log('dragging now..');
+          }
+        }
+      };
+      return marker;
+    }
+    $scope.markerOptions = {
+      draggable: true,
+      icon: "/app/images/marker.png"
+    };
+    $scope.map = {
+      center: {
+        latitude: 10.450429,
+        longitude: -61.314820
+      },
+      markers: [],
+      zoom: 9,
+      events:{
+        dragstart: function(){
+          console.log('moving map');
+        },
+        dragend: function(markers){
+          console.log('moved map...');
+        }
+      }
+    };
   })
   .controller('makereport3Con', function($scope) {
     console.log('Make a report 3 controller');
   })
   .controller('makereport4Con', function($scope) {
     console.log('Make report4 controller');
-    // localStorage.setItem("lat",10.4);
-    // localStorage.setItem("lng",-61.3);
+    document.getElementById("ca").innerHTML = localStorage.getItem("select");
+    document.getElementById("tt").innerHTML = localStorage.getItem("title");
+    document.getElementById("de").innerHTML = localStorage.getItem("desc");
+    document.getElementById("regSumHeader").innerHTML += localStorage.getItem("region");
+    //Map
     $scope.markerOptions = {
       icon: "/app/images/marker.png"
     };
@@ -317,24 +315,19 @@ angular
       zoom: 12,
       markers:[],
       events:{
-          idle: function(){
-            var marker = {
-              id:1,
-              coords:{
-                latitude : localStorage.getItem("lat"),
-                longitude : localStorage.getItem("lng")
-              }
-            };
-            $scope.map.markers.push(marker);
-            $scope.$apply();
-          }
+        idle: function(){
+          var marker = {
+            id:1,
+            coords:{
+              latitude : localStorage.getItem("lat"),
+              longitude : localStorage.getItem("lng")
+            }
+          };
+          $scope.map.markers.push(marker);
+          $scope.$apply();
+        }
       }
     };
-
-    document.getElementById("ca").innerHTML = localStorage.getItem("select");
-    document.getElementById("tt").innerHTML = localStorage.getItem("title");
-    document.getElementById("de").innerHTML = localStorage.getItem("desc");
-    document.getElementById("regSumHeader").innerHTML += localStorage.getItem("region");
   })
   .controller('forumCon', function($scope) {
     console.log('Forum controller');
@@ -345,13 +338,12 @@ angular
       $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
       $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
     });
-
   })
   .controller('makepostCon', function($scope) {
     console.log('Make post controller');
     $scope.header = 'Make a Post';
 
-    function getQuery(){
+    function getQuery(){ //Makes query
       var cat = document.getElementById('cat');
       var county = document.getElementById('county');
       var c = cat.options[cat.selectedIndex].value;
@@ -370,7 +362,6 @@ angular
       console.log(q);
       return q;
     }
-
     $scope.getReportsQ = function(){ //Updates map for Post area
       var query=getQuery();
     	var url = "http://localhost:8080/api/get_reports";
@@ -397,31 +388,11 @@ angular
             var obj = JSON.parse(xhr.responseText);
             message = obj.message;
         }
-
         if(callback) callback(null);
         console.log(xhr);
       });
     };
     //Map and map functions
-    // function reverseGeocode(m) {
-    //   geocoder = new google.maps.Geocoder();
-    //   var latlng = new google.maps.LatLng(m.coords.latitude, m.coords.longitude);
-    //
-    //   geocoder.geocode({'latLng': latlng}, function(results, status) {
-    //     if (status == google.maps.GeocoderStatus.OK) {
-    //       if (results[0]) {
-    //         m.window.addr = results[0].formatted_address;
-    //         console.log(results[0].formatted_address);
-    //         $scope.$apply();
-    //       } else {
-    //         console.log('No results found');
-    //       }
-    //     }
-    //     else if(status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
-    //       console.log('Geocoder failed due to: ' + status + m.window.title);
-    //     }
-    //   });
-    // }
     function makeMarker(el) { //Marker maker
       var marker = {
         id: el._id,
@@ -436,7 +407,6 @@ angular
           date: el.date,
         }
       };
-      // reverseGeocode(marker);
       return marker;
     }
     function populateMap(data){
@@ -480,19 +450,6 @@ angular
           console.log("Geocoding not supported");
         }
       });
-    };
-
-    $scope.getLatLng = function() {
-      var lat = $scope.map.markers[0].coords.latitude;
-      var lng = $scope.map.markers[0].coords.longitude;
-      if (typeof(Storage) !== "undefined") {
-  	    localStorage.setItem("lat",lat);
-  			localStorage.setItem("lng", lng);
-  		}
-  		else {
-  		    alert("Sorry, your browser does not support Web Storage...");
-  		}
-      console.log(lat,lng);
     };
     // Map stuff
     $scope.rectangle =  {
@@ -548,7 +505,6 @@ angular
     console.log('Graphs controller');
     $scope.header = 'Graphs';
   });
-
 
 /** @ngInject */
 function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
