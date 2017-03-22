@@ -149,7 +149,7 @@ router.route('/get_posts')
         });
     });
 
-
+/*
 //LOG IN TEST -----------------------------------------------
 var testUser = new User({//User schema found in app/models folder
     username: 'admin',
@@ -157,27 +157,31 @@ var testUser = new User({//User schema found in app/models folder
 });
 
 // save user to database
-/*
+
 testUser.save(function(err) {
     if (err) throw err;
 
 });*/
 
-User.findOne({ username: 'admin' }, function(err, user) {//find username admin
-        if (err) throw err;
-
+router.route('/login')
+	
+	.post(function(req, res) {
+		var user_name = req.body.username;
+		var pass = req.body.password;
+		User.findOne({ username: user_name }, function(err, user) {//find username admin
+			if (err) res.send(err);
         // test a matching password
-        user.comparePassword('admin', function(err, isMatch) {
-            if (err) throw err;
-            console.log('admin:', isMatch); // -> Password123: true
-        });
-
-        // test a failing password
-        user.comparePassword('not admin', function(err, isMatch) {
-            if (err) throw err;
-            console.log('not admin:', isMatch); // -> 123Password: false
-        });
-    });
+			user.comparePassword(pass , function(err, isMatch) {
+				if (err) res.send(err);
+				var message = "";
+				if(isMatch){
+					res.json(message);
+				}else{
+					res.json(message);
+				}
+			});
+		});
+	});
 
 //-----------------------------------------------------------
 // REGISTER OUR ROUTES -------------------------------
