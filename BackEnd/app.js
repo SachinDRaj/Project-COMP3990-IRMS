@@ -168,16 +168,21 @@ router.route('/login')
 	.post(function(req, res) {
 		var user_name = req.body.username;
 		var pass = req.body.password;
-		User.findOne({ username: user_name }, function(err, user) {//find username admin
+		User.findOne({ username: user_name }, function(err, user) {//find username
 			if (err) res.send(err);
-        // test a matching password
 			user.comparePassword(pass , function(err, isMatch) {
 				if (err) res.send(err);
-				var message = "";
-				if(isMatch){
-					res.json(message);
+				var data = {
+					id: user.id,
+					username: user.username,
+					authentication: 0
+				};
+				if(isMatch){//if an existing user
+					data.authentication = 1;
+					res.json(data);
 				}else{
-					res.json(message);
+					data.id = null;
+					res.json(data);
 				}
 			});
 		});
