@@ -18,6 +18,36 @@ angular
   .controller('homeCon', function() {
     console.log('Home controller');
   })
+  .controller('LoginController', function($scope, $rootScope) {
+	console.log('Login controller');
+	$scope.credentials = {
+		username: '',
+		password: ''
+	};
+	$scope.login = function(credentials){
+		var data = {
+			username: credentials.username,
+			password: credentials.password
+		};
+		console.log(data);
+		if(data.username == '' || data.password == '')
+			console.log("Failed no data");
+		else{
+			$.ajax({
+				url: "http://localhost:8080/api/login",
+				data : data,
+				type: "POST"
+			}).done(function(response){
+				console.log("Success! response was "+response);
+
+			}).fail(function(){
+				console.log("Request failed");
+			});
+			location.reload();
+		}
+	};
+
+  })
   .controller('reportCon', function($scope,$http) {
     console.log('Report controller');
     $scope.header = 'View Reports';
@@ -501,10 +531,6 @@ angular
       }
     };
   })
-  .controller('loginCon', function($scope, $rootScope, AUTH_EVENTS, AuthService) {
-	console.log('Login controller');
-
-  })
   .controller('graphsCon', function($scope) {
     console.log('Graphs controller');
     $scope.header = 'Graphs';
@@ -539,7 +565,6 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('login', {
       url: '/login',
       templateUrl: 'app/templates/login.html',
-	  controller: 'loginCon'
     })
     .state('makereport', {
       url: '/makereport',

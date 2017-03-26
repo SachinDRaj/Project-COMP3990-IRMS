@@ -170,21 +170,26 @@ router.route('/login')
 		var pass = req.body.password;
 		User.findOne({ username: user_name }, function(err, user) {//find username
 			if (err) res.send(err);
-			user.comparePassword(pass , function(err, isMatch) {
-				if (err) res.send(err);
-				var data = {
-					id: user.id,
-					username: user.username,
-					authentication: 0
-				};
-				if(isMatch){//if an existing user
-					data.authentication = 1;
-					res.json(data);
-				}else{
-					data.id = null;
-					res.json(data);
-				}
-			});
+			if(user){
+				user.comparePassword(pass , function(err, isMatch) {
+					if (err) res.send(err);
+					var data = {
+						id: user.id,
+						username: user.username,
+						authentication: 0
+					};
+					if(isMatch){//if an existing user
+						data.authentication = 1;
+						res.json(data);
+					}else{
+						data.id = null;
+						res.json(data);
+					}
+				});
+			}
+			else{
+				res.send("No user found");
+			}
 		});
 	});
 
