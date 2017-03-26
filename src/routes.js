@@ -489,7 +489,7 @@ angular
         longitude: -61.314820
       },
       markers: [],
-      zoom: 9,
+      zoom: 12,
       events:{
         dragstart: function(){
           console.log('moving map');
