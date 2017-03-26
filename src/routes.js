@@ -501,6 +501,10 @@ angular
       }
     };
   })
+  .controller('loginCon', function($scope, $rootScope, AUTH_EVENTS, AuthService) {
+	console.log('Login controller');
+
+  })
   .controller('graphsCon', function($scope) {
     console.log('Graphs controller');
     $scope.header = 'Graphs';
@@ -534,7 +538,8 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('login', {
       url: '/login',
-      templateUrl: 'app/templates/login.html'
+      templateUrl: 'app/templates/login.html',
+	  controller: 'loginCon'
     })
     .state('makereport', {
       url: '/makereport',
