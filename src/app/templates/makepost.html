@@ -13,7 +13,7 @@
             <div class="form-group">
               <label for="select">Category:</label>
               <select id="cat" class="form-control" ng-click="getReportsQ()">
-                <option value="All">All Categories</option>
+                <option value="0">Select Category</option>
                 <option value="flooding">Flooding</option>
                 <option value="road_repair">Road Repairs</option>
                 <option value="garbage_collection">Garbage Collection</option>
@@ -22,7 +22,7 @@
             <div class="form-group">
               <label for="email">County:</label>
               <select id="county" class="form-control" ng-click="getReportsQ()">
-                <option value="All">Counties - All</option>
+                <option value="0">Select County</option>
                 <option value="Caroni">Caroni</option>
                 <option value="Mayaro">Mayaro</option>
                 <option value="Nariva">Nariva</option>
@@ -96,9 +96,9 @@
                 </div>
               </ui-gmap-window>
             </ui-gmap-marker>
-            </ui-gmap-marker>
-            <ui-gmap-rectangle fill='rectangle.fill' stroke='rectangle.stroke' bounds="rectangle.bounds" clickable='rectangle.clickable' draggable='rectangle.draggable' editable='rectangle.editable' visible='true' events='rectangle.events'>
-            </ui-gmap-rectangle>
+            <!-- Polygons -->
+            <ui-gmap-polygon static="true" ng-repeat="p in polygons track by p.id" path="p.path" stroke="p.stroke" visible="p.visible" fill="p.fill">
+            </ui-gmap-polygon>
           </ui-gmap-google-map>
 
         </div>

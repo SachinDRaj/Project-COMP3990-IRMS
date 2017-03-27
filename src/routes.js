@@ -30,7 +30,7 @@ angular
 			password: credentials.password
 		};
 		console.log(data);
-		if(data.username == '' || data.password == '')
+		if(data.username === '' || data.password === '')
 			console.log("Failed no data");
 		else{
 			$.ajax({
@@ -406,6 +406,8 @@ angular
           $scope.reports = data;
           //Populating Map
           populateMap(data);
+          addPolygons($scope.map.markers);
+          console.log($scope.polygons);
           $scope.$apply();
         }
         else{
@@ -426,6 +428,8 @@ angular
     function makeMarker(el) { //Marker maker
       var marker = {
         id: el._id,
+        type: el.report_type2,
+        county: el.couty,
         coords: {
           latitude: el.lat,
           longitude: el.lng
@@ -459,6 +463,59 @@ angular
     $scope.closeClick = function() {
       $scope.windowOptions.visible = false;
     };
+    function makePolygon(marker) {
+      var pol = {
+        id: marker.id,
+        type: marker.report_type2,
+        county: marker.county,
+        path:[
+          {
+            latitude: marker.coords.latitude,
+            longitude:  marker.coords.longitude
+          }
+        ],
+        stroke: {
+            color: '#434D70',
+            weight: 2
+        },
+        visible: true,
+        fill: {
+            color: '#4849FC',
+            opacity: 0.6
+        }
+      };
+      return pol;
+    }
+    function addPath(poly,marker) {
+      coords = {
+        latitude: marker.coords.latitude,
+        longitude: marker.coords.longitude
+      };
+      poly.path.push(coords);
+    }
+    function addPolygons(markers) {
+      $scope.polygons =[];
+      var p;
+      for (var i = 0; i < markers.length; i++) {
+        if($scope.polygons.length === 0){
+          p = makePolygon(markers[i]);
+          $scope.polygons.push(p);
+        }
+        else{
+          var x = 0;
+          while(x < $scope.polygons.length && $scope.polygons[x].county != markers[i].county){ //todo: check if coords is 'near' existing polygons
+            x++;
+          }
+          if(x < $scope.polygons.length){
+            addPath($scope.polygons[x],markers[i]);
+          }
+          else{
+            p = makePolygon(markers[i]);
+            $scope.polygons.push(p);
+          }
+        }
+      }
+    }
     // Using geocoding
     $scope.getLocation3 = function() {
       var geocoder = new google.maps.Geocoder();
@@ -482,51 +539,20 @@ angular
       });
     };
     // Map stuff
-    $scope.rectangle =  {
-      fill: {
-        color: '#08B21F',
-        opacity: 0.5
-      },
-      stroke: {
-        color: '#08B21F',
-        weight: 2,
-        opacity: 1
-      },
-      bounds:{
-        ne: {
-          latitude: 10.5,
-          longitude: -61.168250
-        },
-        sw: {
-          latitude: 10.3,
-          longitude: -61.366004
-        }
-      },
-      draggable: true,
-      editable:true,
-      events:{
-        bounds_changed : function() {
-          console.log('Bounds changed',$scope.rectangle.bounds);
-        },
-        click : function(){
-          console.log('Bounds changed',$scope.rectangle.bounds);
-        }
-      }
-    };
+    $scope.polygons = [];
     $scope.map = {
       center: {
         latitude: 10.450429,
         longitude: -61.314820
       },
       markers: [],
-      zoom: 12,
+      zoom: 10,
       events:{
         dragstart: function(){
           console.log('moving map');
         },
         dragend: function(markers){
           console.log('moved map...');
-
         }
       }
     };
