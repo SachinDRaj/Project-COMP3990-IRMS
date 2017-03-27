@@ -1,6 +1,57 @@
 <!-- header -->
 <div class="row" ng-include="'app/templates/header.html'">
 </div>
- <div id="vis"></div>
-<div class="row" ng-include="'app/templates/footer2.html'">
+
+
+<div class="row">
+  <div class="col-lg-10 col-lg-offset-1">
+    <div class="panel panel-default bshadow">
+      <div class="panel-heading">
+        <h3 class="panel-title"> View Graphs </h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-lg-8">
+          <div id="vis"></div>
+        </div>
+        <div class="col-lg-4 alert alert-info">
+          <h4>Catergorise Graphs</h4>
+          <hr>
+          <h5>Select Type of Report:</h5>
+            <select class="form-control">
+              <option>Flooding</option>
+              <option>Road Repairs</option>
+              <option>Garbage Collection</option>
+            </select>
+          <h5>Select County:</h5>
+          <select multiple class="form-control">
+            <option>All</option>
+            <option>Caroni</option>
+            <option>Mayaro</option>
+            <option>Nariva</option>
+            <option>Saint Andrew</option>
+            <option>Saint David</option>
+            <option>Saint George</option>
+            <option>Saint Patrick</option>
+            <option>Victoria</option>
+          </select>
+          <h5>Select Time Period:</h5>
+          <div class="col-sm-offset-1">
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked> 6 months
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 1 year
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 5 years
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row" ng-include="'app/templates/footer.html'">
 </div>
