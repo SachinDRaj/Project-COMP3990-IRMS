@@ -32,7 +32,7 @@
 
   </head>
 
-  <body ng-app="app">
+  <body ng-app="app" ng-controller="ApplicationController">
     <div ng-include="'app/templates/navbar.html'">
     </div>
     <div id="body1" class="container-fluid">
@@ -43,11 +43,11 @@
     <script src="bower_components\bootstrap\dist\js\bootstrap.js"></script>
   </body>
 
-  <div class="modal fade" tabindex="-1" id="myModal4" role="dialog">
+  <div ng-switch = "currentUser" class="modal fade" tabindex="-1" id="myModal4" role="dialog">
       <div class="modal-dialog modal-md">
 
         <!-- Modal content-->
-        <div class="panel panel-default">
+        <div  ng-switch-when ="null" class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">Employee Login<button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span></button></h3>
           </div>

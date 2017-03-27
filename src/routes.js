@@ -15,10 +15,18 @@ angular
       });
     };
   })
+  .controller('ApplicationController', function ($scope) {
+	//localStorage.removeItem("user");
+	$scope.currentUser = JSON.parse(localStorage.getItem("user"));
+	if($scope.currentUser != null) console.log($scope.currentUser);
+	$scope.setCurrentUser = function (user) {
+		localStorage.setItem("user", JSON.stringify(user));
+	};
+	})
   .controller('homeCon', function() {
     console.log('Home controller');
   })
-  .controller('LoginController', function($scope, $rootScope) {
+  .controller('LoginController', function($scope) {
 	console.log('Login controller');
 	$scope.credentials = {
 		username: '',
@@ -39,11 +47,20 @@ angular
 				type: "POST"
 			}).done(function(response){
 				console.log("Success! response was "+response);
+				if(response.id != null && response.authentication == 1){
+					var user = response;
+					console.log(user);
+					localStorage.clear();
+					$scope.setCurrentUser(user);
+					//console.log(JSON.parse(localStorage.getItem("user")));
+				}else{
+					console.log("User does not exist");
+				}
 
 			}).fail(function(){
 				console.log("Request failed");
 			});
-			location.reload();
+			//location.reload();
 		}
 	};
 
