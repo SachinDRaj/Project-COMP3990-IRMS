@@ -15,12 +15,15 @@ angular
       });
     };
   })
-  .controller('ApplicationController', function ($scope) {
+  .controller('ApplicationController', function ($scope, $window) {
 	$scope.currentUser = JSON.parse(localStorage.getItem("user"));
 	if($scope.currentUser != null) console.log($scope.currentUser);
 	$scope.setCurrentUser = function (user) {
 		localStorage.setItem("user", JSON.stringify(user));
-		location.reload();
+		$window.location.href = '/index.html';
+	};
+	$scope.getCurrentUser = function() {
+		return $scope.currentUser;
 	};
 	})
   .controller('homeCon', function() {
@@ -65,10 +68,10 @@ angular
 	};
 
   })
-  .controller('LogoutController', function ($scope) {
+  .controller('LogoutController', function ($scope, $window) {
 	 $scope.logout = function(){
 		 localStorage.removeItem("user");
-		 location.reload();
+		 $window.location.href = '/index.html';
 	 };
   })
   .controller('reportCon', function($scope,$http) {
@@ -392,8 +395,12 @@ angular
       $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
     });
   })
-  .controller('makepostCon', function($scope) {
+  .controller('makepostCon', function($scope, $window) {
     console.log('Make post controller');
+	if($scope.getCurrentUser() == null){
+		window.alert("You do not have permission to access this page");
+		$window.location.href = '/index.html';
+	}
     $scope.header = 'Make a Post';
 
     function getQuery(){ //Makes query
