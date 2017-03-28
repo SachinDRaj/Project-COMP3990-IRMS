@@ -542,13 +542,20 @@ angular
         }
         else{
           var x = 0;
-          while(x < $scope.polygons.length && $scope.polygons[x].county != markers[i].county){ //todo: check if coords is 'near' existing polygons
+          while(x < $scope.polygons.length){ //todo: check if coords is 'near' existing polygons
+            var y = 0;
+            while(y < $scope.polygons[x].path.length && (
+              (Math.abs(Math.abs($scope.polygons[x].path[y].latitude) - Math.abs(markers[i].coords.latitude)) > 0.009) ||
+              (Math.abs(Math.abs($scope.polygons[x].path[y].longitude) - Math.abs(markers[i].coords.longitude)) > 0.009)
+            )){
+              y++;
+            }
+            if(y < $scope.polygons[x].path.length){
+              addPath($scope.polygons[x],markers[i]);
+            }
             x++;
           }
-          if(x < $scope.polygons.length){
-            addPath($scope.polygons[x],markers[i]);
-          }
-          else{
+          if(x >= $scope.polygons.length){
             p = makePolygon(markers[i]);
             $scope.polygons.push(p);
           }
