@@ -17,7 +17,7 @@ angular
   })
   .controller('ApplicationController', function ($scope, $window) {
 	$scope.currentUser = JSON.parse(localStorage.getItem("user"));
-	if($scope.currentUser != null) console.log($scope.currentUser);
+	if($scope.currentUser !== null) console.log($scope.currentUser);
 	$scope.setCurrentUser = function (user) {
 		localStorage.setItem("user", JSON.stringify(user));
 		$window.location.href = '/index.html';
@@ -41,7 +41,7 @@ angular
 			password: credentials.password
 		};
 		console.log(data);
-		if(data.username == '' || data.password == '')
+		if(data.username === '' || data.password === '')
 			console.log("Failed no data");
 		else{
 			$.ajax({
@@ -50,7 +50,7 @@ angular
 				type: "POST"
 			}).done(function(response){
 				console.log("Success! response was "+response);
-				if(response.id != null && response.authentication == 1){
+				if(response.id !== null && response.authentication == 1){
 					var user = response;
 					console.log(user);
 					localStorage.clear();
@@ -397,10 +397,10 @@ angular
   })
   .controller('makepostCon', function($scope, $window) {
     console.log('Make post controller');
-	if($scope.getCurrentUser() == null){
-		window.alert("You do not have permission to access this page");
-		$window.location.href = '/index.html';
-	}
+  	if($scope.getCurrentUser() === null){
+  		window.alert("You do not have permission to access this page");
+  		$window.location.href = '/index.html';
+  	}
     $scope.header = 'Make a Post';
 
     function getQuery(){ //Makes query
@@ -586,7 +586,7 @@ angular
         spec: vlSpec
       };
       vg.embed("#vis", embedSpec, function(error, result) {
-        $("#vis > div.vega-actions").hide()
+        $("#vis > div.vega-actions").hide();
       });
   });
 
