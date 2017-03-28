@@ -564,6 +564,30 @@ angular
   .controller('graphsCon', function($scope) {
     console.log('Graphs controller');
     $scope.header = 'Graphs';
+    var vlSpec = {
+      "width": 500,
+      "height": 400,
+      "data": {
+        "values": [
+          {"a": "A","b": 28}, {"a": "B","b": 55}, {"a": "C","b": 43},
+          {"a": "D","b": 91}, {"a": "E","b": 81}, {"a": "F","b": 53},
+          {"a": "G","b": 19}, {"a": "H","b": 87}, {"a": "I","b": 52}
+        ]
+      },
+      "mark": "area",
+      "encoding": {
+        "x": {"field": "a", "type": "ordinal","axis": {"title": "Time Period"}},
+        "y": {"field": "b", "type": "quantitative","axis": {"title": "No. of Reports"}}
+      }
+      };
+
+      var embedSpec = {
+        mode: "vega-lite",
+        spec: vlSpec
+      };
+      vg.embed("#vis", embedSpec, function(error, result) {
+
+      });
   });
 
 /** @ngInject */
