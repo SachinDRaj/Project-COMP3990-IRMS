@@ -469,6 +469,20 @@ angular
           addr:'',
           desc: el.description,
           date: el.date,
+        },
+        options:  {
+          icon: "/app/images/marker.png",
+          opacity: 0.4
+        },
+        events: {
+          mouseover: function(){
+            console.log('Moused over');
+            marker.options.opacity = 1;
+          },
+          mouseout: function(){
+            console.log('Mouse out');
+            marker.options.opacity = 0.45;
+          }
         }
       };
       return marker;
@@ -480,19 +494,6 @@ angular
         $scope.map.markers.push(m);
       }
     }
-    $scope.markerOptions = {
-      icon: "/app/images/marker.png",
-      // animation: google.maps.Animation.DROP
-    };
-    $scope.windowOptions = {
-      visible: false
-    };
-    $scope.onClick = function() {
-      $scope.windowOptions.visible = !$scope.windowOptions.visible;
-    };
-    $scope.closeClick = function() {
-      $scope.windowOptions.visible = false;
-    };
     function makePolygon(marker) {
       var pol = {
         id: marker.id,
@@ -504,6 +505,7 @@ angular
             longitude:  marker.coords.longitude
           }
         ],
+        reports: [marker.id],
         stroke: {
             color: '#434D70',
             weight: 2
@@ -522,6 +524,7 @@ angular
         longitude: marker.coords.longitude
       };
       poly.path.push(coords);
+      poly.reports.push(marker.id);
     }
     function addPolygons(markers) {
       $scope.polygons =[];
@@ -547,6 +550,19 @@ angular
       }
     }
     // Map stuff
+    // $scope.markerOptions = {
+    //   icon: "/app/images/marker.png",
+    //   opacity: 0.4
+    // };
+    $scope.windowOptions = {
+      visible: false
+    };
+    $scope.onClick = function() {
+      $scope.windowOptions.visible = !$scope.windowOptions.visible;
+    };
+    $scope.closeClick = function() {
+      $scope.windowOptions.visible = false;
+    };
     $scope.polygons = [];
     $scope.map = {
       center: {
