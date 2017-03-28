@@ -586,7 +586,7 @@ angular
         spec: vlSpec
       };
       vg.embed("#vis", embedSpec, function(error, result) {
-
+        $("#vis > div.vega-actions").hide()
       });
   });
 
