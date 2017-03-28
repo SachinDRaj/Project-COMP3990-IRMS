@@ -481,7 +481,7 @@ angular
           },
           mouseout: function(){
             console.log('Mouse out');
-            marker.options.opacity = 0.45;
+            marker.options.opacity = 0.55;
           }
         }
       };
@@ -513,7 +513,13 @@ angular
         visible: true,
         fill: {
             color: '#4849FC',
-            opacity: 0.6
+            opacity: 0.65
+        },
+        events:{
+          click:  function(){
+            console.log('Poly click');
+            pol.fill.opacity = 0.75;
+          }
         }
       };
       return pol;
@@ -550,10 +556,6 @@ angular
       }
     }
     // Map stuff
-    // $scope.markerOptions = {
-    //   icon: "/app/images/marker.png",
-    //   opacity: 0.4
-    // };
     $scope.windowOptions = {
       visible: false
     };
@@ -570,16 +572,7 @@ angular
         longitude: -61.314820
       },
       markers: [],
-      zoom: 10,
-      events:{
-        dragstart: function(){
-          console.log('moving map');
-        },
-        dragend: function(markers){
-          console.log('moved map...');
-
-        }
-      }
+      zoom: 10
     };
   })
   .controller('graphsCon', function($scope) {
