@@ -586,6 +586,103 @@ angular
   .controller('graphsCon', function($scope) {
     console.log('Graphs controller');
     $scope.header = 'Graphs';
+    // var d = new Date();
+    // var n = d.getDate();
+    // console.log(n);
+    $scope.counties = [ //Counties
+      {text:"Caroni", value:"Caroni"},
+      {text:"Mayaro", value:"Mayaro"},
+      {text:"Nariva", value:"Nariva"},
+      {text:"Saint Andrew", value:"Saint Andrew"},
+      {text:"Saint David", value:"Saint David"},
+      {text:"Saint George", value:"Saint George"},
+      {text:"Saint Patrick", value:"Saint Patrick"},
+      {text:"Victoria", value:"Victoria"}
+    ];
+    $scope.categories = [ //Categories
+      {text:"Flooding", value:"Flooding"},
+      {text:"Road Repairs", value:"Road Repairs"},
+      {text:"Garbage Collection", value:"Garbage Collection"}
+    ];
+    $scope.updateTag3 = function(){
+      var c = document.getElementById("Cat3");
+      var select = c.options[c.selectedIndex].value;
+      $("#gCat3").html("");
+      $("#gCat3").append(select);
+      $scope.getGReportsQ();
+    };
+    function properF1(cat1){
+      if (cat1=="All Categories") {
+        return "All";
+      }else if (cat1=="Flooding") {
+        return "flooding";
+      }else if (cat1=="Road Repairs") {
+        return "road_repair";
+      }else if (cat1=="Garbage Collection") {
+        return "garbage_collection";
+      }
+    }
+    function getQuery1(cat1){
+      var c = document.getElementById("region3");
+      var select = c.options[c.selectedIndex].value;
+
+      var q="";
+      cat1 = properF1(cat1);
+      if (select=="All" && cat1=="All") {
+        q="";
+      }else if (select=="All"){
+        q="?report_type2="+cat1;
+      }else if (cat1=="All") {
+        q="?county="+select;
+      }else {
+        q="?report_type2="+cat1+"&county="+select;
+      }
+      return q;
+    }
+    $scope.getGReportsQ = function(){ //Updates Column & Map
+      console.log("working");
+      var period;
+      if (document.getElementById("inlineRadio1").checked) {
+        period = document.getElementById("inlineRadio1").value;
+      }
+      else if (document.getElementById("inlineRadio2").checked) {
+        period = document.getElementById("inlineRadio2").value;
+      }
+      else if (document.getElementById("inlineRadio3").checked) {
+        period = document.getElementById("inlineRadio3").value;
+      }
+      var cat1 = document.getElementById("gCat3").innerHTML;
+      var query=getQuery1(cat1);
+    	var url = "http://localhost:8080/api/get_reports";
+      url += query;
+    	$.ajax({
+        url:url,
+        type:"GET"
+      }).done(function(data, textStatus, xhr){
+        if(data){
+          //Load reports
+          for (var i = 0; i < data.length; i++) {
+            console.log(data[i].date);
+          }
+
+
+        }
+        else{
+            //if(callback) callback(null);
+        }
+      }).fail(function(xhr){
+        var status = xhr.status;
+        var message = null;
+        if(xhr.responseText){
+            var obj = JSON.parse(xhr.responseText);
+            message = obj.message;
+        }
+
+        if(callback) callback(null);
+        console.log(xhr);
+      });
+    };
+
     var vlSpec = {
       "width": 500,
       "height": 400,
