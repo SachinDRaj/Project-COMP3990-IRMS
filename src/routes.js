@@ -545,13 +545,14 @@ angular
           while(x < $scope.polygons.length){ //todo: check if coords is 'near' existing polygons
             var y = 0;
             while(y < $scope.polygons[x].path.length && (
-              (Math.abs(Math.abs($scope.polygons[x].path[y].latitude) - Math.abs(markers[i].coords.latitude)) > 0.009) ||
-              (Math.abs(Math.abs($scope.polygons[x].path[y].longitude) - Math.abs(markers[i].coords.longitude)) > 0.009)
+              (Math.abs(Math.abs($scope.polygons[x].path[y].latitude) - Math.abs(markers[i].coords.latitude)) > 0.012) ||
+              (Math.abs(Math.abs($scope.polygons[x].path[y].longitude) - Math.abs(markers[i].coords.longitude)) > 0.012)
             )){
               y++;
             }
             if(y < $scope.polygons[x].path.length){
               addPath($scope.polygons[x],markers[i]);
+              x = $scope.polygons.length + 10; //To break loop/ Ensure it isnt in another other polygons
             }
             x++;
           }
