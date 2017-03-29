@@ -83,6 +83,13 @@ router.route('/get_reports')
         });
     });
 
+router.route('/update_report/:id')
+	
+	.put(function(req, res) {
+		Report.findById(req.params.report_id, function(err, reports) {
+			
+		});
+	});
 
 router.route('/get_reports/:report_id')
 
