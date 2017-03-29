@@ -439,8 +439,6 @@ angular
           $scope.reports = data;
           //Populating Map
           populateMap(data);
-          addPolygons($scope.map.markers);
-          console.log($scope.polygons);
           $scope.$apply();
         }
         else{
@@ -484,7 +482,11 @@ angular
           },
           mouseout: function(){
             console.log('Mouse out');
-            marker.options.opacity = 0.55;
+            marker.options.opacity = 0.65;
+          },
+          click: function() {
+            console.log('Marker click');
+            marker.options.opacity = 1;
           }
         }
       };
@@ -497,77 +499,7 @@ angular
         $scope.map.markers.push(m);
       }
     }
-    function makePolygon(marker) {
-      var pol = {
-        id: marker.id,
-        type: marker.report_type2,
-        county: marker.county,
-        path:[
-          {
-            latitude: marker.coords.latitude,
-            longitude:  marker.coords.longitude
-          }
-        ],
-        reports: [marker.id],
-        stroke: {
-            color: '#434D70',
-            weight: 2
-        },
-        visible: true,
-        fill: {
-            color: '#4849FC',
-            opacity: 0.65
-        },
-        events:{
-          click:  function($scope){
-            console.log('Poly click');
-            pol.fill.opacity = 0.75;
-            $scope.selectedArea = pol;
-            console.log($scope.selectedArea);
-          }
-        }
-      };
-      return pol;
-    }
-    function addPath(poly,marker) {
-      coords = {
-        latitude: marker.coords.latitude,
-        longitude: marker.coords.longitude
-      };
-      poly.path.push(coords);
-      poly.reports.push(marker.id);
-    }
-    function addPolygons(markers) {
-      $scope.polygons =[];
-      var p;
-      for (var i = 0; i < markers.length; i++) {
-        if($scope.polygons.length === 0){
-          p = makePolygon(markers[i]);
-          $scope.polygons.push(p);
-        }
-        else{
-          var x = 0;
-          while(x < $scope.polygons.length){
-            var y = 0;
-            while(y < $scope.polygons[x].path.length && (
-              (Math.abs(Math.abs($scope.polygons[x].path[y].latitude) - Math.abs(markers[i].coords.latitude)) > 0.012) ||
-              (Math.abs(Math.abs($scope.polygons[x].path[y].longitude) - Math.abs(markers[i].coords.longitude)) > 0.012)
-            )){
-              y++;
-            }
-            if(y < $scope.polygons[x].path.length){
-              addPath($scope.polygons[x],markers[i]);
-              x = $scope.polygons.length + 10; //To break loop/ Ensure it isn't in other polygons
-            }
-            x++;
-          }
-          if(x >= $scope.polygons.length){
-            p = makePolygon(markers[i]);
-            $scope.polygons.push(p);
-          }
-        }
-      }
-    }
+
     // Map stuff
     $scope.windowOptions = {
       visible: false

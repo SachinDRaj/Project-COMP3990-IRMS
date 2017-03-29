@@ -13,7 +13,7 @@
             <div class="form-group">
               <label for="select">Category:</label>
               <select id="cat" class="form-control" ng-click="getReportsQ()">
-                <option value="0">Select Category</option>
+                <option value="All">Select Category</option>
                 <option value="flooding">Flooding</option>
                 <option value="road_repair">Road Repairs</option>
                 <option value="garbage_collection">Garbage Collection</option>
@@ -22,7 +22,7 @@
             <div class="form-group">
               <label for="email">County:</label>
               <select id="county" class="form-control" ng-click="getReportsQ()">
-                <option value="0">Select County</option>
+                <option value="All">Select County</option>
                 <option value="Caroni">Caroni</option>
                 <option value="Mayaro">Mayaro</option>
                 <option value="Nariva">Nariva</option>
@@ -87,7 +87,7 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>
-            <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" data-events="m.events" options="m.options">
+            <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" data-events="m.events" options="m.options" click="m.events.click()">
               <ui-gmap-window coords="m.coords" options="windowOptions" closeClick="closeClick()">
                 <div class="">
                   <h5>{{m.window.title}} <span>|</span> <small>{{m.window.date}}</small></h5>
