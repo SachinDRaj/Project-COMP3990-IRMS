@@ -516,9 +516,11 @@ angular
             opacity: 0.65
         },
         events:{
-          click:  function(){
+          click:  function($scope){
             console.log('Poly click');
             pol.fill.opacity = 0.75;
+            $scope.selectedArea = pol;
+            console.log($scope.selectedArea);
           }
         }
       };
@@ -542,7 +544,7 @@ angular
         }
         else{
           var x = 0;
-          while(x < $scope.polygons.length){ //todo: check if coords is 'near' existing polygons
+          while(x < $scope.polygons.length){
             var y = 0;
             while(y < $scope.polygons[x].path.length && (
               (Math.abs(Math.abs($scope.polygons[x].path[y].latitude) - Math.abs(markers[i].coords.latitude)) > 0.012) ||
@@ -552,7 +554,7 @@ angular
             }
             if(y < $scope.polygons[x].path.length){
               addPath($scope.polygons[x],markers[i]);
-              x = $scope.polygons.length + 10; //To break loop/ Ensure it isnt in another other polygons
+              x = $scope.polygons.length + 10; //To break loop/ Ensure it isn't in other polygons
             }
             x++;
           }
@@ -574,6 +576,7 @@ angular
       $scope.windowOptions.visible = false;
     };
     $scope.polygons = [];
+    $scope.selectedArea = {};
     $scope.map = {
       center: {
         latitude: 10.450429,
