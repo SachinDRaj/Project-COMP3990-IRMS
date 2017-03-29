@@ -45,7 +45,7 @@
         <div class="panel-body">
           <div id="r1">
             <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events' options="map.options" bounds='map.bounds'>
-              <ui-gmap-marker doCluster=true ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" options="markerOptions">
+              <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" options="m.options" click="m.events.click()">
                 <ui-gmap-window coords="m.coords" options="windowOptions" closeClick="closeClick()">
                   <div class="">
                     <h5>{{m.window.title}} <span>|</span> <small>{{m.window.date}}</small></h5>

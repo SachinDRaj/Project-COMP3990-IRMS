@@ -197,6 +197,16 @@ angular
           addr:'',
           desc: el.description,
           date: el.date,
+        },
+        options:  {
+          icon: "/app/images/marker.png",
+          animation: google.maps.Animation.DROP
+        },
+        events: {
+          click:  function() {
+            marker.options.animation = google.maps.Animation.BOUNCE;
+            console.log('Marker clicked');
+          }
         }
       };
       reverseGeocode(marker);
@@ -205,14 +215,10 @@ angular
     function populateMap(data){
       $scope.map.markers = [];
       for(var i = 0; i < data.length; i++){
-        var m = makeMarker(data[i],i);
+        var m = makeMarker(data[i]);
         $scope.map.markers.push(m);
       }
     }
-    $scope.markerOptions = {
-      icon: "/app/images/marker.png",
-      // animation: google.maps.Animation.DROP
-    };
     $scope.map = {
       center: {
         latitude: 10.450429,
@@ -235,9 +241,6 @@ angular
     };
     $scope.windowOptions = {
       visible: false
-    };
-    $scope.onClick = function() {
-      $scope.windowOptions.visible = !$scope.windowOptions.visible;
     };
     $scope.closeClick = function() {
       $scope.windowOptions.visible = false;
