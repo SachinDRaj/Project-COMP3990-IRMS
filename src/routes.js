@@ -407,10 +407,10 @@ angular
   })
   .controller('makepostCon', function($scope, $window) {
     console.log('Make post controller');
-  	if($scope.getCurrentUser() === null){
-  		window.alert("You do not have permission to access this page");
-  		$window.location.href = '/index.html';
-  	}
+  	// if($scope.getCurrentUser() === null){
+  	// 	window.alert("You do not have permission to access this page");
+  	// 	$window.location.href = '/index.html';
+  	// }
     $scope.header = 'Make a Post';
 
     function getQuery(){ //Makes query
@@ -481,20 +481,15 @@ angular
         },
         options:  {
           icon: "/app/images/marker.png",
-          opacity: 0.4
+          opacity: 1,
+          animation: null
         },
         events: {
-          mouseover: function(){
-            console.log('Moused over');
-            marker.options.opacity = 1;
-          },
-          mouseout: function(){
-            console.log('Mouse out');
-            marker.options.opacity = 0.65;
-          },
           click: function() {
             console.log('Marker click');
             marker.options.opacity = 1;
+            marker.options.animation = google.maps.Animation.BOUNCE;
+            localStorage.setItem('latLng',JSON.stringify(marker.coords));
           }
         }
       };
