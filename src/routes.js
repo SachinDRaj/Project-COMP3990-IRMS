@@ -192,6 +192,7 @@ angular
           latitude: el.lat,
           longitude: el.lng
         },
+        status:0,
         window:{
           title :el.title,
           addr:'',
@@ -205,7 +206,12 @@ angular
         events: {
           click:  function() {
             marker.options.animation = google.maps.Animation.BOUNCE;
+            $scope.postMarker = marker;
             console.log('Marker clicked');
+            console.log($scope.postMarker);
+          },
+          post: function() {
+            console.log('Click to make post');
           }
         }
       };
@@ -219,6 +225,7 @@ angular
         $scope.map.markers.push(m);
       }
     }
+    $scope.postMarker = {};
     $scope.map = {
       center: {
         latitude: 10.450429,
@@ -465,6 +472,7 @@ angular
         },
         type: el.report_type2,
         county: el.couty,
+        status:0,
         window:{
           title :el.title,
           addr:'',
