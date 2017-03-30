@@ -407,10 +407,10 @@ angular
   })
   .controller('makepostCon', function($scope, $window) {
     console.log('Make post controller');
-  	// if($scope.getCurrentUser() === null){
-  	// 	window.alert("You do not have permission to access this page");
-  	// 	$window.location.href = '/index.html';
-  	// }
+  	if($scope.getCurrentUser() === null){
+  		window.alert("You do not have permission to access this page");
+  		$window.location.href = '/index.html';
+  	}
     $scope.header = 'Make a Post';
 
     function getQuery(){ //Makes query
