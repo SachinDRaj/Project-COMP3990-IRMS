@@ -414,7 +414,7 @@ angular
     $scope.header = 'Make a Post';
 
     function getQuery(){ //Makes query
-      var cat = document.getElementById('cat');
+      var cat = document.getElementById('category');
       var county = document.getElementById('county');
       var c = cat.options[cat.selectedIndex].value;
       var cty = county.options[county.selectedIndex].value;
@@ -490,6 +490,7 @@ angular
             marker.options.opacity = 1;
             marker.options.animation = google.maps.Animation.BOUNCE;
             localStorage.setItem('latLng',JSON.stringify(marker.coords));
+            console.log(localStorage.getItem("latLng"));
           }
         }
       };
@@ -513,8 +514,6 @@ angular
     $scope.closeClick = function() {
       $scope.windowOptions.visible = false;
     };
-    $scope.polygons = [];
-    $scope.selectedArea = {};
     $scope.map = {
       center: {
         latitude: 10.450429,

@@ -273,19 +273,17 @@ function getPost(){
 
 function addPost(){
 
-	var c = document.getElementById("categorySelect");
-	var s = document.getElementById("statusSelect");
-  var ti = document.getElementById("tpost").value;
+	var c = document.getElementById("category");
+	var s = document.getElementById("status");
+  var ti = document.getElementById("title").value;
 	var summ = document.getElementById("summary").value;
-  var t = document.getElementById("select3");
-  var county = t.options[t.selectedIndex].value;
+  var ct = document.getElementById("county");
+  var county = ct.options[ct.selectedIndex].value;
 	var category = c.options[c.selectedIndex].value;
 	var curr_status = s.options[s.selectedIndex].value;
-  console.log(localStorage.getItem("lat"));
-  console.log(localStorage.getItem("lng"));
+  console.log(localStorage.getItem("latLng"));
   console.log(county);
-  var lat = localStorage.getItem("lat");
-  var lng = localStorage.getItem("lng");
+  var coords = localStorage.getItem("latLng");
 	if(category == "Select" || curr_status == "Select")
 		alert("Insufficient information");
 	else{
@@ -304,8 +302,8 @@ function addPost(){
 			likes: 0,
 			dislikes: 0,
       county:county,
-      lat: lat,
-      lng: lng,
+      lat: coords.latitude,
+      lng: coords.longitude,
 			//loc: [126.4, 10.1]
 		};
 

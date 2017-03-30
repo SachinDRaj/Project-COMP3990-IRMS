@@ -12,7 +12,7 @@
           <form>
             <div class="form-group">
               <label for="select">Category:</label>
-              <select id="cat" class="form-control" ng-click="getReportsQ()">
+              <select id="category" class="form-control" ng-click="getReportsQ()">
                 <option value="All">Select Category</option>
                 <option value="flooding">Flooding</option>
                 <option value="road_repair">Road Repairs</option>
@@ -35,7 +35,7 @@
             </div>
             <div class="form-group">
               <label for="title">Title:</label>
-              <input class="form-control" type="text" id="tpost" placeholder="Enter Title">
+              <input class="form-control" type="text" id="title" placeholder="Enter Title">
             </div>
             <!-- <div class="form-group">
               <label for="Select"><b>Address Line:</b></label>
@@ -48,7 +48,7 @@
             </div> -->
             <div class="form-group">
               <label for="email">Status:</label>
-              <select id="statusSelect" class="form-control">
+              <select id="status" class="form-control">
                 <option>Select</option>
                 <option value="ongoing">Ongoing</option>
                 <option value="fixed">Fixed</option>
@@ -92,13 +92,11 @@
                 <div class="">
                   <h5>{{m.window.title}} <span>|</span> <small>{{m.window.date}}</small></h5>
                   <h6>{{m.window.addr}}</h6>
+                  <p>Staus:{{m.status}}</p>
                   <p>-"{{m.window.desc}}"</p>
                 </div>
               </ui-gmap-window>
             </ui-gmap-marker>
-            <!-- Polygons -->
-            <ui-gmap-polygon static="true" ng-repeat="p in polygons track by p.id" path="p.path" stroke="p.stroke" visible="p.visible" fill="p.fill" clickable="true" events="p.events">
-            </ui-gmap-polygon>
           </ui-gmap-google-map>
 
         </div>
