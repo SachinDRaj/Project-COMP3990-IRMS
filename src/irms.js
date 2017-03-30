@@ -273,6 +273,7 @@ function getPost(){
 
 function addPost(){
 
+
 	var c = document.getElementById("category");
 	var s = document.getElementById("status");
   var ti = document.getElementById("title").value;

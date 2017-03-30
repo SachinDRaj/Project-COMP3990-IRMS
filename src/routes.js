@@ -579,6 +579,22 @@ angular
       }
       return q;
     }
+
+    function calculateTimePeriod(cmonth, cyear){
+      var arr=[6];
+      var arry=[6];
+      cmonth++;
+      for (var i = 0; i < 6; i++) {
+        if (cmonth<1) {
+          cmonth=12;
+          cyear--;
+        }
+        arr[i]=cmonth--;
+        arry[i]=cyear;
+      }
+      return [arr,arry];
+    }
+
     $scope.getGReportsQ = function(){ //Updates Column & Map
       console.log("working");
       var period;
@@ -600,12 +616,48 @@ angular
         type:"GET"
       }).done(function(data, textStatus, xhr){
         if(data){
-          //Load reports
-          for (var i = 0; i < data.length; i++) {
-            console.log(data[i].date);
-          }
+          //Load reports-------------------------------------------------------------------------------------------
+          // for (var i = 0; i < data.length; i++) {
+          //   var day = data[i].date.substr(9,2);
+          //   var month = data[i].date.substr(6,2);
+          //   var year = data[i].date.substr(2,3);
+          //   console.log(day+month+year);
+          //
+          //   var cdate= new Date();
+          //   var cmonth= cdate.getMonth();
+          //   var cyear= cdate.getYear();
+          //
+          //
+          //   var gCount=[6];
+          //   for (var i = 0; i < 6; i++) {
+          //     gCount[i]=0;
+          //   }
+          //
+          //   if (period=="6months"){
+          //     var tperiod=calculateTimePeriod(cmonth,cyear);
+          //     console.log(tperiod);
+          //
+          //   for (var i = 0; i < 6; i++) {
+          //
+          //       if (tperiod[0][i]<10){
+          //         var m = tperiod[0][i].toString();
+          //         m = '0'+ m;
+          //       }else {
+          //         var m = tperiod[0][i].toString();
+          //       }
+          //       tperiod[1][i]=tperiod[1][i]-100;
+          //       var n = tperiod[1][i].toString();
+          //
+          //       if (m==month && n == year) {
+          //         gCount[i]++;
+          //       }
+          //
+          //     }
+          //   }
+          // }
+          // console.log(gCount);
 
-
+          //-------------------------------------------------------------------------------------------------------
         }
         else{
             //if(callback) callback(null);
@@ -628,14 +680,14 @@ angular
       "height": 400,
       "data": {
         "values": [
-          {"a": "A","b": 28}, {"a": "B","b": 55}, {"a": "C","b": 43},
-          {"a": "D","b": 91}, {"a": "E","b": 81}, {"a": "F","b": 53},
-          {"a": "G","b": 19}, {"a": "H","b": 87}, {"a": "I","b": 52}
+          {"a": 0,"b": 0},
+          {"a": 1,"b": 28}, {"a": 2,"b": 55}, {"a": 3,"b": 43},
+          {"a": 4,"b": 91}, {"a": 5,"b": 81}, {"a": 6,"b": 53}
         ]
       },
       "mark": "area",
       "encoding": {
-        "x": {"field": "a", "type": "ordinal","axis": {"title": "Time Period"}},
+        "x": {"field": "a", "type": "quantitative","axis": {"title": "Time Period(months)"}},
         "y": {"field": "b", "type": "quantitative","axis": {"title": "No. of Reports"}}
       }
       };
