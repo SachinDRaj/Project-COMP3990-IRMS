@@ -82,7 +82,20 @@ router.route('/get_reports')
             res.json(reports);
         });
     });
+/*	
+router.route('/reports')
 
+	.post(function(req, res) {
+		var query = req.body.query;
+		console.log(query);
+        Report.find(query, function(err, reports) {
+            if (err)
+                res.send(err);
+
+            res.json(reports);
+        });
+    });
+*/
 router.route('/update_report/:id')
 	
 	.put(function(req, res) {
@@ -91,6 +104,7 @@ router.route('/update_report/:id')
 		});
 	});
 
+	
 router.route('/get_reports/:report_id')
 
     // get the report with that id (accessed at GET http://localhost:8080/api/reports/:report_id)
@@ -127,15 +141,14 @@ router.route('/add_new_post')
         post.category1 = req.body.category1;
         post.category2 = req.body.category2;
 		post.current_status = req.body.current_status;
-    post.title = req.body.title;
+		post.title = req.body.title;
 		post.summary = req.body.summary;
 		post.date = req.body.date;
 		post.likes = req.body.likes;
 		post.dislikes = req.body.dislikes;
-    post.county = req.body.county;
-    post.lat = req.body.lat;
-    post.lng = req.body.lng;
-		//post.loc = req.body.loc;
+		post.county = req.body.county;
+		post.lat = req.body.lat;
+		post.lng = req.body.lng;
 
         post.save(function(err) {
             if (err)

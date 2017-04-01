@@ -5,16 +5,12 @@ var ReportSchema   = new Schema({
     report_type1: String,
 	report_type2: String,
 	title: String,
-	date: String,
+	date: Date,
 	description: String,
 	votes: Number,
   county: String,
   lat: Number,
   lng: Number,
-	loc: {
-	type: [Number], //[<longitude>, <latitude>]
-	index: '2d'		//create the geospatial index
-	}
 
 });
 

@@ -98,7 +98,7 @@ function addReport(){
   var lng = localStorage.getItem("lng");
 	var date = new Date();
 	// console.log(date);
-	var jdate = JSON.stringify(date);
+	//var jdate = JSON.stringify(date);
 	// console.log(jdate);
 
 
@@ -113,7 +113,7 @@ function addReport(){
 		report_type1: r1,
 		report_type2: r2,
 		title: t,
-		date: jdate,
+		date: date,
 		description: d,
 		votes: 0,
     county: reg,
@@ -291,21 +291,19 @@ function addPost(){
 		var cat1 = getCategory(category);
 		var date = new Date();
 		console.log(date);
-		var jdate = JSON.stringify(date);
-		console.log(jdate);
 		var dataToSend = {
 			category1: cat1,
 			category2: category,
 			current_status: curr_status,
-      title: ti,
+			title: ti,
 			summary: summ,
-			date: jdate,
+			date: date,
 			likes: 0,
 			dislikes: 0,
-      county:county,
-      lat: coords.latitude,
-      lng: coords.longitude,
-			//loc: [126.4, 10.1]
+			county:county,
+			lat: coords.latitude,
+			lng: coords.longitude,
+
 		};
 
 		$.ajax({
