@@ -81,7 +81,7 @@ router.route('/get_reports')
             res.json(reports);
         });
     });
-	
+
 router.route('/get_reports_graph')
 
 	.get(function(req, res) {
@@ -91,7 +91,6 @@ router.route('/get_reports_graph')
 			date: {
 				$gte: req.query.start,//add a variable for start of date
 				$lte: req.query.end//add variable for end of date
-				
 			}
 		};
 		console.log(q);
@@ -102,16 +101,16 @@ router.route('/get_reports_graph')
             res.json(reports);
         });
     });
-	
+
 router.route('/update_report/:id')
-	
+
 	.put(function(req, res) {
 		Report.findById(req.params.report_id, function(err, reports) {
-			
+
 		});
 	});
 
-	
+
 router.route('/get_reports/:report_id')
 
     // get the report with that id (accessed at GET http://localhost:8080/api/reports/:report_id)
@@ -177,22 +176,22 @@ router.route('/get_posts')
         });
     });
 
-/*
-//LOG IN TEST -----------------------------------------------
-var testUser = new User({//User schema found in app/models folder
-    username: 'admin',
-    password: 'admin'
-});
 
-// save user to database
-
-testUser.save(function(err) {
-    if (err) throw err;
-
-});*/
+// //LOG IN TEST -----------------------------------------------
+// var testUser = new User({//User schema found in app/models folder
+//     username: 'admin',
+//     password: 'admin'
+// });
+//
+// // save user to database
+//
+// testUser.save(function(err) {
+//     if (err) throw err;
+//
+// });
 
 router.route('/login')
-	
+
 	.post(function(req, res) {
 		var user_name = req.body.username;
 		var pass = req.body.password;

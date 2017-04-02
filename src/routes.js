@@ -513,6 +513,9 @@ angular
     };
     $scope.closeClick = function() {
       $scope.windowOptions.visible = false;
+      $scope.map.markers.forEach(function(el) {
+        el.options.animation = null;
+      });
     };
     $scope.map = {
       center: {
