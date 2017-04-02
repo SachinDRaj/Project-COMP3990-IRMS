@@ -37,15 +37,6 @@
               <label for="title">Title:</label>
               <input class="form-control" type="text" id="title" placeholder="Enter Title">
             </div>
-            <!-- <div class="form-group">
-              <label for="Select"><b>Address Line:</b></label>
-              <div class="input-group">
-                <input type="text" class="form-control" dl-enter-key="getLocation3()"id="newAddressPost" placeholder="Search for Address...">
-                <span class="input-group-btn">
-                  <button class="btn btn-info" type="button" ng-click='getLocation3()'>View on Map <span class="glyphicon glyphicon-search"></span></button>
-                </span>
-              </div>
-            </div> -->
             <div class="form-group">
               <label for="email">Status:</label>
               <select id="status" class="form-control">
@@ -73,17 +64,17 @@
         <h4><span class="glyphicon glyphicon-info-sign"></span> How to specify target location</h4>
         <p>
           <small>
-            To select the target area, move and resize the box to cover markers of your chosen criteria The location will be displayed on the map.
+            To select the target area, click one of the markers of your chosen criteria The marker will be animated on the map.
           </small>
         </p>
         <p>
           <small>
-            Marker can be dragged to any location accordingly.
+            To select a different marker, close the window of the current marker and select another of your choice.
           </small>
         </p>
       </div>
 
-      <h3>Target Area (Region is draggable)</h3>
+      <h3>Select Report Marker</h3>
       <div class="panel panel-default">
         <div class="panel-body">
           <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events'>

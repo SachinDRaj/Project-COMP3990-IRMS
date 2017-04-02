@@ -516,6 +516,8 @@ angular
       $scope.map.markers.forEach(function(el) {
         el.options.animation = null;
       });
+      localStorage.removeItem("latLng");
+
     };
     $scope.map = {
       center: {
