@@ -87,13 +87,14 @@ router.route('/get_reports_graph')
 	.get(function(req, res) {
 		var q = {
 			report_type1: req.query.report_type1,
-			report_type1: req.query.report_type1,
+			report_type2: req.query.report_type2,
 			date: {
-				$lt: req.query.start,//add a variable for start of date
-				$gt: req.query.end//add variable for end of date
+				$gte: req.query.start,//add a variable for start of date
+				$lte: req.query.end//add variable for end of date
 				
 			}
 		};
+		console.log(q);
         Report.find(q, function(err, reports) {
             if (err)
                 res.send(err);
