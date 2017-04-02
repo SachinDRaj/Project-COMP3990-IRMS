@@ -13,6 +13,12 @@ body {
   color: #fff;
   opacity: 0.75;
 }
+.navbar-login{
+  margin-top: -20px;
+  background-color: #E52D2C;
+  color: #fff;
+  opacity: 0.75;
+}
 .ani>li{
   transition: background-color 0.3s linear 0s;
 }

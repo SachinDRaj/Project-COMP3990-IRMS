@@ -1,7 +1,16 @@
-<nav class="navbar navbar-colour navbar-static-top">
-  <div class="col-lg-10 col-lg-offset-1">
-      <div class="navbar-text">
-        <h1>{{header}}</h1>
+<div ng-switch="currentUser.authentication || null">
+    <nav ng-switch-when="null" class="navbar navbar-colour navbar-static-top">
+      <div class="col-lg-10 col-lg-offset-1">
+          <div class="navbar-text">
+            <h1>{{header}}</h1>
+          </div>
       </div>
-  </div>
-</nav>
+    </nav>
+    <nav ng-switch-when="1" class="navbar navbar-login navbar-static-top">
+      <div class="col-lg-10 col-lg-offset-1">
+          <div class="navbar-text">
+            <h1>{{header}}</h1>
+          </div>
+      </div>
+    </nav>
+</div>
