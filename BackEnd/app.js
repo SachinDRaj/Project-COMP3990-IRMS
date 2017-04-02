@@ -74,7 +74,6 @@ router.route('/add_new_report')
 router.route('/get_reports')
 
 	.get(function(req, res) {
-
         Report.find(req.query, function(err, reports) {
             if (err)
                 res.send(err);
@@ -82,20 +81,27 @@ router.route('/get_reports')
             res.json(reports);
         });
     });
-/*	
-router.route('/reports')
+	
+router.route('/get_reports_graph')
 
-	.post(function(req, res) {
-		var query = req.body.query;
-		console.log(query);
-        Report.find(query, function(err, reports) {
+	.get(function(req, res) {
+		var q = {
+			report_type1: req.query.report_type1,
+			report_type1: req.query.report_type1,
+			date: {
+				$lt: req.query.start,//add a variable for start of date
+				$gt: req.query.end//add variable for end of date
+				
+			}
+		};
+        Report.find(q, function(err, reports) {
             if (err)
                 res.send(err);
 
             res.json(reports);
         });
     });
-*/
+	
 router.route('/update_report/:id')
 	
 	.put(function(req, res) {
