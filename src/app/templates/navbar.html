@@ -15,15 +15,13 @@
         <li><a class="faa-parent animated-hover" ui-sref="forum"><span class="glyphicon glyphicon-th-list faa-vertical"></span> Forum</a></li>
         <li><a class="faa-parent animated-hover" ui-sref="graphs"><span class="glyphicon glyphicon-stats faa-flash"></span> Graphs</a></li>
       </ul>
-      <ul ng-switch = "currentUser.authentication || null" class="nav navbar-nav navbar-right ani">
-        <li ng-switch-when ="null"><a class="faa-parent animated-hover" href="#"data-toggle="modal" data-target="#myModal4"><span class="glyphicon glyphicon-log-in faa-horizontal"></span> Login</a></li>
-    		<div ng-switch-when ="1">
-    		  <div style = "color:#FFFFFF" >Welcome {{currentUser.username}}</div>
-      		<li>
-      		  <a class="faa-parent animated-hover" href="#"data-toggle="modal" data-target="#myModal5"><span class="glyphicon glyphicon-log-out faa-horizontal"></span> Logout</a>
-      		</li>
-    		</div>
-	  </ul>
+      <ul ng-switch="currentUser.authentication || null" class="nav navbar-nav navbar-right ani">
+        <li ng-switch-when="null"><a class="faa-parent animated-hover" href="#"data-toggle="modal" data-target="#myModal4"><span class="glyphicon glyphicon-log-in faa-horizontal"></span> Login</a></li>
+        <p ng-switch-when="1" class="navbar-text">Welcome {{currentUser.username}}</p>
+        <li ng-switch-when ="1">
+    		  <a class="faa-parent animated-hover" href="#"data-toggle="modal" data-target="#myModal5"><span class="glyphicon glyphicon-log-out faa-horizontal"></span> Logout</a>
+    		</li>
+	    </ul>
     </div>
   </div>
 </nav>
