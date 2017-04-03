@@ -23,11 +23,11 @@ body {
   transition: background-color 0.3s linear 0s;
 }
 .ani>li:hover{
-  border-radius: 5px;
+  border-radius: 3px;
   background-color: #435870;
 }
 .ani>li:active{
-  border-radius: 5px;
+  border-radius: 3px;
   background-color: #263240;
 }
 .ht{
@@ -66,64 +66,10 @@ body {
 .tcolor{
   color: #707B7C;
 }
-
-
-#body1{
-    /*height: 700px;*/
-}
-
-
-.views.ng-enter,
-.views.ng-leave      { position:absolute; left:30px; right:30px;
-    transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease;
-}
-
-/* enter animation */
-.views.ng-enter            {
-    -webkit-animation:slideInRight 0.5s both ease;
-	-moz-animation:slideInRight 0.5s both ease;
-	animation:slideInRight 0.5s both ease;
-}
-
-/* leave animation */
-.views.ng-leave            {
-    -webkit-animation:slideOutLeft 0.5s both ease;
-	-moz-animation:slideOutLeft 0.5s both ease;
-	animation:slideOutLeft 0.5s both ease;
-}
-
-/* ANIMATIONS
-============================================================================= */
-/* slide out to the left */
-@keyframes slideOutLeft {
-	to 		{ transform: translateX(-100%); }
-}
-@-moz-keyframes slideOutLeft {
-	to 		{ -moz-transform: translateX(-100%); }
-}
-@-webkit-keyframes slideOutLeft {
-	to 		{ -webkit-transform: translateX(-100%); }
-}
-
-/* slide in from the right */
-@keyframes slideInRight {
-	from 	{ transform:translateX(100%); }
-	to 		{ transform: translateX(0); }
-}
-@-moz-keyframes slideInRight {
-	from 	{ -moz-transform:translateX(200%); }
-	to 		{ -moz-transform: translateX(0); }
-}
-@-webkit-keyframes slideInRight {
-	from 	{ -webkit-transform:translateX(200%); }
-	to 		{ -webkit-transform: translateX(0); }
-}
-
 .modal {
   text-align: center;
   padding: 0!important;
 }
-
 .modal:before {
   content: '';
   display: inline-block;
@@ -131,13 +77,11 @@ body {
   vertical-align: middle;
   margin-right: -4px;
 }
-
 .modal-dialog {
   display: inline-block;
   text-align: left;
   vertical-align: middle;
 }
-
 .homep{
   padding-top: 40px;
 }
