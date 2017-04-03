@@ -486,12 +486,12 @@ angular
         },
         events: {
           click: function() {
-            console.log('Marker click');
             reverseGeocode(marker);
             marker.options.opacity = 1;
             marker.options.animation = google.maps.Animation.BOUNCE;
             localStorage.setItem('lat',marker.coords.latitude);
             localStorage.setItem('lng',marker.coords.longitude);
+            console.log('Marker click');
             console.log(localStorage.getItem("lat"),localStorage.getItem("lng"));
           }
         }
