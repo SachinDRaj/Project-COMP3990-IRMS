@@ -93,21 +93,15 @@ router.route('/get_reports')
 			query.report_type1 = req.report_type1;
 		if(req.report_type2)
 			query.report_type2 = req.report_type2;
+		if(req.county)
+			query.county = req.county;
 		return query;
 	}
 	
 router.route('/get_reports_graph')
 	
 	.get(function(req, res) {
-		/*
-		var q = {
-			report_type1: req.query.report_type1,
-			report_type2: req.query.report_type2,
-			date: {
-				$gte: req.query.start,//add a variable for start of date
-				$lte: req.query.end//add variable for end of date
-			}
-		};*/
+		
 		var q = getQ(req.query);
 		
 		console.log(q);
