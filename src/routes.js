@@ -206,6 +206,7 @@ angular
         events: {
           click:  function() {
             marker.options.animation = google.maps.Animation.BOUNCE;
+            reverseGeocode(marker);
             $scope.postMarker = marker;
             console.log('Marker clicked');
             console.log($scope.postMarker);
@@ -215,7 +216,6 @@ angular
           }
         }
       };
-      reverseGeocode(marker);
       return marker;
     }
     function populateMap(data){
