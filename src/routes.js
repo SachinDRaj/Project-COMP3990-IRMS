@@ -207,12 +207,7 @@ angular
           click:  function() {
             marker.options.animation = google.maps.Animation.BOUNCE;
             reverseGeocode(marker);
-            $scope.postMarker = marker;
             console.log('Marker clicked');
-            console.log($scope.postMarker);
-          },
-          post: function() {
-            console.log('Click to make post');
           }
         }
       };
@@ -225,7 +220,6 @@ angular
         $scope.map.markers.push(m);
       }
     }
-    $scope.postMarker = {};
     $scope.map = {
       center: {
         latitude: 10.450429,
@@ -249,8 +243,14 @@ angular
     $scope.windowOptions = {
       visible: false
     };
+    $scope.onClick = function() {
+      $scope.windowOptions.visible = !$scope.windowOptions.visible;
+    };
     $scope.closeClick = function() {
       $scope.windowOptions.visible = false;
+      $scope.map.markers.forEach(function(el) {
+        el.options.animation = null;
+      });
     };
     //Update dropdown text
     $(".dropdown-menu li a").click(function(){
@@ -489,7 +489,6 @@ angular
         events: {
           click: function() {
             reverseGeocode(marker);
-            marker.options.opacity = 1;
             marker.options.animation = google.maps.Animation.BOUNCE;
             localStorage.setItem('lat',marker.coords.latitude);
             localStorage.setItem('lng',marker.coords.longitude);
