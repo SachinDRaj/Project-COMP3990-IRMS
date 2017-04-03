@@ -407,6 +407,7 @@ angular
   })
   .controller('makepostCon', function($scope, $window) {
     console.log('Make post controller');
+    $scope.postMarker = null;
   	if($scope.getCurrentUser() === null){
   		window.alert("You do not have permission to access this page");
   		$window.location.href = '/index.html';
@@ -446,6 +447,7 @@ angular
           $scope.reports = data;
           //Populating Map
           populateMap(data);
+          $scope.postMarker = 0;
           $scope.$apply();
         }
         else{
@@ -491,6 +493,7 @@ angular
             marker.options.animation = google.maps.Animation.BOUNCE;
             localStorage.setItem('lat',marker.coords.latitude);
             localStorage.setItem('lng',marker.coords.longitude);
+            $scope.postMarker = 1;
             console.log('Marker click');
             console.log(localStorage.getItem("lat"),localStorage.getItem("lng"));
           }
@@ -538,7 +541,7 @@ angular
       });
       localStorage.removeItem("lat");
       localStorage.removeItem("lng");
-
+      $scope.postMarker = 0;
     };
     $scope.map = {
       center: {

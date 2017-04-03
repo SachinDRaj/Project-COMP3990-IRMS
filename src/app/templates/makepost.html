@@ -33,6 +33,24 @@
                 <option value="Victoria">Victoria</option>
               </select>
             </div>
+            <div ng-switch="postMarker"class="form-group">
+              <label for="marker">Marker Area:</label>
+              <div ng-switch-when="1"class="form-group has-success has-feedback">
+                <input type="text" class="form-control" placeholder="Marker Seleted" id="inputSuccess2" aria-describedby="inputSuccess2Status" readonly="">
+                <span class="glyphicon glyphicon-ok-sign form-control-feedback" aria-hidden="true"></span>
+                <span id="inputSuccess2Status" class="sr-only">(success)</span>
+              </div>
+              <div ng-switch-when="0"class="form-group has-error has-feedback">
+                <input type="text" class="form-control" placeholder="No Marker Seleted" id="inputSuccess2" aria-describedby="inputSuccess2Status" readonly="">
+                <span class="glyphicon glyphicon-remove-sign form-control-feedback" aria-hidden="true"></span>
+                <span id="inputSuccess2Status" class="sr-only">(success)</span>
+              </div>
+              <div ng-switch-when="null"class="form-group has-warning has-feedback">
+                <input type="text" class="form-control" placeholder="No markers available. Select a criteria" id="inputSuccess2" aria-describedby="inputSuccess2Status" readonly="">
+                <span class="glyphicon glyphicon-warning-sign form-control-feedback" aria-hidden="true"></span>
+                <span id="inputSuccess2Status" class="sr-only">(success)</span>
+              </div>
+            </div>
             <div class="form-group">
               <label for="title">Title:</label>
               <input class="form-control" type="text" id="title" placeholder="Enter Title">
