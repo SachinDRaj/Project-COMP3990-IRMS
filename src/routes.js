@@ -471,7 +471,7 @@ angular
           longitude: el.lng
         },
         type: el.report_type2,
-        county: el.couty,
+        county: el.county,
         status:0,
         window:{
           title :el.title,
@@ -487,6 +487,7 @@ angular
         events: {
           click: function() {
             console.log('Marker click');
+            reverseGeocode(marker);
             marker.options.opacity = 1;
             marker.options.animation = google.maps.Animation.BOUNCE;
             localStorage.setItem('lat',marker.coords.latitude);
@@ -506,6 +507,24 @@ angular
     }
 
     // Map stuff
+    function reverseGeocode(m) {
+      geocoder = new google.maps.Geocoder();
+      var latlng = new google.maps.LatLng(m.coords.latitude, m.coords.longitude);
+      geocoder.geocode({'latLng': latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[0]) {
+            m.window.addr = results[0].formatted_address;
+            console.log(results[0].formatted_address);
+            $scope.$apply();
+          } else {
+            console.log('No results found');
+          }
+        }
+        else if(status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+          console.log('Geocoder failed due to: ' + status + m.window.title);
+        }
+      });
+    }
     $scope.windowOptions = {
       visible: false
     };
