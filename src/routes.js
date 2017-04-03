@@ -489,8 +489,9 @@ angular
             console.log('Marker click');
             marker.options.opacity = 1;
             marker.options.animation = google.maps.Animation.BOUNCE;
-            localStorage.setItem('latLng',JSON.stringify(marker.coords));
-            console.log(localStorage.getItem("latLng"));
+            localStorage.setItem('lat',marker.coords.latitude);
+            localStorage.setItem('lng',marker.coords.longitude);
+            console.log(localStorage.getItem("lat"),localStorage.getItem("lng"));
           }
         }
       };
@@ -516,7 +517,8 @@ angular
       $scope.map.markers.forEach(function(el) {
         el.options.animation = null;
       });
-      localStorage.removeItem("latLng");
+      localStorage.removeItem("lat");
+      localStorage.removeItem("lng");
 
     };
     $scope.map = {

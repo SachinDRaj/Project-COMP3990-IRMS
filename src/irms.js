@@ -282,9 +282,9 @@ function addPost(){
   var county = ct.options[ct.selectedIndex].value;
 	var category = c.options[c.selectedIndex].value;
 	var curr_status = s.options[s.selectedIndex].value;
-  console.log(localStorage.getItem("latLng"));
   console.log(county);
-  var coords = localStorage.getItem("latLng");
+  var lat = localStorage.getItem("lat");
+  var lng = localStorage.getItem("lng");
 	if(category == "Select" || curr_status == "Select")
 		alert("Insufficient information");
 	else{
@@ -301,8 +301,8 @@ function addPost(){
 			likes: 0,
 			dislikes: 0,
 			county:county,
-			lat: coords.latitude,
-			lng: coords.longitude,
+			lat: lat,
+			lng: lng
 
 		};
 
