@@ -91,12 +91,11 @@ angular
     //Reports & markers data initial
     $http.get('http://localhost:8080/api/get_reports').then(
       function(success) {
-        $scope.reports = []; //Reports
-        $scope.reports = success.data;
         var data = success.data;  //Map markers
-        console.log('Data: ',data);
         populateMap(data);
         console.log('Markers: ',$scope.map.markers);
+        $scope.reports = []; //Reports
+        $scope.reports = $scope.map.markers;
       },
       function(data, status, headers, config) {
         // log error
@@ -145,10 +144,10 @@ angular
       }).done(function(data, textStatus, xhr){
         $scope.reports = [];
         if(data){
-          //Load reports
-          $scope.reports = data;
           //Populating Map
           populateMap(data);
+          //Load reports
+          $scope.reports = $scope.map.markers;
           $scope.$apply();
         }
         else{
@@ -240,11 +239,14 @@ angular
         scrollwheel: false
       }
     };
+    $scope.markerShow = function(id) {
+      // $scope.onClick();
+    };
     $scope.windowOptions = {
       visible: false
     };
     $scope.onClick = function() {
-      $scope.windowOptions.visible = !$scope.windowOptions.visible;
+      $scope.windowOptions.visible = true;
     };
     $scope.closeClick = function() {
       $scope.windowOptions.visible = false;
@@ -407,7 +409,10 @@ angular
   })
   .controller('makepostCon', function($scope, $window) {
     console.log('Make post controller');
-    $scope.postMarker = null;
+    $scope.postMarker = {
+      title:null,
+      val:null
+    };
   	if($scope.getCurrentUser() === null){
   		window.alert("You do not have permission to access this page");
   		$window.location.href = '/index.html';
@@ -447,7 +452,10 @@ angular
           $scope.reports = data;
           //Populating Map
           populateMap(data);
-          $scope.postMarker = 0;
+          $scope.postMarker ={
+            title:"",
+            val:0
+          };
           $scope.$apply();
         }
         else{
@@ -492,7 +500,8 @@ angular
             marker.options.animation = google.maps.Animation.BOUNCE;
             localStorage.setItem('lat',marker.coords.latitude);
             localStorage.setItem('lng',marker.coords.longitude);
-            $scope.postMarker = 1;
+            $scope.postMarker.val = 1;
+            $scope.postMarker.title = marker.window.title;
             console.log('Marker click');
             console.log(localStorage.getItem("lat"),localStorage.getItem("lng"));
           }
@@ -540,7 +549,8 @@ angular
       });
       localStorage.removeItem("lat");
       localStorage.removeItem("lng");
-      $scope.postMarker = 0;
+      $scope.postMarker.title = "";
+      $scope.postMarker.val = 0;
     };
     $scope.map = {
       center: {
