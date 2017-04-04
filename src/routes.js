@@ -618,7 +618,16 @@ angular
       return q;
     }
 
+    $scope.dates = [];
+    $scope.dates[0]= "2016-11-16";
+    $scope.dates[1]= "2016-12-16";
+    $scope.dates[2]= "2017-01-16";
+    $scope.dates[3]= "2017-02-16";
+    $scope.dates[4]= "2017-03-16";
+    $scope.dates[5]= "2017-04-16";
+    $scope.bdate = "2016-03-16";
     function getTimePeriodQ(period){
+      $scope.dates = [];
       var q = [];
       var d = new Date();
       var day = d.getDate();
@@ -645,8 +654,12 @@ angular
         else cday=day.toString();
         cyear=eyear;
         month -= 1;
+        $scope.dates[5]=cyear+dash+cmonth+dash+cday;
+        var j = 4;
         for (var i = 0; i < 6; i++) {
           q[i] = x1+eyear+dash+emonth+dash+eday+x2+cyear+dash+cmonth+dash+cday+x3;
+          if (j>0) $scope.dates[j--]=eyear+dash+emonth+dash+eday;
+          $scope.bdate=eyear+dash+emonth+dash+eday;
           // console.log(q[i]);
           cyear = eyear;
           cmonth = emonth;
@@ -676,8 +689,12 @@ angular
         else cday=day.toString();
         cyear=eyear;
         month -= 1;
+        $scope.dates[11]=cyear+dash+cmonth+dash+cday;
+        var j = 10;
         for (var i = 0; i < 12; i++) {
           q[i] = x1+eyear+dash+emonth+dash+eday+x2+cyear+dash+cmonth+dash+cday+x3;
+          if (j>0) $scope.dates[j--]=eyear+dash+emonth+dash+eday;
+          $scope.bdate=eyear+dash+emonth+dash+eday;
           // console.log(q[i]);
           cyear = eyear;
           cmonth = emonth;
@@ -713,8 +730,12 @@ angular
         else cday=day.toString();
         cyear = year.toString();
         month -= 6;
+        $scope.dates[9]=cyear+dash+cmonth+dash+cday;
+        var j = 8;
         for (var i = 0; i < 10; i++) {
           q[i] = x1+eyear+dash+emonth+dash+eday+x2+cyear+dash+cmonth+dash+cday+x3;
+          if (j>0) $scope.dates[j--]=eyear+dash+emonth+dash+eday;
+          $scope.bdate=eyear+dash+emonth+dash+eday;
           // console.log(q[i]);
           cyear = eyear;
           cmonth = emonth;
@@ -737,10 +758,135 @@ angular
       }
       return q;
     }
+
+
+
+    $scope.vlSpec1 = {
+      "width": 500,
+      "height": 350,
+      "data": {
+        "values": [
+          {"a": $scope.bdate,"b": 0},
+          {"a": $scope.dates[0],"b": 28}, {"a": $scope.dates[1],"b": 55}, {"a": $scope.dates[2],"b": 43},
+          {"a": $scope.dates[3],"b": 91}, {"a": $scope.dates[4],"b": 81}, {"a": $scope.dates[5],"b": 53}
+        ]
+      },
+      "mark": "area",
+      "encoding": {
+        "x": {"field": "a", "type": "temporal","axis": {"title": "Time Period(months)"}},
+        "y": {"field": "b", "type": "quantitative","axis": {"title": "No. of Reports"}}
+      }
+    };
+
+
+
     $scope.nGraph = [];
 
+    function popGraph(num){
+      $scope.nGraph.push(num);
+    }
+
+    function populateGraph(nGraph){
+      $scope.vlSpec1 = {
+        "width": 500,
+        "height": 350,
+        "data": {
+          "values": [
+            {"a": $scope.bdate,"b": 0},
+            {"a": $scope.dates[0],"b": 28}, {"a": $scope.dates[1],"b": 55}, {"a": $scope.dates[2],"b": 43},
+            {"a": $scope.dates[3],"b": 91}, {"a": $scope.dates[4],"b": 81}, {"a": $scope.dates[5],"b": 53}
+          ]
+        },
+        "mark": "area",
+        "encoding": {
+          "x": {"field": "a", "type": "temporal","axis": {"title": "Time Period(months)"}},
+          "y": {"field": "b", "type": "quantitative","axis": {"title": "No. of Reports"}}
+        }
+      };
+      $scope.vlSpec2 = {
+        "width": 500,
+        "height": 350,
+        "data": {
+          "values": [
+            {"a": $scope.bdate,"b": 0},
+            {"a": $scope.dates[0],"b": 28}, {"a": $scope.dates[1],"b": 55}, {"a": $scope.dates[2],"b": 43},
+            {"a": $scope.dates[3],"b": 91}, {"a": $scope.dates[4],"b": 81}, {"a": $scope.dates[5],"b": 53},
+            {"a": $scope.dates[6],"b": 34}, {"a": $scope.dates[7],"b": 33}, {"a": $scope.dates[8],"b": 43},
+            {"a": $scope.dates[9],"b": 56}, {"a": $scope.dates[10],"b": 21}, {"a": $scope.dates[11],"b": 4}
+          ]
+        },
+        "mark": "area",
+        "encoding": {
+          "x": {"field": "a", "type": "temporal","axis": {"title": "Time Period(months)"}},
+          "y": {"field": "b", "type": "quantitative","axis": {"title": "No. of Reports"}}
+        }
+      };
+      $scope.vlSpec3 = {
+        "width": 500,
+        "height": 350,
+        "data": {
+          "values": [
+            {"a": $scope.bdate,"b": 0},
+            {"a": $scope.dates[0],"b": 28}, {"a": $scope.dates[1],"b": 55}, {"a": $scope.dates[2],"b": 43},
+            {"a": $scope.dates[3],"b": 91}, {"a": $scope.dates[4],"b": 81}, {"a": $scope.dates[5],"b": 53},
+            {"a": $scope.dates[6],"b": 34}, {"a": $scope.dates[7],"b": 33}, {"a": $scope.dates[8],"b": 43},
+            {"a": $scope.dates[9],"b": 56}
+          ]
+        },
+        "mark": "area",
+        "encoding": {
+          "x": {"field": "a", "type": "temporal","axis": {"title": "Time Period(months)"}},
+          "y": {"field": "b", "type": "quantitative","axis": {"title": "No. of Reports"}}
+        }
+      };
+
+      // console.log(nGraph);
+      if (nGraph.length==6){
+        console.log($scope.vlSpec1.data.values[2].a);
+        var j = 5;
+        for (var i = 1; i < 7; i++) {
+          $scope.vlSpec1.data.values[i].b = nGraph[j--];
+        }
+
+        var embedSpec = {
+          mode: "vega-lite",
+          spec: $scope.vlSpec1
+        };
+        vg.embed("#vis", embedSpec, function(error, result) {
+          $("#vis > div.vega-actions").hide();
+        });
+
+      }else if (nGraph.length==12) {
+        // console.log($scope.vlSpec2.data.values[2].a);
+        var j = 11;
+        for (var i = 1; i < 13; i++) {
+          $scope.vlSpec2.data.values[i].b = nGraph[j--];
+        }
+        // console.log($scope.vlSpec2.data.values);
+        var embedSpec = {
+          mode: "vega-lite",
+          spec: $scope.vlSpec2
+        };
+        vg.embed("#vis", embedSpec, function(error, result) {
+          $("#vis > div.vega-actions").hide();
+        });
+      }else if (nGraph.length==10) {
+        var j = 9;
+        for (var i = 1; i < 11; i++) {
+          $scope.vlSpec3.data.values[i].b = nGraph[j--];
+        }
+        console.log($scope.vlSpec3.data.values);
+        var embedSpec = {
+          mode: "vega-lite",
+          spec: $scope.vlSpec3
+        };
+        vg.embed("#vis", embedSpec, function(error, result) {
+          $("#vis > div.vega-actions").hide();
+        });
+      }
+    }
     function getGReportsQ(url){ //Updates Column & Map
-      console.log("getGReportsQ working");
+      // console.log("getGReportsQ working");
 
     	$.ajax({
         url:url,
@@ -749,9 +895,6 @@ angular
         if(data){
           //Load reports-------------------------------------------------------------------------------------------
           popGraph(data.length);
-
-          // console.log(num);
-
           //-------------------------------------------------------------------------------------------------------
         }
         else{
@@ -772,7 +915,7 @@ angular
 
     $scope.getGReportsQ2 = function(){
 
-      console.log("getGReportsQ2 working");
+      // console.log("getGReportsQ2 working");
       var period;
       if (document.getElementById("inlineRadio1").checked) {
         period = document.getElementById("inlineRadio1").value;
@@ -792,49 +935,21 @@ angular
         url += tquery[i];
         url += query;
 
-
         getGReportsQ(url);
-        console.log($scope.nGraph);
-
-
+        // console.log($scope.nGraph);
       }
-      $scope.nGraph = [];
-
-      // $scope.getGReportsQ(url);
+      populateGraph($scope.nGraph);
+      $scope.nGraph = [];//clear graph Array
     }
 
-    function popGraph(num){
-      // console.log(num);
-      $scope.nGraph.push(num);
-      // console.log($scope.nGraph);
-    }
-
-
-
-    var vlSpec = {
-      "width": 500,
-      "height": 350,
-      "data": {
-        "values": [
-          {"a": 0,"b": 0},
-          {"a": 1,"b": 28}, {"a": 2,"b": 55}, {"a": 3,"b": 43},
-          {"a": 4,"b": 91}, {"a": 5,"b": 81}, {"a": 6,"b": 53}
-        ]
-      },
-      "mark": "area",
-      "encoding": {
-        "x": {"field": "a", "type": "quantitative","axis": {"title": "Time Period(months)"}},
-        "y": {"field": "b", "type": "quantitative","axis": {"title": "No. of Reports"}}
-      }
-      };
-
-      var embedSpec = {
-        mode: "vega-lite",
-        spec: vlSpec
-      };
-      vg.embed("#vis", embedSpec, function(error, result) {
-        $("#vis > div.vega-actions").hide();
-      });
+    var vlSpec = $scope.vlSpec1;
+    var embedSpec = {
+      mode: "vega-lite",
+      spec: vlSpec
+    };
+    vg.embed("#vis", embedSpec, function(error, result) {
+      $("#vis > div.vega-actions").hide();
+    });
   });
 
 /** @ngInject */
