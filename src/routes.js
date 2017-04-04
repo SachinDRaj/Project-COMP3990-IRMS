@@ -587,7 +587,7 @@ angular
       var select = c.options[c.selectedIndex].value;
       $("#gCat3").html("");
       $("#gCat3").append(select);
-      $scope.getGReportsQ();
+      $scope.getGReportsQ2();
     };
     function properF1(cat1){
       if (cat1=="All Categories") {
@@ -609,32 +609,137 @@ angular
       if (select=="All" && cat1=="All") {
         q="";
       }else if (select=="All"){
-        q="?report_type2="+cat1;
+        q="&report_type2="+cat1;
       }else if (cat1=="All") {
-        q="?county="+select;
+        q="&county="+select;
       }else {
-        q="?report_type2="+cat1+"&county="+select;
+        q="&report_type2="+cat1+"&county="+select;
       }
       return q;
     }
 
-    function calculateTimePeriod(cmonth, cyear){
-      var arr=[6];
-      var arry=[6];
-      cmonth++;
-      for (var i = 0; i < 6; i++) {
-        if (cmonth<1) {
-          cmonth=12;
-          cyear--;
+    function getTimePeriodQ(period){
+      var q = [];
+      var d = new Date();
+      var day = d.getDate();
+      day+=2; // temporary
+      var month = d.getMonth();
+      month+=1;
+      var year = d.getYear();
+      year = year - 100;
+      year = year + 2000;
+      var x1 = "?start=";
+      var dash = "-";
+      var x2 = "T23:00:06.000Z&end=";
+      var x3 = "T23:15:06.000Z";
+      var eyear,emonth,eday,cyear,cmonth,cday;
+
+      if (period=="6months") {
+        console.log("6months");
+        emonth = month-1;
+        emonth = "0"+emonth.toString();
+        eday = "01";
+        eyear = year.toString();
+        cmonth="0"+month.toString();
+        if (day<10) cday="0"+day.toString();
+        else cday=day.toString();
+        cyear=eyear;
+        month -= 1;
+        for (var i = 0; i < 6; i++) {
+          q[i] = x1+eyear+dash+emonth+dash+eday+x2+cyear+dash+cmonth+dash+cday+x3;
+          // console.log(q[i]);
+          cyear = eyear;
+          cmonth = emonth;
+          cday = eday;
+
+          month -= 1;
+          if (month<1){
+            month = 12;
+            emonth =month.toString();
+            year --;
+            eyear = year.toString();
+          }
+          if (month<10){
+            emonth = "0"+ month.toString();
+          }else{
+            emonth = month.toString();
+          }
         }
-        arr[i]=cmonth--;
-        arry[i]=cyear;
+      }else if (period=="1year") {
+        console.log("1year");
+        emonth = month-1;
+        emonth = "0"+emonth.toString();
+        eday = "01";
+        eyear = year.toString();
+        cmonth="0"+month.toString();
+        if (day<10) cday="0"+day.toString();
+        else cday=day.toString();
+        cyear=eyear;
+        month -= 1;
+        for (var i = 0; i < 12; i++) {
+          q[i] = x1+eyear+dash+emonth+dash+eday+x2+cyear+dash+cmonth+dash+cday+x3;
+          // console.log(q[i]);
+          cyear = eyear;
+          cmonth = emonth;
+          cday = eday;
+
+          month -= 1;
+          if (month<1){
+            month = 12;
+            emonth =month.toString();
+            year --;
+            eyear = year.toString();
+          }
+          if (month<10){
+            emonth = "0"+ month.toString();
+          }else{
+            emonth = month.toString();
+          }
+        }
+      }else {
+        console.log("5years");
+        emonth = month-6;
+        if (emonth<1){
+          emonth = emonth * -1;
+          emonth = 12 - emonth;
+          var tyear = year-1;
+        }
+        if (emonth<10) emonth = "0"+emonth.toString();
+        else emonth = emonth.toString();
+        eday = "01";
+        eyear = tyear.toString();
+        cmonth="0"+month.toString();
+        if (day<10) cday="0"+day.toString();
+        else cday=day.toString();
+        cyear = year.toString();
+        month -= 6;
+        for (var i = 0; i < 10; i++) {
+          q[i] = x1+eyear+dash+emonth+dash+eday+x2+cyear+dash+cmonth+dash+cday+x3;
+          // console.log(q[i]);
+          cyear = eyear;
+          cmonth = emonth;
+          cday = eday;
+
+          month -= 6;
+          if (month<1){
+            month = month*-1;
+            month = 12 - month;
+            emonth =month.toString();
+            year --;
+            eyear = year.toString();
+          }
+          if (month<10){
+            emonth = "0"+ month.toString();
+          }else{
+            emonth = month.toString();
+          }
+        }
       }
-      return [arr,arry];
+      return q;
     }
 
-    $scope.getGReportsQ = function(){ //Updates Column & Map
-      console.log("working");
+    $scope.getGReportsQ2 = function(){
+      console.log("getGReportsQ2 working");
       var period;
       if (document.getElementById("inlineRadio1").checked) {
         period = document.getElementById("inlineRadio1").value;
@@ -646,54 +751,33 @@ angular
         period = document.getElementById("inlineRadio3").value;
       }
       var cat1 = document.getElementById("gCat3").innerHTML;
-      var query=getQuery1(cat1);
-    	var url = "http://localhost:8080/api/get_reports";
-      url += query;
+      var query = getQuery1(cat1);
+      var tquery = getTimePeriodQ(period);
+      for (var i = 0; i < tquery.length; i++) {
+        url = "";
+        url += "http://localhost:8080/api/get_reports_graph";
+        url += tquery[i];
+        url += query;
+
+        getGReportsQ(url);
+      }
+
+      // $scope.getGReportsQ(url);
+    }
+
+
+    function getGReportsQ(url){ //Updates Column & Map
+      console.log("getGReportsQ working");
+
     	$.ajax({
         url:url,
         type:"GET"
       }).done(function(data, textStatus, xhr){
         if(data){
           //Load reports-------------------------------------------------------------------------------------------
-          // for (var i = 0; i < data.length; i++) {
-          //   var day = data[i].date.substr(9,2);
-          //   var month = data[i].date.substr(6,2);
-          //   var year = data[i].date.substr(2,3);
-          //   console.log(day+month+year);
-          //
-          //   var cdate= new Date();
-          //   var cmonth= cdate.getMonth();
-          //   var cyear= cdate.getYear();
-          //
-          //
-          //   var gCount=[6];
-          //   for (var i = 0; i < 6; i++) {
-          //     gCount[i]=0;
-          //   }
-          //
-          //   if (period=="6months"){
-          //     var tperiod=calculateTimePeriod(cmonth,cyear);
-          //     console.log(tperiod);
-          //
-          //   for (var i = 0; i < 6; i++) {
-          //
-          //       if (tperiod[0][i]<10){
-          //         var m = tperiod[0][i].toString();
-          //         m = '0'+ m;
-          //       }else {
-          //         var m = tperiod[0][i].toString();
-          //       }
-          //       tperiod[1][i]=tperiod[1][i]-100;
-          //       var n = tperiod[1][i].toString();
-          //
-          //       if (m==month && n == year) {
-          //         gCount[i]++;
-          //       }
-          //
-          //     }
-          //   }
-          // }
-          // console.log(gCount);
+
+          var num = data.length;
+          // console.log(num);
 
           //-------------------------------------------------------------------------------------------------------
         }
@@ -715,7 +799,7 @@ angular
 
     var vlSpec = {
       "width": 500,
-      "height": 400,
+      "height": 350,
       "data": {
         "values": [
           {"a": 0,"b": 0},

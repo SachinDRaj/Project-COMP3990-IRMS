@@ -22,20 +22,20 @@
                 <option ng-repeat="c in categories" value="{{c.value}}">{{c.text}}</option>
               </select>
             <h5>Select County:</h5>
-            <select id="region3" multiple class="form-control" ng-click="getGReportsQ()">
+            <select id="region3" multiple class="form-control" ng-click="getGReportsQ2()">
               <option value="All" selected="selected">All</option>
               <option ng-repeat="c in counties" value="{{c.value}}">{{c.text}}</option>
             </select>
             <h5>Select Time Period:</h5>
             <div class="col-sm-offset-1">
               <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="6months" checked ng-click="getGReportsQ()"> 6 months
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="6months" checked ng-click="getGReportsQ2()"> 6 months
               </label>
               <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1year" ng-click="getGReportsQ()"> 1 year
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1year" ng-click="getGReportsQ2()"> 1 year
               </label>
               <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="5years" ng-click="getGReportsQ()"> 5 years
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="5years" ng-click="getGReportsQ2()"> 5 years
               </label>
             </div>
           </div>
