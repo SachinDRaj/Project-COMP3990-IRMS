@@ -737,8 +737,41 @@ angular
       }
       return q;
     }
+    $scope.nGraph = [];
+
+    function getGReportsQ(url){ //Updates Column & Map
+      console.log("getGReportsQ working");
+
+    	$.ajax({
+        url:url,
+        type:"GET"
+      }).done(function(data, textStatus, xhr){
+        if(data){
+          //Load reports-------------------------------------------------------------------------------------------
+          popGraph(data.length);
+
+          // console.log(num);
+
+          //-------------------------------------------------------------------------------------------------------
+        }
+        else{
+            //if(callback) callback(null);
+        }
+      }).fail(function(xhr){
+        var status = xhr.status;
+        var message = null;
+        if(xhr.responseText){
+            var obj = JSON.parse(xhr.responseText);
+            message = obj.message;
+        }
+
+        if(callback) callback(null);
+        console.log(xhr);
+      });
+    };
 
     $scope.getGReportsQ2 = function(){
+
       console.log("getGReportsQ2 working");
       var period;
       if (document.getElementById("inlineRadio1").checked) {
@@ -759,43 +792,24 @@ angular
         url += tquery[i];
         url += query;
 
+
         getGReportsQ(url);
+        console.log($scope.nGraph);
+
+
       }
+      $scope.nGraph = [];
 
       // $scope.getGReportsQ(url);
     }
 
+    function popGraph(num){
+      // console.log(num);
+      $scope.nGraph.push(num);
+      // console.log($scope.nGraph);
+    }
 
-    function getGReportsQ(url){ //Updates Column & Map
-      console.log("getGReportsQ working");
 
-    	$.ajax({
-        url:url,
-        type:"GET"
-      }).done(function(data, textStatus, xhr){
-        if(data){
-          //Load reports-------------------------------------------------------------------------------------------
-
-          var num = data.length;
-          // console.log(num);
-
-          //-------------------------------------------------------------------------------------------------------
-        }
-        else{
-            //if(callback) callback(null);
-        }
-      }).fail(function(xhr){
-        var status = xhr.status;
-        var message = null;
-        if(xhr.responseText){
-            var obj = JSON.parse(xhr.responseText);
-            message = obj.message;
-        }
-
-        if(callback) callback(null);
-        console.log(xhr);
-      });
-    };
 
     var vlSpec = {
       "width": 500,
