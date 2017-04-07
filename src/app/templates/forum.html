@@ -56,14 +56,16 @@
               </tr>
             </thead>
             <tbody id="posttable">
-              <div ng-repeat="p in posts" ng-switch on="p.current_status">
-                  <tr id="status"class="alert alert-warning" >
-                    <td class="hoverTitle" data-toggle="modal" data-target="#myModal">{{p.title}}</td>
-                    <td class="wtable" id="status1">{{p.current_status}}<span id="status2" class="glyphicon glyphicon-cog pull-right"></span></td>
-                    <td class="wtable">{{p.date}}</td>
-                  </tr>
-              </div>
-
+              <tr id="status" ng-repeat="p in posts" ng-switch="p.current_status">
+                <!-- ongoing -->
+                <td ng-switch-when="ongoing" class="alert alert-warning hoverTitle" data-toggle="modal" data-target="#myModal">{{p.title}}</td>
+                <td ng-switch-when="ongoing" class=" alert alert-warning wtable" id="status1">{{p.current_status}}<span id="status2" class="glyphicon glyphicon-cog pull-right"></span></td>
+                <td ng-switch-when="ongoing" class=" alert alert-warning wtable">{{p.date}}</td>
+                <!-- fixed -->
+                <td ng-switch-when="fixed" class="alert alert-success hoverTitle" data-toggle="modal" data-target="#myModal">{{p.title}}</td>
+                <td ng-switch-when=fixed class=" alert alert-success wtable" id="status1">{{p.current_status}}<span id="status2" class="glyphicon glyphicon-ok pull-right"></span></td>
+                <td ng-switch-when="fixed" class=" alert alert-success wtable">{{p.date}}</td>
+              </tr>
             </tbody>
           </table>
       </div>
