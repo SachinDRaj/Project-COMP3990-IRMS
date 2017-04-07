@@ -397,10 +397,20 @@ angular
       }
     };
   })
-  .controller('forumCon', function($scope) {
+  .controller('forumCon', function($scope,$http) {
     console.log('Forum controller');
     $scope.header = 'Forum';
-	  getPost();
+    //Get posts
+    $http.get('http://localhost:8080/api/get_posts').then(
+      function(success) {
+        $scope.posts = success.data;  //Forum posts
+        console.log($scope.posts);
+      },
+      function(data, status, headers, config) {
+        // log error
+      }
+    );
+
     //Update dropdown textStatus
     $(".dropdown-menu li a").click(function(){
       $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');

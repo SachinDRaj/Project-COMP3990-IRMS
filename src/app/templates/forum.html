@@ -56,11 +56,14 @@
               </tr>
             </thead>
             <tbody id="posttable">
-              <tr id="status" class="alert alert-warning">
-                <td class="hoverTitle" data-toggle="modal" data-target="#myModal">Default Post</td>
-                <td class="wtable" id="status1">Ongoing<span id="status2" class="glyphicon glyphicon-cog pull-right"></span></td>
-                <td class="wtable">03/01/2017</td>
-              </tr>
+              <div ng-repeat="p in posts" ng-switch on="p.current_status">
+                  <tr id="status"class="alert alert-warning" >
+                    <td class="hoverTitle" data-toggle="modal" data-target="#myModal">{{p.title}}</td>
+                    <td class="wtable" id="status1">{{p.current_status}}<span id="status2" class="glyphicon glyphicon-cog pull-right"></span></td>
+                    <td class="wtable">{{p.date}}</td>
+                  </tr>
+              </div>
+
             </tbody>
           </table>
       </div>
