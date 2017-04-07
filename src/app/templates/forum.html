@@ -44,7 +44,7 @@
               <option value="Victoria">Victoria</option>
             </select>
           </div>
-          <h3 class="panel-title mheader">Infrastructure Reports Forum : <b id="Cat">All Categories</b></h3>
+          <h3 class="panel-title mheader">Infrastructure Reports Forum : <i id="Cat">All Categories</i></h3>
         </div>
           <table class="table table-bordered table-condensed">
             <thead>
@@ -56,15 +56,15 @@
               </tr>
             </thead>
             <tbody id="posttable">
-              <tr id="status" ng-repeat="p in posts" ng-switch="p.current_status">
+              <tr id="status" ng-repeat="p in posts | orderBy:'-date'" ng-switch="p.current_status">
                 <!-- ongoing -->
                 <td ng-switch-when="ongoing" class="alert alert-warning hoverTitle" data-toggle="modal" data-target="#myModal">{{p.title}}</td>
                 <td ng-switch-when="ongoing" class=" alert alert-warning wtable" id="status1">{{p.current_status}}<span id="status2" class="glyphicon glyphicon-cog pull-right"></span></td>
-                <td ng-switch-when="ongoing" class=" alert alert-warning wtable">{{p.date}}</td>
+                <td ng-switch-when="ongoing" class=" alert alert-warning wtable">{{p.date|date:'medium'}}</td>
                 <!-- fixed -->
                 <td ng-switch-when="fixed" class="alert alert-success hoverTitle" data-toggle="modal" data-target="#myModal">{{p.title}}</td>
                 <td ng-switch-when=fixed class=" alert alert-success wtable" id="status1">{{p.current_status}}<span id="status2" class="glyphicon glyphicon-ok pull-right"></span></td>
-                <td ng-switch-when="fixed" class=" alert alert-success wtable">{{p.date}}</td>
+                <td ng-switch-when="fixed" class=" alert alert-success wtable">{{p.date|date:'medium'}}</td>
               </tr>
             </tbody>
           </table>
