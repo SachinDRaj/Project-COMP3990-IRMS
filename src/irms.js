@@ -82,16 +82,21 @@ function readURL(input) {
         }
     }
 	
-function validateForm3() {
-		var photo = document.getElementById("image");
-		var imgData = getBase64Image(photo);
-		console.log(imgData);
-
-		if (typeof(Storage) !== "undefined") {
-			localStorage.setItem("imgData", imgData);
+function uploadImage() {
+		if(document.getElementById("imgsrc").value != ""){
+			var photo = document.getElementById("image");
+			console.log(photo.src);
+			var imgData = getBase64Image(photo);
+			localStorage.removeItem("imgData");
+			if (typeof(Storage) !== "undefined") {
+				localStorage.setItem("imgData", imgData);
+			}
+			else {
+				alert("Sorry, your browser does not support Web Storage...");
+			}
 		}
-		else {
-		    alert("Sorry, your browser does not support Web Storage...");
+		else{
+			window.alert("Please select an image file");
 		}
 }
 
