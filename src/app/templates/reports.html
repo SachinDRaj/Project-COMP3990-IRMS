@@ -72,7 +72,7 @@
 
         <table class="table table-striped table-condensed table-bordered">
           <tbody id="reportTable">
-            <tr ng-repeat="r in reports |orderBy:'-date'">
+            <tr ng-repeat="r in reports |orderBy:'-date'" ng-switch="currentUser.authentication || null">
               <td class="hidden">{{r.id}}</td>
               <td class="hoverTitle" ng-click="markerShow(r.id)">{{r.window.title}}</td>
               <td class="rtable">
@@ -84,6 +84,9 @@
                   <span class="glyphicon glyphicon-thumbs-down"></span>
                 </a>
                 <span class="badge">1</span>
+              </td>
+              <td ng-switch-when="1">
+                <button class="btn btn-xs btn-success"type="button" ng-click="makePost" ui-sref="makepost">Post</button>
               </td>
             </tr>
           </tbody>
