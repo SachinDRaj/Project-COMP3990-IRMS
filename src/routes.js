@@ -371,6 +371,12 @@ angular
     document.getElementById("tt").innerHTML = localStorage.getItem("title");
     document.getElementById("de").innerHTML = localStorage.getItem("desc");
     document.getElementById("regSumHeader").innerHTML += localStorage.getItem("region");
+	var dataImage = localStorage.getItem('imgData');
+	if(dataImage != ""){
+		var photo = document.getElementById("photo");
+		photo.src = "data:image/*;base64, " + dataImage;
+	}
+
     //Map
     $scope.markerOptions = {
       icon: "/app/images/marker.png"

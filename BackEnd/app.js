@@ -82,18 +82,18 @@ router.route('/get_reports')
         });
     });
 
-	function getQ(req){
+	function getQ(req){//Date must always be submitted in range
 		var query = {
 			date: {
-				$gte: req.start,
-				$lte: req.end
+				$gte: req.start,//start date. $gte == greater than in mongo
+				$lte: req.end//end date. $lte == less than in mongo
 			}
 		};
-		if(req.report_type1)
+		if(req.report_type1)//if there is a report type 1 in query url
 			query.report_type1 = req.report_type1;
-		if(req.report_type2)
+		if(req.report_type2)//if there is a report type 2 in query url
 			query.report_type2 = req.report_type2;
-		if(req.county)
+		if(req.county)//if county in url
 			query.county = req.county;
 		return query;
 	}
@@ -102,7 +102,7 @@ router.route('/get_reports_graph')
 	
 	.get(function(req, res) {
 		
-		var q = getQ(req.query);
+		var q = getQ(req.query);//builds query
 		
 		console.log(q);
         Report.find(q, function(err, reports) {

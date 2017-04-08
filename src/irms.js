@@ -3,6 +3,7 @@ function clearLS(){
   var select = localStorage.getItem("select");
   var title = localStorage.getItem("title");
   var desc = localStorage.getItem("desc");
+  var photo = localStorage.getItem("imgData");
   if (title !== ""){
     localStorage.removeItem("title");
   }
@@ -12,6 +13,20 @@ function clearLS(){
   if (select !== ""){
     localStorage.removeItem("select");
   }
+  if (photo !== ""){
+    localStorage.removeItem("imgData");
+  }
+}
+
+function getBase64Image(imgElem) {//Converting image to base64
+// imgElem must be on the same server otherwise a cross-origin error will be thrown "SECURITY_ERR: DOM Exception 18"
+    var canvas = document.createElement("canvas");
+    canvas.width = imgElem.clientWidth;
+    canvas.height = imgElem.clientHeight;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(imgElem, 0, 0);
+    var dataURL = canvas.toDataURL("image/png");
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 
 function validateForm1() {
@@ -52,6 +67,34 @@ function validateForm2() {
 		}
 }
 
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+	
+function validateForm3() {
+		var photo = document.getElementById("image");
+		var imgData = getBase64Image(photo);
+		console.log(imgData);
+
+		if (typeof(Storage) !== "undefined") {
+			localStorage.setItem("imgData", imgData);
+		}
+		else {
+		    alert("Sorry, your browser does not support Web Storage...");
+		}
+}
+
 function getCategory(category){
 	if(category == "flooding" || category == "Flooding")
 		return "disaster";
@@ -76,16 +119,7 @@ function getCategoryMain(category){//returns category format that is stored in d
 
 }
 
-function getBase64Image(imgElem) {//Converting image to base64
-// imgElem must be on the same server otherwise a cross-origin error will be thrown "SECURITY_ERR: DOM Exception 18"
-    var canvas = document.createElement("canvas");
-    canvas.width = imgElem.clientWidth;
-    canvas.height = imgElem.clientHeight;
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(imgElem, 0, 0);
-    var dataURL = canvas.toDataURL("image/png");
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-}
+
 
 function addReport(){
 
