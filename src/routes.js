@@ -514,17 +514,12 @@ angular
   .controller('makepostCon', function($scope, $window, $rootScope) {
     console.log('Make post controller');
     $scope.header = 'Make a Post';
-    if($rootScope.postData){
-      console.log('We have data:',$rootScope.postData);
-      $('#category option[value="' + $rootScope.report_type2 + '"]').prop('selected', true);
-    }
-    else{
-      console.log('no post data',$rootScope.postData);
-    }
     $scope.postMarker = {
       title:null,
       val:null
     };
+
+
   	if($scope.getCurrentUser() === null){
   		window.alert("You do not have permission to access this page");
   		$window.location.href = '/index.html';
@@ -671,6 +666,17 @@ angular
       markers: [],
       zoom: 10
     };
+    if($rootScope.postData){
+      console.log('We have data:',$rootScope.postData);
+      var cat = $rootScope.postData.report_type2;
+      var c = $rootScope.postData.county;
+      $('#category option').val(cat).prop('selected',true);
+      $('#county option').val(c).prop('selected',true);
+      $scope.getReportsQ();
+    }
+    else{
+      console.log('no post data',$rootScope.postData);
+    }
   })
   .controller('graphsCon', function($scope) {
     console.log('Graphs controller');
