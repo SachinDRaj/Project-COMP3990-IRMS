@@ -562,16 +562,18 @@ angular
             title:"",
             val:0
           };
-          var i=0;
-          var key = $rootScope.postData._id;
-          console.log($scope.map.markers);
-          while(i < $scope.map.markers.length && key != $scope.map.markers[i].id){
-            console.log(i);
-            i++;
-          }
-          if(i <= $scope.map.markers.length){
-            console.log('found',$scope.map.markers[i],i);
-            $scope.map.markers[i].events.click();
+          if ($rootScope.postData) {
+            var i=0;
+            var key = $rootScope.postData._id;
+            console.log($scope.map.markers);
+            while(i < $scope.map.markers.length && key != $scope.map.markers[i].id){
+              console.log(i);
+              i++;
+            }
+            if(i <= $scope.map.markers.length){
+              console.log('found',$scope.map.markers[i],i);
+              $scope.map.markers[i].events.click();
+            }
           }
           $scope.$apply();
         }
@@ -677,6 +679,7 @@ angular
       markers: [],
       zoom: 10
     };
+    //postdata
     if($rootScope.postData){
       console.log('We have data:',$rootScope.postData);
       var cat = $rootScope.postData.report_type2;
