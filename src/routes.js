@@ -463,7 +463,16 @@ angular
         }
       );
     };
+    //Set order
+    $scope.order = 'date';
+    $scope.orderBy = function(){
+      var order = document.getElementById("order");
+      var o = order.options[order.selectedIndex].value;
+      $scope.order = o;
+      console.log('fired order');
+    };
     $scope.getPosts();
+    $scope.orderBy();
 
     //Update dropdown textStatus
     $(".dropdown-menu li a").click(function(){

@@ -26,7 +26,7 @@
               </tr>
             </thead>
             <tbody id="posttable">
-              <tr id="status" ng-repeat="p in posts | orderBy:'-date'" ng-switch="p.current_status">
+              <tr id="status" ng-repeat="p in posts | orderBy:order" ng-switch="p.current_status">
                 <!-- ongoing -->
                 <td ng-switch-when="ongoing" class="alert alert-warning hoverTitle" data-toggle="modal" data-target="#myModal">{{p.title}}</td>
                 <td ng-switch-when="ongoing" class=" alert alert-warning wtable" id="status1">{{p.current_status}}<span id="status2" class="glyphicon glyphicon-cog pull-right"></span></td>
@@ -65,9 +65,9 @@
           <p class="panel-title">Order By</p>
           <div class="form-group">
             <label for="">Status</label>
-            <select class="form-control" id="county">
-              <option value="null">Select County</option>
-              <option value=""></option>
+            <select class="form-control" id="order" ng-click="orderBy()">
+              <option value="date">Date</option>
+              <option value="current_status">Status</option>
             </select>
           </div>
         </div>
