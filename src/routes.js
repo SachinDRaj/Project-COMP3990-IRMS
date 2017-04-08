@@ -572,7 +572,12 @@ angular
             title:"",
             val:0
           };
-          if ($rootScope.postData) {
+          if ($rootScope.postData._id) { //Check if we have any post data
+            console.log('We have data:',$rootScope.postData);
+            var cat = $rootScope.postData.report_type2;
+            var c = $rootScope.postData.county;
+            $('#category option').val(cat).prop('selected',true);
+            $('#county option').val(c).prop('selected',true);
             var i=0;
             var key = $rootScope.postData._id;
             console.log($scope.map.markers);
@@ -688,19 +693,7 @@ angular
       markers: [],
       zoom: 10
     };
-    //postdata
-    if($rootScope.postData!==""){
-      console.log('We have data:',$rootScope.postData);
-      var cat = $rootScope.postData.report_type2;
-      var c = $rootScope.postData.county;
-      $('#category option').val(cat).prop('selected',true);
-      $('#county option').val(c).prop('selected',true);
-      $scope.getReportsQ();
-    }
-    else{
-      console.log('no post data',$rootScope.postData);
-      $scope.getReportsQ();
-    }
+    $scope.getReportsQ();
   })
   .controller('graphsCon', function($scope) {
     console.log('Graphs controller');
