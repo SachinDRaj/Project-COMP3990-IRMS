@@ -562,6 +562,17 @@ angular
             title:"",
             val:0
           };
+          var i=0;
+          var key = $rootScope.postData._id;
+          console.log($scope.map.markers);
+          while(i < $scope.map.markers.length && key != $scope.map.markers[i].id){
+            console.log(i);
+            i++;
+          }
+          if(i <= $scope.map.markers.length){
+            console.log('found',$scope.map.markers[i],i);
+            $scope.map.markers[i].events.click();
+          }
           $scope.$apply();
         }
         else{
