@@ -404,41 +404,52 @@ angular
       {
         name: 'Flooding',
         type1:'',
-        type2:'flooding'
+        type2:"flooding"
       },
       {
-        name: 'Road Repairs',
+        name: 'Road Repair',
         type1:'',
-        type2:'road_repairs'
+        type2:"road_repair"
       },
       {
         name: 'Garbage Collection',
         type1:'',
-        type2:'garbage_collection'
+        type2:"garbage_collection"
       },
     ];
-
-    function getQuery(cat){
+    $scope.counties = [ //Counties
+      {text:"Counties - All", value:"All"},
+      {text:"Caroni", value:"Caroni"},
+      {text:"Mayaro", value:"Mayaro"},
+      {text:"Nariva", value:"Nariva"},
+      {text:"Saint Andrew", value:"Saint Andrew"},
+      {text:"Saint David", value:"Saint David"},
+      {text:"Saint George", value:"Saint George"},
+      {text:"Saint Patrick", value:"Saint Patrick"},
+      {text:"Victoria", value:"Victoria"}
+    ];
+    function getQuery(){
+      var cat = document.getElementById("category");
+      var selcat = cat.options[cat.selectedIndex].value;
       var c = document.getElementById("county");
-      var select = c.options[c.selectedIndex].value;
-      console.log(select);
-      var q="";
-      if (select == "All" && cat === "") {
-        q="";
-      }else if (select == "All"){
-        q="?report_type2="+cat;
-      }else if (cat === "") {
-        q="?county="+select;
+      var selc = c.options[c.selectedIndex].value;
+      var q = "";
+      if (selcat == "null" && selc == "null") {
+        q = "";
+      }else if (selc == "null"){
+        q = "?category2="+selcat;
+      }else if (selcat == "null") {
+        q = "?county="+selc;
       }else {
-        q="?report_type2="+cat+"&county="+select;
+        q ="?category2="+selcat+"&county="+selc;
       }
       return q;
     }
     //Get posts
-    $scope.getPosts = function(cat) {
-      var query = getQuery(cat);
+    $scope.getPosts = function() {
+      var query = getQuery();
       var url = 'http://localhost:8080/api/get_posts';
-      $http.get(url).then(
+      $http.get(url+query).then(
         function(success) {
           success.data.forEach(function(el){
             var date = el.date.substring(0,10);

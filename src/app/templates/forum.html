@@ -14,26 +14,6 @@
     <div class="col-lg-9 col-md-9 col-sm-9">
       <div id="r1" class="panel panel-default bshadow pheight">
         <div class="panel-heading hmap2">
-          <div class="form-group pull-right">
-            <select class="form-control">
-              <option value="status">Status</option>
-              <option value="date">Date</option>
-              <option value="title">Title</option>
-            </select>
-          </div>
-          <div class="form-group pull-right space">
-            <select id="county" class="form-control" ng-click="getPosts()">
-              <option value="All">Counties - All</option>
-              <option value="Caroni">Caroni</option>
-              <option value="Mayaro">Mayaro</option>
-              <option value="Nariva">Nariva</option>
-              <option value="Saint Andrew">Saint Andrew</option>
-              <option value="Saint David">Saint David</option>
-              <option value="Saint George">Saint George</option>
-              <option value="Saint Patrick">Saint Patrick</option>
-              <option value="Victoria">Victoria</option>
-            </select>
-          </div>
           <h3 class="panel-title mheader">Infrastructure Reports Forum : <i id="Cat">All Categories</i></h3>
         </div>
           <table class="table table-bordered table-condensed">
@@ -66,11 +46,29 @@
           <h3 class="panel-title">Filter Posts</h3>
         </div>
         <div class="panel-body">
-          <h3>Sort By:</h3>
+          <p class="panel-title">Sort By</p>
+          <div class="form-group">
+            <label for="">Category:</label>
+            <select class="form-control" id="category" ng-click="getPosts()">
+              <option value="null">Select Category</option>
+              <option ng-repeat="c in categories" value="{{c.type2}}">{{c.name}}</option>
+            </select>
+          </div>
           <div class="form-group">
             <label for="">County:</label>
-            <input type="text" class="form-control" id="county" placeholder="">
-            <p class="help-block">Help text here.</p>
+            <select class="form-control" id="county" ng-click="getPosts()">
+              <option value="null">Select County</option>
+              <option ng-repeat="ct in counties"value="{{ct.value}}">{{ct.text}}</option>
+            </select>
+          </div>
+          <hr>
+          <p class="panel-title">Order By</p>
+          <div class="form-group">
+            <label for="">Status</label>
+            <select class="form-control" id="county">
+              <option value="null">Select County</option>
+              <option value=""></option>
+            </select>
           </div>
         </div>
       </div>
