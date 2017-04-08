@@ -74,7 +74,7 @@
           <tbody id="reportTable">
             <tr ng-repeat="r in reports |orderBy:'-date'" ng-switch="currentUser.authentication || null">
               <td class="hidden">{{r.id}}</td>
-              <td class="hoverTitle" ng-click="markerShow(r.id)">{{r.window.title}}</td>
+              <td class="hoverTitle" ng-click="showMarker(r.id)">{{r.window.title}}</td>
               <td class="rtable">
                 <a class="btn btn-xs btn-primary" href="#">
                   <span class="glyphicon glyphicon-thumbs-up"></span>

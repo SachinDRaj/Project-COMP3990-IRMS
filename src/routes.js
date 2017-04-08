@@ -219,6 +219,16 @@ angular
         $scope.map.markers.push(m);
       }
     }
+    //marker show
+    $scope.showMarker = function(id){
+      console.log('Show marker',id);
+      var i=0;
+      while(i < $scope.map.markers.length && $scope.map.markers[i].id != id)
+        i++;
+      if(i < $scope.map.markers.length){
+        $scope.map.markers[i].events.click();
+      }
+    };
     //MakePost from report
     $scope.makePost = function(id){
       var url = "http://localhost:8080/api/get_reports/"+id;
