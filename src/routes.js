@@ -400,16 +400,59 @@ angular
   .controller('forumCon', function($scope,$http) {
     console.log('Forum controller');
     $scope.header = 'Forum';
-    //Get posts
-    $http.get('http://localhost:8080/api/get_posts').then(
-      function(success) {
-        $scope.posts = success.data;  //Forum posts
-        console.log($scope.posts);
+    $scope.categories = [
+      {
+        name: 'Flooding',
+        type1:'',
+        type2:'flooding'
       },
-      function(data, status, headers, config) {
-        // log error
+      {
+        name: 'Road Repairs',
+        type1:'',
+        type2:'road_repairs'
+      },
+      {
+        name: 'Garbage Collection',
+        type1:'',
+        type2:'garbage_collection'
+      },
+    ];
+
+    function getQuery(cat){
+      var c = document.getElementById("county");
+      var select = c.options[c.selectedIndex].value;
+      console.log(select);
+      var q="";
+      if (select == "All" && cat === "") {
+        q="";
+      }else if (select == "All"){
+        q="?report_type2="+cat;
+      }else if (cat === "") {
+        q="?county="+select;
+      }else {
+        q="?report_type2="+cat+"&county="+select;
       }
-    );
+      return q;
+    }
+    //Get posts
+    $scope.getPosts = function(cat) {
+      var query = getQuery(cat);
+      var url = 'http://localhost:8080/api/get_posts';
+      $http.get(url).then(
+        function(success) {
+          success.data.forEach(function(el){
+            var date = el.date.substring(0,10);
+            el.date = date;
+          });
+          $scope.posts = success.data;  //Forum posts
+          console.log($scope.posts);
+        },
+        function(data, status, headers, config) {
+          // log error
+        }
+      );
+    };
+    $scope.getPosts();
 
     //Update dropdown textStatus
     $(".dropdown-menu li a").click(function(){

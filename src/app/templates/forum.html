@@ -3,36 +3,26 @@
 </div>
 <div class="row">
   <div class="col-lg-10 col-lg-offset-1 text-center">
-    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <button class="btn btn-block btn btn-danger" ng-disabled ="currentUser == null" type="button" name="button" ui-sref="makepost"><b>Click to make a New Post</b> <span class="glyphicon glyphicon-pencil"></span> </button>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-      <div class="dropdown">
-        <button class="btn btn-block btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Category <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="" onclick="updateTag('All Categories');">All Categories</a></li>
-          <li role="separator" class="divider"></li>
-          <li class="dropdown-header">Disaster</li>
-          <li><a href="" onclick="updateTag('Flooding');">Flooding</a></li>
-          <li role="separator" class="divider"></li>
-          <li class="dropdown-header">Public Infrasture</li>
-          <li><a href="" onclick="updateTag('Road Repairs');">Road Repairs</a></li>
-          <li role="separator" class="divider"></li>
-          <li class="dropdown-header">Health Hazards</li>
-          <li><a href="" onclick="updateTag('Garbage Collection');">Garbage Collection</a></li>
-        </ul>
-      </div>
     </div>
   </div>
 </div>
 
 <div id="a1"class="row">
   <div class="col-lg-10 col-lg-offset-1">
-    <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="col-lg-9 col-md-9 col-sm-9">
       <div id="r1" class="panel panel-default bshadow pheight">
         <div class="panel-heading hmap2">
+          <div class="form-group pull-right">
+            <select class="form-control">
+              <option value="status">Status</option>
+              <option value="date">Date</option>
+              <option value="title">Title</option>
+            </select>
+          </div>
           <div class="form-group pull-right space">
-            <select id="region2" class="form-control" onclick="getPostQ2();">
+            <select id="county" class="form-control" ng-click="getPosts()">
               <option value="All">Counties - All</option>
               <option value="Caroni">Caroni</option>
               <option value="Mayaro">Mayaro</option>
@@ -60,14 +50,29 @@
                 <!-- ongoing -->
                 <td ng-switch-when="ongoing" class="alert alert-warning hoverTitle" data-toggle="modal" data-target="#myModal">{{p.title}}</td>
                 <td ng-switch-when="ongoing" class=" alert alert-warning wtable" id="status1">{{p.current_status}}<span id="status2" class="glyphicon glyphicon-cog pull-right"></span></td>
-                <td ng-switch-when="ongoing" class=" alert alert-warning wtable">{{p.date|date:'medium'}}</td>
+                <td ng-switch-when="ongoing" class=" alert alert-warning wtable">{{p.date}}</td>
                 <!-- fixed -->
                 <td ng-switch-when="fixed" class="alert alert-success hoverTitle" data-toggle="modal" data-target="#myModal">{{p.title}}</td>
                 <td ng-switch-when=fixed class=" alert alert-success wtable" id="status1">{{p.current_status}}<span id="status2" class="glyphicon glyphicon-ok pull-right"></span></td>
-                <td ng-switch-when="fixed" class=" alert alert-success wtable">{{p.date|date:'medium'}}</td>
+                <td ng-switch-when="fixed" class=" alert alert-success wtable">{{p.date}}</td>
               </tr>
             </tbody>
           </table>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-x3-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Filter Posts</h3>
+        </div>
+        <div class="panel-body">
+          <h3>Sort By:</h3>
+          <div class="form-group">
+            <label for="">County:</label>
+            <input type="text" class="form-control" id="county" placeholder="">
+            <p class="help-block">Help text here.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
