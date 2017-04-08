@@ -77,6 +77,8 @@ angular
   .controller('reportCon', function($scope, $http, $rootScope) {
     console.log('Report controller');
     $scope.header = 'View Reports';
+    $rootScope.postData = "";
+
     $scope.counties = [ //Counties
       {text:"Counties - All", value:"All"},
       {text:"Caroni", value:"Caroni"},
@@ -274,9 +276,6 @@ angular
         scrollwheel: false
       }
     };
-    $scope.markerShow = function(id) {
-      // $scope.onClick();
-    };
     $scope.windowOptions = {
       visible: false
     };
@@ -438,9 +437,10 @@ angular
       }
     };
   })
-  .controller('forumCon', function($scope,$http) {
+  .controller('forumCon', function($scope,$http,$rootScope) {
     console.log('Forum controller');
     $scope.header = 'Forum';
+    $rootScope.postData = "";
     $scope.categories = [
       {
         name: 'Flooding',
@@ -577,7 +577,6 @@ angular
             var key = $rootScope.postData._id;
             console.log($scope.map.markers);
             while(i < $scope.map.markers.length && key != $scope.map.markers[i].id){
-              console.log(i);
               i++;
             }
             if(i <= $scope.map.markers.length){
@@ -690,7 +689,7 @@ angular
       zoom: 10
     };
     //postdata
-    if($rootScope.postData){
+    if($rootScope.postData!==""){
       console.log('We have data:',$rootScope.postData);
       var cat = $rootScope.postData.report_type2;
       var c = $rootScope.postData.county;
@@ -700,6 +699,7 @@ angular
     }
     else{
       console.log('no post data',$rootScope.postData);
+      $scope.getReportsQ();
     }
   })
   .controller('graphsCon', function($scope) {
