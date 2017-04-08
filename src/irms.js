@@ -85,8 +85,8 @@ function readURL(input) {
 function uploadImage() {
 		if(document.getElementById("imgsrc").value != ""){
 			var photo = document.getElementById("image");
-			console.log(photo.src);
 			var imgData = getBase64Image(photo);
+			console.log(imgData);
 			localStorage.removeItem("imgData");
 			if (typeof(Storage) !== "undefined") {
 				localStorage.setItem("imgData", imgData);
@@ -133,9 +133,11 @@ function addReport(){
 	var t = document.getElementById("tt").innerHTML;
 	var d = document.getElementById("de").innerHTML;
 	var reg = localStorage.getItem("region");
-  var lat = localStorage.getItem("lat");
-  var lng = localStorage.getItem("lng");
+	var lat = localStorage.getItem("lat");
+	var lng = localStorage.getItem("lng");
 	var date = new Date();
+	var photo = localStorage.getItem("imgData");
+	localStorage.removeItem("imgData");
 	// console.log(date);
 	//var jdate = JSON.stringify(date);
 	// console.log(jdate);
@@ -155,10 +157,10 @@ function addReport(){
 		date: date,
 		description: d,
 		votes: 0,
-    county: reg,
-    lat: lat,
-    lng: lng,
-		//loc: [126.4, 10.1]
+		county: reg,
+		lat: lat,
+		lng: lng,
+		img: "data:image/png;base64," + photo
 	};
 
 

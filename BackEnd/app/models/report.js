@@ -8,9 +8,10 @@ var ReportSchema   = new Schema({
 	date: Date,
 	description: String,
 	votes: Number,
-  county: String,
-  lat: Number,
-  lng: Number,
+	county: String,
+	lat: Number,
+	lng: Number,
+	img: String
 
 });
 

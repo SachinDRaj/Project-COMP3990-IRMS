@@ -12,11 +12,7 @@ var ForumSchema   = new Schema({
 	dislikes: Number,
   county: String,
   lat: Number,
-  lng: Number,
-	loc: {
-	type: [Number], //[<longitude>, <latitude>]
-	index: '2d'		//create the geospatial index
-	}
+  lng: Number
 
 });
 

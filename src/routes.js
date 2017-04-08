@@ -206,12 +206,14 @@ angular
         },
         events: {
           click:  function() {
+			infoWindow.setContent('<IMG SRC =' + el.img +'>');
             marker.options.animation = google.maps.Animation.BOUNCE;
             reverseGeocode(marker);
             console.log('Marker clicked');
           }
         }
       };
+	  console.log(el.img);
       return marker;
     }
     function populateMap(data){
