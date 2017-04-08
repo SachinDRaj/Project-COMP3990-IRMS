@@ -74,7 +74,7 @@ angular
 		 $window.location.href = '/index.html';
 	 };
   })
-  .controller('reportCon', function($scope,$http) {
+  .controller('reportCon', function($scope, $http, $rootScope) {
     console.log('Report controller');
     $scope.header = 'View Reports';
     $scope.counties = [ //Counties
@@ -219,6 +219,31 @@ angular
         $scope.map.markers.push(m);
       }
     }
+    //MakePost from report
+    $scope.makePost = function(id){
+      var url = "http://localhost:8080/api/get_reports/"+id;
+      $.ajax({
+        url:url,
+        type:"GET"
+      }).done(function(data, textStatus, xhr){
+        if(data){
+          $rootScope.postData = data;
+        }
+        else{
+            //if(callback) callback(null);
+        }
+      }).fail(function(xhr){
+        var status = xhr.status;
+        var message = null;
+        if(xhr.responseText){
+            var obj = JSON.parse(xhr.responseText);
+            message = obj.message;
+        }
+
+        if(callback) callback(null);
+        console.log(xhr);
+      });
+    };
     $scope.map = {
       center: {
         latitude: 10.450429,
@@ -372,7 +397,7 @@ angular
     document.getElementById("de").innerHTML = localStorage.getItem("desc");
     document.getElementById("regSumHeader").innerHTML += localStorage.getItem("region");
 	var dataImage = localStorage.getItem('imgData');
-	if(dataImage != ""){
+	if(dataImage !== ""){
 		var photo = document.getElementById("photo");
 		photo.src = "data:image/*;base64, " + dataImage;
 	}
@@ -486,8 +511,16 @@ angular
       $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
     });
   })
-  .controller('makepostCon', function($scope, $window) {
+  .controller('makepostCon', function($scope, $window, $rootScope) {
     console.log('Make post controller');
+    $scope.header = 'Make a Post';
+    if($rootScope.postData){
+      console.log('We have data:',$rootScope.postData);
+      $('#category option[value="' + $rootScope.report_type2 + '"]').prop('selected', true);
+    }
+    else{
+      console.log('no post data',$rootScope.postData);
+    }
     $scope.postMarker = {
       title:null,
       val:null
@@ -496,7 +529,6 @@ angular
   		window.alert("You do not have permission to access this page");
   		$window.location.href = '/index.html';
   	}
-    $scope.header = 'Make a Post';
 
     function getQuery(){ //Makes query
       var cat = document.getElementById('category');
