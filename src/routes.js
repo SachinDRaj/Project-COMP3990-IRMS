@@ -643,9 +643,12 @@ angular
   .controller('graphsCon', function($scope) {
     console.log('Graphs controller');
     $scope.header = 'Graphs';
-    // var d = new Date();
-    // var n = d.getDate();
-    // console.log(n);
+    $scope.gTypes=[
+      {text:"Area", value:"area"},
+      {text:"Line", value:"line"},
+      {text:"Bar", value:"bar"},
+      {text:"Point", value:"point"}
+    ];
     $scope.counties = [ //Counties
       {text:"Caroni", value:"Caroni"},
       {text:"Mayaro", value:"Mayaro"},
@@ -666,9 +669,14 @@ angular
       var select = c.options[c.selectedIndex].value;
       $("#gCat3").html("");
       $("#gCat3").append(select);
-      $scope.getGReportsQ2();
+      // $scope.getGReportsQ2();
     };
     function properF1(cat1){
+      if (cat1=="No Graph Loaded") {
+        $("#gCat3").html("");
+        $("#gCat3").append("Flooding");
+        return "flooding";
+      }
       if (cat1=="All Categories") {
         return "All";
       }else if (cat1=="Flooding") {
@@ -682,7 +690,6 @@ angular
     function getQuery1(cat1){
       var c = document.getElementById("region3");
       var select = c.options[c.selectedIndex].value;
-
       var q="";
       cat1 = properF1(cat1);
       if (select=="All" && cat1=="All") {
@@ -866,6 +873,9 @@ angular
     }
 
     function populateGraph(nGraph){
+      var c = document.getElementById("gType");
+      var select = c.options[c.selectedIndex].value;
+
       $scope.vlSpec1 = {
         "width": 500,
         "height": 350,
@@ -926,7 +936,7 @@ angular
         for (var i = 1; i < 7; i++) {
           $scope.vlSpec1.data.values[i].b = nGraph[j--];
         }
-
+        $scope.vlSpec1.mark=select;
         var embedSpec = {
           mode: "vega-lite",
           spec: $scope.vlSpec1
@@ -941,7 +951,7 @@ angular
         for (var i = 1; i < 13; i++) {
           $scope.vlSpec2.data.values[i].b = nGraph[j--];
         }
-        // console.log($scope.vlSpec2.data.values);
+        $scope.vlSpec2.mark=select;
         var embedSpec = {
           mode: "vega-lite",
           spec: $scope.vlSpec2
@@ -949,12 +959,13 @@ angular
         vg.embed("#vis", embedSpec, function(error, result) {
           $("#vis > div.vega-actions").hide();
         });
+
       }else if (nGraph.length==10) {
         var j = 9;
         for (var i = 1; i < 11; i++) {
           $scope.vlSpec3.data.values[i].b = nGraph[j--];
         }
-        console.log($scope.vlSpec3.data.values);
+        $scope.vlSpec3.mark=select;
         var embedSpec = {
           mode: "vega-lite",
           spec: $scope.vlSpec3
@@ -1021,14 +1032,6 @@ angular
       $scope.nGraph = [];//clear graph Array
     }
 
-    var vlSpec = $scope.vlSpec1;
-    var embedSpec = {
-      mode: "vega-lite",
-      spec: vlSpec
-    };
-    vg.embed("#vis", embedSpec, function(error, result) {
-      $("#vis > div.vega-actions").hide();
-    });
   });
 
 /** @ngInject */

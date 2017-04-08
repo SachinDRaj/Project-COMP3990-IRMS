@@ -8,36 +8,46 @@
     <div class="col-lg-12 col-md-12 col-sm-12">
       <div class="panel panel-default bshadow">
         <div class="panel-heading">
-          <h3 class="panel-title"> View Graphs: <b id="gCat3">Flooding</b></h3>
+          <h3 class="panel-title"> View Graphs: <b id="gCat3">No Graph Loaded</b></h3>
         </div>
         <div class="panel-body">
           <div class="col-lg-8">
-            <div id="vis"></div>
+            <div id="vis">
+              <div class="alert alert-warning info">
+                <h3>No Graph Loaded. Choose a Graph -></h3>
+              </div>
+            </div>
           </div>
           <div class="col-lg-4 alert alert-info">
             <h4>Catergorise Graphs</h4>
             <hr>
+            <h5>Select Type of Graph:</h5>
+              <select id="gType" class="form-control">
+                <option ng-repeat="c in gTypes" value="{{c.value}}">{{c.text}}</option>
+              </select>
             <h5>Select Type of Report:</h5>
               <select id="Cat3" class="form-control" ng-click="updateTag3()">
                 <option ng-repeat="c in categories" value="{{c.value}}">{{c.text}}</option>
               </select>
             <h5>Select County:</h5>
-            <select id="region3" multiple class="form-control" ng-click="getGReportsQ2()">
+            <select id="region3" multiple class="form-control">
               <option value="All" selected="selected">All</option>
               <option ng-repeat="c in counties" value="{{c.value}}">{{c.text}}</option>
             </select>
             <h5>Select Time Period:</h5>
             <div class="col-sm-offset-1">
               <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="6months" checked ng-click="getGReportsQ2()"> 6 months
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="6months" checked> 6 months
               </label>
               <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1year" ng-click="getGReportsQ2()"> 1 year
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1year"> 1 year
               </label>
               <label class="radio-inline">
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="5years" ng-click="getGReportsQ2()"> 5 years
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="5years"> 5 years
               </label>
             </div>
+            <br>
+            <button type="button" class="btn btn-primary btn-block" ng-click="getGReportsQ2()">Load Graph (Double Click)</button>
           </div>
         </div>
       </div>
