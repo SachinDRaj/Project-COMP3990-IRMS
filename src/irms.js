@@ -156,7 +156,6 @@ function addReport(){
 		title: t,
 		date: date,
 		description: d,
-		votes: 0,
 		county: reg,
 		lat: lat,
 		lng: lng,

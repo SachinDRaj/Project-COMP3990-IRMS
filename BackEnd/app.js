@@ -53,7 +53,8 @@ router.route('/add_new_report')
 		report.title = req.body.title;
 		report.date = req.body.date;
 		report.description = req.body.description;
-		report.votes = req.body.votes;
+		report.likes = 0;
+		report.dislikes = 0;
 		report.county = req.body.county;
 		report.lat = req.body.lat;
 		report.lng = req.body.lng;
