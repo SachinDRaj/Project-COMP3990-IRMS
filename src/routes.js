@@ -199,6 +199,7 @@ angular
           addr:'',
           desc: el.description,
           date: el.date,
+		  img: el.img
         },
         options:  {
           icon: "/app/images/marker.png",
