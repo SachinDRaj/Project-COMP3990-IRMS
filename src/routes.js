@@ -198,6 +198,8 @@ angular
           title :el.title,
           addr:'',
           desc: el.description,
+		  likes: el.likes,
+		  dislikes: el.dislikes,
           date: el.date,
 		  img: el.img
         },
