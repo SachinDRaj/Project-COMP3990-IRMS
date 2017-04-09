@@ -234,6 +234,33 @@ angular
         $scope.map.markers[i].events.click();
       }
     };
+	$scope.likeReport = function(id, option){
+		var i=0;
+		while(i < $scope.map.markers.length && $scope.map.markers[i].id != id)
+			i++;
+		if(i < $scope.map.markers.length && option == 0){
+			$scope.map.markers[i].window.likes += 1;
+		}
+		else if(i < $scope.map.markers.length && option == 1){
+			$scope.map.markers[i].window.dislikes += 1;
+		}
+		var data = {
+				report_id: id,
+				likes: $scope.map.markers[i].window.likes,
+				dislikes: $scope.map.markers[i].window.dislikes
+		};
+		console.log(data);
+		$.ajax({
+			url: "http://localhost:8080/api/update_report/" + id,
+			data : data,
+			type: "PUT"
+		}).done(function(response){
+			console.log("Success! response was "+response);
+
+		}).fail(function(){
+			console.log("Request failed");
+		});
+	}
     //MakePost from report
     $scope.makePost = function(id){
       var url = "http://localhost:8080/api/get_reports/"+id;

@@ -27,7 +27,8 @@ var port = process.env.PORT || 8080;        // set our port
 var router = express.Router();              // get an instance of the express Router
 router.use(function(req, res, next) {// allow cross domain requests
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers","Content-Type");
+  res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
   next();
 });
 // middleware to use for all requests
@@ -118,8 +119,19 @@ router.route('/get_reports_graph')
 router.route('/update_report/:id')
 
 	.put(function(req, res) {
-		Report.findById(req.params.report_id, function(err, reports) {
-
+		Report.findById(req.params.id, function(err, reports) {
+			if(err)
+				res.send(err);
+			console.log(reports.dislikes);
+			reports.likes = req.body.likes;
+			reports.dislikes = req.body.dislikes;
+			
+			reports.save(function(err){
+				if(err)
+					res.send(err);
+				
+				res.json({message: 'Updated'});
+			});
 		});
 	});
 

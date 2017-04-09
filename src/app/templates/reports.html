@@ -77,11 +77,11 @@
               <td class="hidden">{{r.id}}</td>
               <td class="hoverTitle" ng-click="showMarker(r.id)">{{r.window.title}}</td>
               <td class="rtable">
-                <a class="btn btn-xs btn-primary" href="#">
+                <a class="btn btn-xs btn-primary" ng-click="likeReport(r.id, 0);" href="#">
                   <span class="glyphicon glyphicon-thumbs-up"></span>
                 </a>
                 <span class="badge">{{r.window.likes}}</span>
-                <a class="btn btn-xs btn-danger" href="#">
+                <a class="btn btn-xs btn-danger" ng-click="likeReport(r.id, 1);" href="#">
                   <span class="glyphicon glyphicon-thumbs-down"></span>
                 </a>
                 <span class="badge">{{r.window.dislikes}}</span>
