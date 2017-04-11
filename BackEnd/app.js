@@ -100,13 +100,13 @@ router.route('/get_reports')
 			query.county = req.county;
 		return query;
 	}
-	
+
 router.route('/get_reports_graph')
-	
+
 	.get(function(req, res) {
-		
+
 		var q = getQ(req.query);//builds query
-		
+
 		console.log(q);
         Report.find(q, function(err, reports) {
             if (err)
@@ -125,11 +125,11 @@ router.route('/update_report/:id')
 			console.log(reports.dislikes);
 			reports.likes = req.body.likes;
 			reports.dislikes = req.body.dislikes;
-			
+
 			reports.save(function(err){
 				if(err)
 					res.send(err);
-				
+
 				res.json({message: 'Updated'});
 			});
 		});
@@ -202,7 +202,7 @@ router.route('/get_posts')
     });
 
 
-// //LOG IN TEST -----------------------------------------------
+//LOG IN TEST -----------------------------------------------
 // var testUser = new User({//User schema found in app/models folder
 //     username: 'admin',
 //     password: 'admin'
