@@ -15,9 +15,10 @@ Intall Database:
 	npm install mongoose -s
 	npm install express -s
 	npm install compression -s
+	npm install bcrypt
 4. You should see a node module folder
 
-Link to tutorial: https://scotch.io/tutorials/build-a-restful-api-using-node-and-express-4
+
 
 To run local server:
 
