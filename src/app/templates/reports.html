@@ -1,10 +1,11 @@
+<!-- Reports Page -->
 <!-- header -->
 <div class="row" ng-include="'app/templates/header.html'">
 </div>
 <div class="row">
   <div class="col-lg-10 col-lg-offset-1 text-center">
 
-    <!-- Make a Report -->
+    <!-- Make a Report Button-->
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
       <button class="btn btn-block btn btn-danger" type="button" ui-sref="makereport.1" onclick="clearLS();"><b>Click to make a New Report</b> <span class="glyphicon glyphicon-pencil"></span> </button>
     </div>
@@ -28,7 +29,6 @@
     </div>
   </div>
 </div>
-<!-- &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  -->
 <div id="a1" class="row">
   <div class="col-lg-10 col-lg-offset-1">
     <!-- Map -->
@@ -43,6 +43,7 @@
           <h3 class="panel-title mheader">Map : <b id="Cat2">All Categories</b></h3>
         </div>
         <div class="panel-body">
+          <!-- Main google map of Trinidad -->
           <div id="r1">
             <ui-gmap-google-map center='map.center' zoom='map.zoom' events='map.events' options="map.options" bounds='map.bounds'>
               <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id" options="m.options" click="m.events.click()">
@@ -61,7 +62,7 @@
         </div>
       </div>
     </div>
-    <!-- Reports -->
+    <!-- Reports Table-->
     <div class="col-lg-4 col-md-4 col-sm-4">
       <div id="r1" class="panel panel-default ht bshadow">
         <div class="panel-heading">

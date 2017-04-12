@@ -1,9 +1,11 @@
 <!-- header -->
+<!-- Forum Page-->
 <div class="row" ng-include="'app/templates/header.html'">
 </div>
 <div class="row">
   <div class="col-lg-10 col-lg-offset-1 text-center">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <!-- make a new post button -->
       <button class="btn btn-block btn btn-danger" ng-disabled ="currentUser == null" type="button" name="button" ui-sref="makepost"><b>Click to make a New Post</b> <span class="glyphicon glyphicon-pencil"></span> </button>
     </div>
   </div>
@@ -22,16 +24,16 @@
                 <th>Title</th>
                 <th>Status</th>
                 <th>Date Posted</th>
-                <!-- <th>Like/Dislike</th> -->
               </tr>
             </thead>
+            <!-- forum post table -->
             <tbody id="posttable">
               <tr id="status" ng-repeat="p in posts | orderBy:order" ng-switch="p.current_status">
-                <!-- ongoing -->
+                <!-- ongoing status -->
                 <td ng-switch-when="ongoing" class="alert alert-warning hoverTitle" data-toggle="modal" data-target="#myModal">{{p.title}}</td>
                 <td ng-switch-when="ongoing" class=" alert alert-warning wtable" id="status1">{{p.current_status}}<span id="status2" class="glyphicon glyphicon-cog pull-right"></span></td>
                 <td ng-switch-when="ongoing" class=" alert alert-warning wtable">{{p.date}}</td>
-                <!-- fixed -->
+                <!-- fixed status-->
                 <td ng-switch-when="fixed" class="alert alert-success hoverTitle" data-toggle="modal" data-target="#myModal">{{p.title}}</td>
                 <td ng-switch-when=fixed class=" alert alert-success wtable" id="status1">{{p.current_status}}<span id="status2" class="glyphicon glyphicon-ok pull-right"></span></td>
                 <td ng-switch-when="fixed" class=" alert alert-success wtable">{{p.date}}</td>
@@ -40,6 +42,7 @@
           </table>
       </div>
     </div>
+    <!-- Category search bars -->
     <div class="col-lg-3 col-md-3 col-sm-3 col-x3-3">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -80,6 +83,7 @@
 
 
 
+<!-- Modal which appears when a post on forum is clicked  -->
 <div class="modal fade" tabindex="-1" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
 
