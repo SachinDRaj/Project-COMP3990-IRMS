@@ -3,10 +3,11 @@ To run website locally:
 1. Open Command Prompt
 2. Open project folder
 3. Install npm and node from Node.js website: https://nodejs.org/en/
-3. run - npm install --global gulp-cli
-4. run - npm install -g bower
-5. run - npm install -g node-modules
-6. run - npm intall font-awesome-animation
+3. run - sudo npm install --global gulp
+	 or npm install —global gulp
+4. run - npm install 
+5. run - npm install -g bower
+6. run - npm install font-awesome-animation
 7. run - npm install angular-google-maps
 
 
@@ -35,6 +36,7 @@ To run local server:
 
 To login as admin to website:
 Un-comment lines 205 to 216 to add user and run node app.js(Backend folder) in command prompt
-then re-comment it and the user should be added. Run over node app.js:
-username: admin
-password: admin
+then re-comment it and the user should be added. Run node app.js again:
+You can then login as:
+	username: admin
+	password: admin
