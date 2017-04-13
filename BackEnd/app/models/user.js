@@ -1,15 +1,15 @@
-var mongoose     = require('mongoose');
+var mongoose     = require('mongoose');//Mongoose library
 var Schema       = mongoose.Schema;
-var bcrypt		 = require('bcrypt');
+var bcrypt		 = require('bcrypt');//Password hashing function
 var SALT_WORK_FACTOR = 10;
 
-var UserSchema   = new Schema({
+var UserSchema   = new Schema({//Schema defines how users are stored
 	username: {type: String, required: true, index: { unique: true } },
 	password: {type: String, required: true }
 	
 });
 
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', function(next) {//When saved
     var user = this;
 
     // only hash the password if it has been modified (or is new)
@@ -30,7 +30,7 @@ UserSchema.pre('save', function(next) {
     });
 });
 
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+UserSchema.methods.comparePassword = function(candidatePassword, cb) {//Schema function for comparing passwords
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
@@ -38,4 +38,4 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
 };
 
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);//Export model

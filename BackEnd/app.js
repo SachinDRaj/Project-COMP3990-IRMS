@@ -38,7 +38,7 @@ router.use('/', function(req, res, next) {
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });
+    res.json({ message: 'Welcome to our api!' });
 });
 
 // more routes for our API will happen here
@@ -74,7 +74,7 @@ router.route('/add_new_report')
     });
 
 
-router.route('/get_reports')
+router.route('/get_reports')//route for getting reports based on query
 
 	.get(function(req, res) {
         Report.find(req.query, function(err, reports) {
@@ -85,29 +85,28 @@ router.route('/get_reports')
         });
     });
 
-	function getQ(req){//Date must always be submitted in range
-		var query = {
-			date: {
-				$gte: req.start,//start date. $gte == greater than in mongo
-				$lte: req.end//end date. $lte == less than in mongo
-			}
-		};
-		if(req.report_type1)//if there is a report type 1 in query url
-			query.report_type1 = req.report_type1;
-		if(req.report_type2)//if there is a report type 2 in query url
-			query.report_type2 = req.report_type2;
-		if(req.county)//if county in url
-			query.county = req.county;
-		return query;
-	}
+function getQ(req){//Date must always be submitted in range
+	var query = {
+		date: {
+			$gte: req.start,//start date. $gte == greater than in mongo
+			$lte: req.end//end date. $lte == less than in mongo
+		}
+	};
+	if(req.report_type1)//if there is a report type 1 in query url
+		query.report_type1 = req.report_type1;
+	if(req.report_type2)//if there is a report type 2 in query url
+		query.report_type2 = req.report_type2;
+	if(req.county)//if county in url
+		query.county = req.county;
+	return query;
+}
 
-router.route('/get_reports_graph')
+router.route('/get_reports_graph')//route for getting graph information
 
 	.get(function(req, res) {
 
 		var q = getQ(req.query);//builds query
 
-		console.log(q);
         Report.find(q, function(err, reports) {
             if (err)
                 res.send(err);
@@ -116,13 +115,13 @@ router.route('/get_reports_graph')
         });
     });
 
-router.route('/update_report/:id')
+router.route('/update_report/:id')//route for updating reports likes(valid) and dislikes(invalid)
 
 	.put(function(req, res) {
 		Report.findById(req.params.id, function(err, reports) {
 			if(err)
 				res.send(err);
-			console.log(reports.dislikes);
+			
 			reports.likes = req.body.likes;
 			reports.dislikes = req.body.dislikes;
 
@@ -136,9 +135,8 @@ router.route('/update_report/:id')
 	});
 
 
-router.route('/get_reports/:report_id')
+router.route('/get_reports/:report_id')//Route use to get a specific report id
 
-    // get the report with that id (accessed at GET http://localhost:8080/api/reports/:report_id)
     .get(function(req, res) {
         Report.findById(req.params.report_id, function(err, reports) {
             if (err)
@@ -149,7 +147,7 @@ router.route('/get_reports/:report_id')
 
 
 
-router.route('/delete_reports/:report_id')
+router.route('/delete_reports/:report_id')//Route used to delete single reports based on id
 
 	.delete(function(req, res) {
         Report.remove({
@@ -164,7 +162,7 @@ router.route('/delete_reports/:report_id')
 
 
 
-router.route('/add_new_post')
+router.route('/add_new_post')//Route for adding new psot
 
 	.post(function(req, res) {
 
@@ -181,7 +179,7 @@ router.route('/add_new_post')
 		post.lat = req.body.lat;
 		post.lng = req.body.lng;
 
-        post.save(function(err) {
+        post.save(function(err) {//save to mongo
             if (err)
                 res.send(err);
 
@@ -190,7 +188,7 @@ router.route('/add_new_post')
 
     });
 
-router.route('/get_posts')
+router.route('/get_posts')//Route for getting forum posts based on query
 
 	.get(function(req, res) {
         ForumPost.find(req.query, function(err, post) {
@@ -202,7 +200,7 @@ router.route('/get_posts')
     });
 
 
-//LOG IN TEST -----------------------------------------------
+//LOG IN TEST -----------------------------------------------//Uncomment to add new user with user: admin, password: admin
 // var testUser = new User({//User schema found in app/models folder
 //     username: 'admin',
 //     password: 'admin'
@@ -213,9 +211,9 @@ router.route('/get_posts')
 // testUser.save(function(err) {
 //     if (err) throw err;
 //
-// });
+// });//end of comments
 
-router.route('/login')
+router.route('/login')//Route for authenticating username
 
 	.post(function(req, res) {
 		var user_name = req.body.username;
@@ -223,7 +221,7 @@ router.route('/login')
 		User.findOne({ username: user_name }, function(err, user) {//find username
 			if (err) res.send(err);
 			if(user){
-				user.comparePassword(pass , function(err, isMatch) {
+				user.comparePassword(pass , function(err, isMatch) {//user schema function to compare passwords
 					if (err) res.send(err);
 					var data = {
 						id: user.id,
@@ -233,7 +231,7 @@ router.route('/login')
 					if(isMatch){//if an existing user
 						data.authentication = 1;
 						res.json(data);
-					}else{
+					}else{//if not
 						data.id = null;
 						res.json(data);
 					}
@@ -254,4 +252,4 @@ app.use('/api', router);
 // =============================================================================
 
 app.listen(port);
-console.log('It works! ' + port);
+console.log('Server API Started\nPort: ' + port);

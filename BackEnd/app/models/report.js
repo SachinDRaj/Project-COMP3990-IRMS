@@ -1,7 +1,7 @@
-var mongoose     = require('mongoose');
+var mongoose     = require('mongoose');//Mongoose library
 var Schema       = mongoose.Schema;
 
-var ReportSchema   = new Schema({
+var ReportSchema   = new Schema({//Schema defines how reports are stored
     report_type1: String,
 	report_type2: String,
 	title: String,
@@ -16,4 +16,4 @@ var ReportSchema   = new Schema({
 
 });
 
-module.exports = mongoose.model('Report', ReportSchema);
+module.exports = mongoose.model('Report', ReportSchema);//Export model
