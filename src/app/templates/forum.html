@@ -30,11 +30,11 @@
             <tbody id="posttable">
               <tr id="status" ng-repeat="p in posts | orderBy:order" ng-switch="p.current_status">
                 <!-- ongoing status -->
-                <td ng-switch-when="ongoing" class="alert alert-warning hoverTitle" data-toggle="modal" data-target="#myModal">{{p.title}}</td>
+                <td ng-switch-when="ongoing" class="alert alert-warning hoverTitle" data-toggle="modal" data-target="#myModal" ng-click="modalQ(p._id);">{{p.title}}</td>
                 <td ng-switch-when="ongoing" class=" alert alert-warning wtable" id="status1">{{p.current_status}}<span id="status2" class="glyphicon glyphicon-cog pull-right"></span></td>
                 <td ng-switch-when="ongoing" class=" alert alert-warning wtable">{{p.date}}</td>
                 <!-- fixed status-->
-                <td ng-switch-when="fixed" class="alert alert-success hoverTitle" data-toggle="modal" data-target="#myModal">{{p.title}}</td>
+                <td ng-switch-when="fixed" class="alert alert-success hoverTitle" data-toggle="modal" data-target="#myModal" ng-click="modalQ(p._id);">{{p.title}}</td>
                 <td ng-switch-when=fixed class=" alert alert-success wtable" id="status1">{{p.current_status}}<span id="status2" class="glyphicon glyphicon-ok pull-right"></span></td>
                 <td ng-switch-when="fixed" class=" alert alert-success wtable">{{p.date}}</td>
               </tr>
@@ -97,7 +97,7 @@
             <br><hr>
             <h4>Location</h4>
                 <p id="mCounty"></p>
-                <p id="mLoc">Chaguanas Main Road</p>
+                <!-- <p id="mLoc">Chaguanas Main Road</p> -->
             <br>
           </div>
           <div class="col-md-6">

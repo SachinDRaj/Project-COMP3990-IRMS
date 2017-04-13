@@ -544,6 +544,50 @@ angular
     };
     $scope.getPosts();
     $scope.orderBy();
+
+    $scope.modalQ = function(id){
+      console.log(id);
+      var query="?_id="+id;
+    	var url = "http://localhost:8080/api/get_posts";
+      url+=query;
+    	$.ajax({
+                url: url,
+                type:"GET"
+                }).done(function(data, textStatus, xhr){
+                    if(data){
+                      $("#mTitle").html("Title: ");
+                      $("#mTitle").append(data[0].title);
+                      $("#mCat").html("");
+                      $("#mCat").append(data[0].category2);
+                      $("#mStatus").html("");
+                      $("#mStatus").append(data[0].current_status);
+                      $("#mSum").html("");
+                      $("#mSum").append(data[0].summary);
+                      $("#mDate").html("");
+                      $("#mDate").append(data[0].date.substring(0,10));
+                      // $("#mLoc").html("");
+                      // $("#mLoc").append("<b>Address: </b>Lat:"+data[0].lat+" Lng:"+data[0].lng);
+                      $("#mCounty").html("<b>County: </b>");
+                      $("#mCounty").append(data[0].county);
+                    }
+                    else{
+                        //if(callback) callback(null);
+                    }
+
+                }).fail(function(xhr){
+                    var status = xhr.status;
+                    var message = null;
+                    if(xhr.responseText){
+                        var obj = JSON.parse(xhr.responseText);
+                        message = obj.message;
+                    }
+
+                    if(callback) callback(null);
+                    console.log(xhr);
+                });
+    };
+
+
   })
   .controller('makepostCon', function($scope, $window, $rootScope) {
     console.log('Make post controller');
