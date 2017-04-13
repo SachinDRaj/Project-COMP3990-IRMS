@@ -1,5 +1,5 @@
 
-function clearLS(){
+function clearLS(){ //Clears local storage
   var select = localStorage.getItem("select");
   var title = localStorage.getItem("title");
   var desc = localStorage.getItem("desc");
@@ -82,7 +82,9 @@ function readURL(input) {
         }
     }
 
-function uploadImage() {
+
+function uploadImage() { //Upload image
+
 		if(document.getElementById("imgsrc").value != ""){
 			var photo = document.getElementById("image");
 			var imgData = getBase64Image(photo);
@@ -100,7 +102,7 @@ function uploadImage() {
 		}
 }
 
-function getCategory(category){
+function getCategory(category){//Broad Category
 	if(category == "flooding" || category == "Flooding")
 		return "disaster";
 	else
@@ -135,7 +137,7 @@ function getCategoryMain(category){//returns category format that is stored in d
 
 
 
-function addReport(){
+function addReport(){ //Add report
 
 	var r2 = getCategoryMain(document.getElementById("ca").innerHTML);//gets innerHTML element and plugs it into function.
 	var r1 = "all";
