@@ -544,12 +544,6 @@ angular
     };
     $scope.getPosts();
     $scope.orderBy();
-
-    //Update dropdown textStatus
-    $(".dropdown-menu li a").click(function(){
-      $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-      $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-    });
   })
   .controller('makepostCon', function($scope, $window, $rootScope) {
     console.log('Make post controller');
@@ -558,7 +552,6 @@ angular
       title:null,
       val:null
     };
-
 
   	if($scope.getCurrentUser() === null){
   		window.alert("You do not have permission to access this page");
