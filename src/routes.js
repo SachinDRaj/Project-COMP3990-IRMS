@@ -112,7 +112,7 @@ angular
         return "road_issues";
       }else if (cat1=="Health Hazards") {
         return "health_hazards";
-      }else if (cat1=="Electical Issues") {
+      }else if (cat1=="Electrical Issues") {
         return "electrical_issues";
       }else if (cat1=="Water Issues") {
         return "water_issues";
