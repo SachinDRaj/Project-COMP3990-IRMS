@@ -11,21 +11,10 @@
     </div>
     <!-- Select Category -->
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-      <div class="dropdown">
-        <button class="btn btn-block btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Category <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="" ng-click="updateTag1('All Categories');">All Categories</a></li>
-          <li role="separator" class="divider"></li>
-          <li class="dropdown-header">Disaster</li>
-          <li><a href="" ng-click="updateTag1('Flooding');">Flooding</a></li>
-          <li role="separator" class="divider"></li>
-          <li class="dropdown-header">Public Infrasture</li>
-          <li><a href="" ng-click="updateTag1('Road Repairs');">Road Repairs</a></li>
-          <li role="separator" class="divider"></li>
-          <li class="dropdown-header">Health Hazards</li>
-          <li><a href="" ng-click="updateTag1('Garbage Collection');">Garbage Collection</a></li>
-        </ul>
-      </div>
+      <select id="category" class="form-control" ng-click="updateTag1()">
+        <option value="All">All Categories</option>
+        <option ng-repeat="c in categories" value="{{c.value}}">{{c.text}}</option>
+      </select>
     </div>
   </div>
 </div>
