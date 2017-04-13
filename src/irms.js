@@ -81,7 +81,7 @@ function readURL(input) {
             reader.readAsDataURL(input.files[0]);
         }
     }
-	
+
 function uploadImage() {
 		if(document.getElementById("imgsrc").value != ""){
 			var photo = document.getElementById("image");
@@ -113,14 +113,23 @@ function getCategory(category){
 }
 
 function getCategoryMain(category){//returns category format that is stored in database
-	if(category == "Flooding")
-		return "flooding";
+	if(category == "Disasters")
+		return "disasters";
 	else
-	if(category == "Road Repairs")
-		return "road_repair";
+	if(category == "Road Issues")
+		return "road_issues";
 	else
-	if(category == "Garbage Collection")
-		return "garbage_collection";
+	if(category == "Health Hazards")
+		return "health_hazards";
+  else
+	if(category == "Electical Issues")
+		return "electrical_issues";
+  else
+	if(category == "Water Issues")
+		return "water_issues";
+  else
+	if(category == "Other")
+		return "other";
 
 }
 
@@ -129,7 +138,7 @@ function getCategoryMain(category){//returns category format that is stored in d
 function addReport(){
 
 	var r2 = getCategoryMain(document.getElementById("ca").innerHTML);//gets innerHTML element and plugs it into function.
-	var r1 = getCategory(r2);
+	var r1 = "all";
 	var t = document.getElementById("tt").innerHTML;
 	var d = document.getElementById("de").innerHTML;
 	var reg = localStorage.getItem("region");
@@ -328,7 +337,7 @@ function addPost(){
 	if(category == "Select" || curr_status == "Select")
 		alert("Insufficient information");
 	else{
-		var cat1 = getCategory(category);
+		var cat1 = "all";
 		var date = new Date();
 		console.log(date);
 		var dataToSend = {

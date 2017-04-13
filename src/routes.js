@@ -106,12 +106,18 @@ angular
     function properF1(cat1){
       if (cat1=="All Categories") {
         return "All";
-      }else if (cat1=="Flooding") {
-        return "flooding";
-      }else if (cat1=="Road Repairs") {
-        return "road_repair";
-      }else if (cat1=="Garbage Collection") {
-        return "garbage_collection";
+      }else if (cat1=="Disasters") {
+        return "disasters";
+      }else if (cat1=="Road Issues") {
+        return "road_issues";
+      }else if (cat1=="Health Hazards") {
+        return "health_hazards";
+      }else if (cat1=="Electical Issues") {
+        return "electrical_issues";
+      }else if (cat1=="Water Issues") {
+        return "water_issues";
+      }else if (cat1=="Other") {
+        return "other";
       }
     }
     $scope.updateTag1 = function(cat1){
@@ -473,19 +479,34 @@ angular
     $rootScope.postData = "";
     $scope.categories = [
       {
-        name: 'Flooding',
+        name: 'Disasters',
         type1:'',
-        type2:"flooding"
+        type2:"disasters"
       },
       {
-        name: 'Road Repair',
+        name: 'Road Issues',
         type1:'',
-        type2:"road_repair"
+        type2:"road_issues"
       },
       {
-        name: 'Garbage Collection',
+        name: 'Health Hazards',
         type1:'',
-        type2:"garbage_collection"
+        type2:"health_hazards"
+      },
+      {
+        name: 'Electrical Issues',
+        type1:'',
+        type2:"electrical_issues"
+      },
+      {
+        name: 'Water Issues',
+        type1:'',
+        type2:"water_issues"
+      },
+      {
+        name: 'Other',
+        type1:'',
+        type2:"other"
       },
     ];
     $scope.counties = [ //Counties
@@ -499,11 +520,15 @@ angular
       {text:"Saint Patrick", value:"Saint Patrick"},
       {text:"Victoria", value:"Victoria"}
     ];
+
+
     function getQuery(){
       var cat = document.getElementById("category");
       var selcat = cat.options[cat.selectedIndex].value;
       var c = document.getElementById("county");
       var selc = c.options[c.selectedIndex].value;
+
+
       var q = "";
       if (selcat == "null" && selc == "null") {
         q = "";
@@ -782,9 +807,12 @@ angular
       {text:"Victoria", value:"Victoria"}
     ];
     $scope.categories = [ //Categories
-      {text:"Flooding", value:"Flooding"},
-      {text:"Road Repairs", value:"Road Repairs"},
-      {text:"Garbage Collection", value:"Garbage Collection"}
+      {text:"Disasters", value:"Disasters"},
+      {text:"Road Issues", value:"Road Repairs"},
+      {text:"Health Hazards", value:"Health Hazards"},
+      {text:"Electical Issues", value:"Electical Issues"},
+      {text:"Water Issues", value:"Water Issues"},
+      {text:"Other", value:"Other"}
     ];
     $scope.updateTag3 = function(){ // updates header tag in table
       var c = document.getElementById("Cat3");
@@ -795,17 +823,23 @@ angular
     function properF1(cat1){ // converts the format of categories to what is needed by database
       if (cat1=="No Graph Loaded") {
         $("#gCat3").html("");
-        $("#gCat3").append("Flooding");
-        return "flooding";
+        $("#gCat3").append("Disasters");
+        return "disasters";
       }
       if (cat1=="All Categories") {
         return "All";
-      }else if (cat1=="Flooding") {
-        return "flooding";
-      }else if (cat1=="Road Repairs") {
-        return "road_repair";
-      }else if (cat1=="Garbage Collection") {
-        return "garbage_collection";
+      }else if (cat1=="Disasters") {
+        return "disasters";
+      }else if (cat1=="Road Issues") {
+        return "road_issues";
+      }else if (cat1=="Health Hazards") {
+        return "health_hazards";
+      }else if (cat1=="Electical Issues") {
+        return "electrical_issues";
+      }else if (cat1=="Water Issues") {
+        return "water_issues";
+      }else if (cat1=="Other") {
+        return "other";
       }
     }
     function getQuery1(cat1){ // creates query for querying reports
