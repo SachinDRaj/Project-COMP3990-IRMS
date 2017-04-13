@@ -1,7 +1,7 @@
 angular
   .module('app')
   .config(routesConfig)
-  .directive('dlEnterKey', function() {
+  .directive('dlEnterKey', function() { //Enter search
     return function(scope, element, attrs) {
       element.bind("keydown keypress", function(event) {
         var keyCode = event.which || event.keyCode;
@@ -26,10 +26,10 @@ angular
 		return $scope.currentUser;
 	};
 	})
-  .controller('homeCon', function() {
+  .controller('homeCon', function() { //Home page
     console.log('Home controller');
   })
-  .controller('LoginController', function($scope) {
+  .controller('LoginController', function($scope) { //Login Modal
 	console.log('Login controller');
 	$scope.credentials = {
 		username: '',
@@ -43,7 +43,7 @@ angular
 		console.log(data);
 		if(data.username === '' || data.password === '')
 			console.log("Failed no data");
-		else{
+		else{ //Check credentials
 			$.ajax({
 				url: "http://localhost:8080/api/login",
 				data : data,
@@ -68,13 +68,13 @@ angular
 	};
 
   })
-  .controller('LogoutController', function ($scope, $window) {
+  .controller('LogoutController', function ($scope, $window) { //Logout Modal
 	 $scope.logout = function(){
 		 localStorage.removeItem("user");
 		 $window.location.href = '/index.html';
 	 };
   })
-  .controller('reportCon', function($scope, $http, $rootScope) {
+  .controller('reportCon', function($scope, $http, $rootScope) { //Reports Paage
     console.log('Report controller');
     $scope.header = 'View Reports';
     $rootScope.postData = "";
@@ -103,7 +103,7 @@ angular
         // log error
       }
     );
-    function properF1(cat1){
+    function properF1(cat1){ //Convert category to be stored in db
       if (cat1=="All Categories") {
         return "All";
       }else if (cat1=="Flooding") {
@@ -114,12 +114,12 @@ angular
         return "garbage_collection";
       }
     }
-    $scope.updateTag1 = function(cat1){
+    $scope.updateTag1 = function(cat1){ //Update panel heder
       $("#Cat2").html("");
       $("#Cat2").append(cat1);
       $scope.getReportsQ();
     };
-    function getQuery1(cat1){
+    function getQuery1(cat1){ //Forms query
       var c = document.getElementById("region1");
       var select = c.options[c.selectedIndex].value;
       var q="";
@@ -234,7 +234,7 @@ angular
         $scope.map.markers[i].events.click();
       }
     };
-	$scope.likeReport = function(id, option){
+	$scope.likeReport = function(id, option){ //Like function
 		var i=0;
 		while(i < $scope.map.markers.length && $scope.map.markers[i].id != id)
 			i++;
@@ -250,7 +250,7 @@ angular
 				dislikes: $scope.map.markers[i].window.dislikes
 		};
 		console.log(data);
-		$.ajax({
+		$.ajax({//Update likes
 			url: "http://localhost:8080/api/update_report/" + id,
 			data : data,
 			type: "PUT"
@@ -431,6 +431,7 @@ angular
   })
   .controller('makereport4Con', function($scope) {
     console.log('Make report4 controller');
+    //summary
     document.getElementById("ca").innerHTML = localStorage.getItem("select");
     document.getElementById("tt").innerHTML = localStorage.getItem("title");
     document.getElementById("de").innerHTML = localStorage.getItem("desc");
@@ -499,7 +500,7 @@ angular
       {text:"Saint Patrick", value:"Saint Patrick"},
       {text:"Victoria", value:"Victoria"}
     ];
-    function getQuery(){
+    function getQuery(){ //Forms query
       var cat = document.getElementById("category");
       var selcat = cat.options[cat.selectedIndex].value;
       var c = document.getElementById("county");
@@ -589,15 +590,15 @@ angular
 
 
   })
-  .controller('makepostCon', function($scope, $window, $rootScope) {
+  .controller('makepostCon', function($scope, $window, $rootScope) { //Make Post page
     console.log('Make post controller');
     $scope.header = 'Make a Post';
-    $scope.postMarker = {
+    $scope.postMarker = { //Maker which post is based on
       title:null,
       val:null
     };
 
-  	if($scope.getCurrentUser() === null){
+  	if($scope.getCurrentUser() === null){ //Administration check
   		window.alert("You do not have permission to access this page");
   		$window.location.href = '/index.html';
   	}
