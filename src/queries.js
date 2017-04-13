@@ -1,5 +1,6 @@
 
 //posts queries
+// contains some queries for getting posts and populating forum table
 
 function properF(cat1){
   if (cat1=="All Categories") {

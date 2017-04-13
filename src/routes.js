@@ -757,7 +757,7 @@ angular
   .controller('graphsCon', function($scope) {
     console.log('Graphs controller');
     $scope.header = 'Graphs';
-    $scope.gTypes=[
+    $scope.gTypes=[ // types of graphs
       {text:"Area", value:"area"},
       {text:"Line", value:"line"},
       {text:"Bar", value:"bar"},
@@ -778,14 +778,13 @@ angular
       {text:"Road Repairs", value:"Road Repairs"},
       {text:"Garbage Collection", value:"Garbage Collection"}
     ];
-    $scope.updateTag3 = function(){
+    $scope.updateTag3 = function(){ // updates header tag in table
       var c = document.getElementById("Cat3");
       var select = c.options[c.selectedIndex].value;
       $("#gCat3").html("");
       $("#gCat3").append(select);
-      // $scope.getGReportsQ2();
     };
-    function properF1(cat1){
+    function properF1(cat1){ // converts the format of categories to what is needed by database
       if (cat1=="No Graph Loaded") {
         $("#gCat3").html("");
         $("#gCat3").append("Flooding");
@@ -801,7 +800,7 @@ angular
         return "garbage_collection";
       }
     }
-    function getQuery1(cat1){
+    function getQuery1(cat1){ // creates query for querying reports
       var c = document.getElementById("region3");
       var select = c.options[c.selectedIndex].value;
       var q="";
@@ -826,7 +825,7 @@ angular
     $scope.dates[4]= "2017-03-16";
     $scope.dates[5]= "2017-04-16";
     $scope.bdate = "2016-03-16";
-    function getTimePeriodQ(period){
+    function getTimePeriodQ(period){ // calculates queries within a time period specified and returns array of queries
       $scope.dates = [];
       var q = [];
       var d = new Date();
@@ -961,7 +960,7 @@ angular
 
 
 
-    $scope.vlSpec1 = {
+    $scope.vlSpec1 = { // data for graphs
       "width": 500,
       "height": 350,
       "data": {
@@ -986,7 +985,7 @@ angular
       $scope.nGraph.push(num);
     }
 
-    function populateGraph(nGraph){
+    function populateGraph(nGraph){ // populates data in graph
       var c = document.getElementById("gType");
       var select = c.options[c.selectedIndex].value;
 
@@ -1089,8 +1088,7 @@ angular
         });
       }
     }
-    function getGReportsQ(url){ //Updates Column & Map
-      // console.log("getGReportsQ working");
+    function getGReportsQ(url){ //Queries database based on query inputed
 
     	$.ajax({
         url:url,
@@ -1117,7 +1115,7 @@ angular
       });
     };
 
-    $scope.getGReportsQ2 = function(){
+    $scope.getGReportsQ2 = function(){ // Creates Queries to be passed in to Query funciton
 
       // console.log("getGReportsQ2 working");
       var period;
@@ -1149,6 +1147,7 @@ angular
   });
 
 /** @ngInject */
+// routesConfig for all controllers using Angularjs
 function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true).hashPrefix('!');
   $urlRouterProvider.otherwise('/');
