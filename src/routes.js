@@ -15,7 +15,7 @@ angular
       });
     };
   })
-  .controller('ApplicationController', function ($scope, $window,$rootScope) {
+  .controller('ApplicationController', function ($scope, $window) {
 	$scope.currentUser = JSON.parse(localStorage.getItem("user"));
 	if($scope.currentUser !== null) console.log($scope.currentUser);
 	$scope.setCurrentUser = function (user) {
@@ -25,54 +25,8 @@ angular
 	$scope.getCurrentUser = function() {
 		return $scope.currentUser;
 	};
-  $rootScope.categories = [
-    {
-      text:"Broken Water Main",
-      value:"broken_water_main"
-    },
-    {
-      text:"Flooding",
-      value:"flooding"
-    },
-    {
-      text:"Defect On Goverment Property",
-      value:"defect_on_government_property"
-    },
-    {
-      text:"Faulty Road Sign",
-      value:"faulty_road_sign"
-    },
-    {
-      text:"Faulty Street Light",
-      value:"faulty_street_light"
-    },
-    {
-      text:"Litter",
-      value:"litter"
-    },
-    {
-      text:"Garbage Collection",
-      value:"garbage_collection"
-    },
-    {
-      text:"Pavement Defect",
-      value:"pavement_defect"
-    },
-    {
-      text:"Graffiti",
-      value:"graffiti"
-    },
-    {
-      text:"Illegally Parked Vehicle",
-      value:"illegally_parked_vehicle"
-    },
-    {
-      text:"Vandalism",
-      value:"vandalism"
-    },
-  ];
 	})
-  .controller('homeCon', function($scope,$rootScope) {
+  .controller('homeCon', function() {
     console.log('Home controller');
   })
   .controller('LoginController', function($scope) {
@@ -114,7 +68,7 @@ angular
 	};
 
   })
-  .controller('LogoutController', function ($scope, $window, $rootScope) {
+  .controller('LogoutController', function ($scope, $window) {
 	 $scope.logout = function(){
 		 localStorage.removeItem("user");
 		 $window.location.href = '/index.html';
@@ -124,6 +78,7 @@ angular
     console.log('Report controller');
     $scope.header = 'View Reports';
     $rootScope.postData = "";
+
     $scope.counties = [ //Counties
       {text:"Counties - All", value:"All"},
       {text:"Caroni", value:"Caroni"},
@@ -148,32 +103,41 @@ angular
         // log error
       }
     );
-    $scope.updateTag1 = function(){
-      var c = document.getElementById("category");
-      var select = c.options[c.selectedIndex].innerHTML;
+    function properF1(cat1){
+      if (cat1=="All Categories") {
+        return "All";
+      }else if (cat1=="Flooding") {
+        return "flooding";
+      }else if (cat1=="Road Repairs") {
+        return "road_repair";
+      }else if (cat1=="Garbage Collection") {
+        return "garbage_collection";
+      }
+    }
+    $scope.updateTag1 = function(cat1){
       $("#Cat2").html("");
-      $("#Cat2").append(select);
+      $("#Cat2").append(cat1);
       $scope.getReportsQ();
     };
-    function getQuery1(){
+    function getQuery1(cat1){
       var c = document.getElementById("region1");
-      var cat = document.getElementById("category");
       var select = c.options[c.selectedIndex].value;
-      var ct = cat.options[cat.selectedIndex].value;
       var q="";
-      if (select=="All" && ct=="All") {
+      cat1 = properF1(cat1);
+      if (select=="All" && cat1=="All") {
         q="";
       }else if (select=="All"){
-        q="?report_type2="+ct;
-      }else if (ct=="All") {
+        q="?report_type2="+cat1;
+      }else if (cat1=="All") {
         q="?county="+select;
       }else {
-        q="?report_type2="+ct+"&county="+select;
+        q="?report_type2="+cat1+"&county="+select;
       }
       return q;
     }
     $scope.getReportsQ = function(){ //Updates Column & Map
-      var query=getQuery1();
+      var cat1 = document.getElementById("Cat2").innerHTML;
+      var query=getQuery1(cat1);
     	var url = "http://localhost:8080/api/get_reports";
       url += query;
     	$.ajax({
@@ -296,7 +260,7 @@ angular
 		}).fail(function(){
 			console.log("Request failed");
 		});
-	};
+	}
     //MakePost from report
     $scope.makePost = function(id){
       var url = "http://localhost:8080/api/get_reports/"+id;
@@ -354,11 +318,11 @@ angular
         el.options.animation = null;
       });
     };
-    // //Update dropdown text
-    // $(".dropdown-menu li a").click(function(){
-    //   $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
-    //   $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-    // });
+    //Update dropdown text
+    $(".dropdown-menu li a").click(function(){
+      $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+      $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+    });
   })
   .controller('makereportCon', function($scope){//Base
     $scope.header = 'Make a Report';
