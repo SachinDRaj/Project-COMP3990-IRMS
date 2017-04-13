@@ -64,7 +64,7 @@ router.route('/add_new_report')
 
 
         // save the report and check for errors
-        report.save(function(err) {
+        report.save(function(err) {//save to database
             if (err)
                 res.send(err);
 
@@ -77,7 +77,7 @@ router.route('/add_new_report')
 router.route('/get_reports')//route for getting reports based on query
 
 	.get(function(req, res) {
-        Report.find(req.query, function(err, reports) {
+        Report.find(req.query, function(err, reports) {//find based on query
             if (err)
                 res.send(err);
 
@@ -107,7 +107,7 @@ router.route('/get_reports_graph')//route for getting graph information
 
 		var q = getQ(req.query);//builds query
 
-        Report.find(q, function(err, reports) {
+        Report.find(q, function(err, reports) {//find based on query
             if (err)
                 res.send(err);
 
@@ -118,14 +118,14 @@ router.route('/get_reports_graph')//route for getting graph information
 router.route('/update_report/:id')//route for updating reports likes(valid) and dislikes(invalid)
 
 	.put(function(req, res) {
-		Report.findById(req.params.id, function(err, reports) {
+		Report.findById(req.params.id, function(err, reports) {//Get id of updated report
 			if(err)
 				res.send(err);
 			
 			reports.likes = req.body.likes;
 			reports.dislikes = req.body.dislikes;
 
-			reports.save(function(err){
+			reports.save(function(err){//save updated report
 				if(err)
 					res.send(err);
 
@@ -162,7 +162,7 @@ router.route('/delete_reports/:report_id')//Route used to delete single reports 
 
 
 
-router.route('/add_new_post')//Route for adding new psot
+router.route('/add_new_post')//Route for adding new post
 
 	.post(function(req, res) {
 
@@ -179,7 +179,7 @@ router.route('/add_new_post')//Route for adding new psot
 		post.lat = req.body.lat;
 		post.lng = req.body.lng;
 
-        post.save(function(err) {//save to mongo
+        post.save(function(err) {//save to database
             if (err)
                 res.send(err);
 
